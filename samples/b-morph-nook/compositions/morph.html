@@ -1,0 +1,429 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #mo-lens { position: absolute; inset: 0; perspective: 1500px; perspective-origin: 540px 820px; }
+    #mo-world { position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 540px 820px; }
+    #mo-svg, #mo-deep { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #mo-deep { transform: translateZ(-420px) scale(1.28); }
+    #mo-far { position: absolute; left: -800px; top: -900px; width: 8600px; height: 3800px; transform: translateZ(-600px) scale(1.4); }
+    #mo-carrier { position: absolute; inset: 0; transform-style: preserve-3d; }
+    #mo-capz { position: absolute; inset: 0; transform: translateZ(60px); transform-style: preserve-3d; }
+    .mo-lab {
+      position: absolute; left: 60px; right: 60px; top: 1236px; text-align: center;
+      font: 500 44px/1.2 "Inter", sans-serif; color: #4a4850; letter-spacing: -0.005em;
+    }
+    .mo-lab b { font-weight: 700; color: #1d1d1f; }
+    #mo-word { position: absolute; left: 0; right: 0; top: 1060px; text-align: center; font: 600 168px/1 "Outfit", sans-serif; color: #1d1d1f; letter-spacing: -0.04em; }
+    #mo-word span { display: inline-block; }
+    #mo-tag { position: absolute; left: 0; right: 0; top: 1250px; text-align: center; font: 400 44px/1 "Inter", sans-serif; color: #5e5c66; }
+  </style>
+
+  <div id="root" data-composition-id="morph" data-width="1080" data-height="1920">
+    <div id="mo-lens"><div id="mo-world">
+    <div id="mo-carrier">
+    <svg id="mo-deep" viewBox="0 0 1080 1920" data-layout-ignore>
+      <g id="mo-stars" fill="#3e4196">
+        <path id="mo-st0" d="M300 600 l8 22 22 8 -22 8 -8 22 -8 -22 -22 -8 22 -8z" opacity="0" />
+        <path id="mo-st1" d="M770 1000 l6 16 16 6 -16 6 -6 16 -6 -16 -16 -6 16 -6z" opacity="0" />
+        <path id="mo-st2" d="M330 1010 l5 13 13 5 -13 5 -5 13 -5 -13 -13 -5 13 -5z" opacity="0" />
+        <path id="mo-st3" d="M800 580 l7 18 18 7 -18 7 -7 18 -7 -18 -18 -7 18 -7z" opacity="0" />
+        <path id="mo-st4" d="M250 820 l5 12 12 5 -12 5 -5 12 -5 -12 -12 -5 12 -5z" opacity="0" />
+        <path id="mo-st5" d="M190 560 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4z" opacity="0" />
+        <path id="mo-st6" d="M880 820 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4z" opacity="0" />
+      </g>
+    </svg>
+    <svg id="mo-svg" viewBox="0 0 1080 1920" data-layout-ignore>
+      <defs>
+        <radialGradient id="mo-gloss" cx="0.32" cy="0.25" r="0.75">
+          <stop offset="0" stop-color="#fff" stop-opacity="0.75" /><stop offset="0.5" stop-color="#fff" stop-opacity="0.12" /><stop offset="1" stop-color="#fff" stop-opacity="0" />
+        </radialGradient>
+        <pattern id="mo-mesh" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="11" cy="11" r="4" fill="#ffffff" /></pattern>
+        <!-- glows are smooth radial gradients with an eased falloff (no SVG blur filters: they render blocky and band) -->
+        <radialGradient id="mo-warm"><stop offset="0" stop-color="#ffd27a" stop-opacity="0.75" /><stop offset="0.3" stop-color="#ffd27a" stop-opacity="0.42" />
+          <stop offset="0.55" stop-color="#ffd9a0" stop-opacity="0.16" /><stop offset="0.78" stop-color="#ffe2b8" stop-opacity="0.04" /><stop offset="1" stop-color="#ffe2b8" stop-opacity="0" /></radialGradient>
+        <radialGradient id="mo-shad"><stop offset="0" stop-color="#4a3a6a" stop-opacity="0.30" /><stop offset="0.45" stop-color="#4a3a6a" stop-opacity="0.14" />
+          <stop offset="0.8" stop-color="#4a3a6a" stop-opacity="0.03" /><stop offset="1" stop-color="#4a3a6a" stop-opacity="0" /></radialGradient>
+        <linearGradient id="mo-shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0.22" /><stop offset="0.42" stop-color="#fff" stop-opacity="0" />
+          <stop offset="0.7" stop-color="#000" stop-opacity="0" /><stop offset="1" stop-color="#000" stop-opacity="0.10" /></linearGradient>
+        <radialGradient id="mo-g0"><stop offset="0" stop-color="#ff5fa2" stop-opacity="0.9" /><stop offset="0.6" stop-color="#ff5fa2" stop-opacity="0.25" /><stop offset="1" stop-color="#ff5fa2" stop-opacity="0" /></radialGradient>
+        <radialGradient id="mo-g1"><stop offset="0" stop-color="#4c7dff" stop-opacity="0.9" /><stop offset="0.6" stop-color="#4c7dff" stop-opacity="0.25" /><stop offset="1" stop-color="#4c7dff" stop-opacity="0" /></radialGradient>
+        <radialGradient id="mo-g2"><stop offset="0" stop-color="#ffb23f" stop-opacity="0.9" /><stop offset="0.6" stop-color="#ffb23f" stop-opacity="0.25" /><stop offset="1" stop-color="#ffb23f" stop-opacity="0" /></radialGradient>
+        <radialGradient id="mo-dg" cx="0.5" cy="0.7"><stop offset="0" stop-color="#ff9a4a" stop-opacity="0.55" /><stop offset="0.5" stop-color="#ff9a4a" stop-opacity="0.15" /><stop offset="1" stop-color="#ff9a4a" stop-opacity="0" /></radialGradient>
+        <linearGradient id="mo-basegr" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7d7a85" /><stop offset="0.45" stop-color="#b7b4bf" /><stop offset="1" stop-color="#77747f" /></linearGradient>
+        <linearGradient id="mo-door" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff6b57" /><stop offset="1" stop-color="#ffc53d" /></linearGradient>
+      </defs>
+
+      <g id="mo-hero">
+        <ellipse id="mo-cshadow" cx="540" cy="986" rx="129" ry="24" fill="url(#mo-shad)" />
+        <circle id="mo-glow" cx="540" cy="820" r="300" fill="url(#mo-warm)" opacity="0" />
+        <!-- bulb base sits behind the glass and slides out of it -->
+        <g id="mo-base" opacity="0">
+          <rect x="482" y="930" width="116" height="96" rx="18" fill="url(#mo-basegr)" />
+          <rect x="482" y="958" width="116" height="8" fill="#b4b1bb" /><rect x="482" y="982" width="116" height="8" fill="#b4b1bb" />
+          <rect x="512" y="1022" width="56" height="22" rx="10" fill="#6e6b75" />
+        </g>
+        <g id="mo-rays" stroke="#ffb23f" stroke-width="16" stroke-linecap="round">
+          <line x1="540" y1="645" x2="540" y2="600" /><line x1="627.5" y1="668.4" x2="650" y2="629.5" /><line x1="691.6" y1="732.5" x2="730.5" y2="710" />
+          <line x1="715" y1="820" x2="760" y2="820" /><line x1="691.6" y1="907.5" x2="730.5" y2="930" /><line x1="627.5" y1="971.6" x2="650" y2="1010.5" />
+          <line x1="540" y1="995" x2="540" y2="1040" /><line x1="452.5" y1="971.6" x2="430" y2="1010.5" /><line x1="388.4" y1="907.5" x2="349.5" y2="930" />
+          <line x1="365" y1="820" x2="320" y2="820" /><line x1="388.4" y1="732.5" x2="349.5" y2="710" /><line x1="452.5" y1="668.4" x2="430" y2="629.5" />
+        </g>
+        <!-- the one silhouette that morphs through every state -->
+        <rect id="mo-h" x="400" y="680" width="280" height="280" rx="140" fill="#ffb23f" />
+        <rect id="mo-hm" x="400" y="680" width="280" height="280" rx="140" fill="url(#mo-mesh)" opacity="0" />
+        <rect id="mo-hs" x="400" y="680" width="280" height="280" rx="140" fill="url(#mo-shade)" />
+        <rect id="mo-hg" x="400" y="680" width="280" height="280" rx="140" fill="url(#mo-gloss)" opacity="0.55" />
+        <rect id="mo-hr" x="401" y="681" width="278" height="278" rx="139" fill="none" stroke="#fff" stroke-opacity="0.35" stroke-width="2" />
+
+        <path id="mo-fil" d="M505 845 q 17.5 -46 35 0 q 17.5 46 35 0" fill="none" stroke="#ff8a3d" stroke-width="7" stroke-linecap="round" opacity="0" />
+
+        <g id="mo-dial" opacity="0"></g>
+        <circle id="mo-arc" cx="540" cy="820" r="132" fill="none" stroke="#ff6b57" stroke-width="16" stroke-linecap="round" pathLength="100"
+          stroke-dasharray="0 100" transform="rotate(130 540 820)" opacity="0" />
+        <text id="mo-temp" x="540" y="855" text-anchor="middle" font-family="Inter" font-weight="600" font-size="100" fill="#1d1d1f" opacity="0">18°</text>
+
+        <g id="mo-spk" opacity="0">
+          <circle id="mo-s0" cx="520" cy="660" r="78" fill="url(#mo-g0)" /><circle id="mo-s1" cx="560" cy="650" r="74" fill="url(#mo-g1)" /><circle id="mo-s2" cx="540" cy="680" r="66" fill="url(#mo-g2)" />
+        </g>
+        <g id="mo-waves" fill="none" stroke="#9b5cff" stroke-width="8" stroke-linecap="round" opacity="0">
+          <path id="mo-w0" d="M355 760 q -40 60 0 120" /><path id="mo-w1" d="M725 760 q 40 60 0 120" />
+          <path id="mo-w2" d="M320 730 q -60 90 0 180" /><path id="mo-w3" d="M760 730 q 60 90 0 180" />
+        </g>
+
+        <g id="mo-phone" opacity="0">
+          <rect x="392" y="492" width="296" height="656" rx="46" fill="#f4f2f7" />
+          <rect x="495" y="506" width="90" height="26" rx="13" fill="#1d1d1f" />
+          <text x="420" y="590" font-family="Inter" font-weight="700" font-size="40" fill="#1d1d1f">nook</text>
+          <text x="420" y="972" font-family="Inter" font-weight="500" font-size="26" fill="#6e6e73">All good · 21°</text>
+          <rect x="420" y="1000" width="240" height="10" rx="5" fill="#dcd8e3" /><rect x="420" y="1000" width="150" height="10" rx="5" fill="#2bc48a" />
+        </g>
+
+        <g id="mo-orbit">
+          <g id="mo-spokes" stroke="#1d1d1f" stroke-opacity="0.22" stroke-width="4" stroke-linecap="round">
+            <line id="mo-k0" x1="540" y1="820" x2="540" y2="520" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" />
+            <line id="mo-k1" x1="540" y1="820" x2="840" y2="820" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" />
+            <line id="mo-k2" x1="540" y1="820" x2="540" y2="1120" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" />
+            <line id="mo-k3" x1="540" y1="820" x2="240" y2="820" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" />
+          </g>
+          <g id="mo-t0" opacity="0"><rect x="415" y="630" width="120" height="120" rx="34" fill="#ffb23f" /><circle cx="475" cy="682" r="26" fill="#fff6dc" /><rect x="463" y="708" width="24" height="16" rx="5" fill="#fff6dc" /></g>
+          <g id="mo-t1" opacity="0"><rect x="545" y="630" width="120" height="120" rx="34" fill="#ff6b57" /><circle cx="605" cy="690" r="30" fill="none" stroke="#fff" stroke-width="9" /><circle cx="605" cy="690" r="7" fill="#fff" /></g>
+          <g id="mo-t2" opacity="0"><rect x="415" y="760" width="120" height="120" rx="34" fill="#9b5cff" /><rect x="455" y="785" width="40" height="70" rx="20" fill="#fff" /><circle cx="475" cy="800" r="7" fill="#9b5cff" /></g>
+          <g id="mo-t3" opacity="0"><rect x="545" y="760" width="120" height="120" rx="34" fill="#2bc48a" /><rect x="580" y="812" width="50" height="40" rx="10" fill="#fff" /><path d="M590 812 v-12 a15 15 0 0 1 30 0 v12" fill="none" stroke="#fff" stroke-width="8" /></g>
+        </g>
+        <circle id="mo-hubdot" cx="540" cy="820" r="34" fill="#ff6b57" opacity="0" />
+        <circle id="mo-pulse" cx="540" cy="820" r="115" fill="none" stroke="#ff6b57" stroke-width="6" opacity="0" />
+
+        <path id="mo-shackle" d="M470 708 V660 a70 70 0 0 1 140 0 V708" fill="none" stroke="#1d1d1f" stroke-width="28" stroke-linecap="round"
+          pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" />
+        <g id="mo-key" opacity="0"><circle cx="540" cy="808" r="22" fill="#1d1d1f" /><rect x="530" y="812" width="20" height="44" rx="8" fill="#1d1d1f" /></g>
+
+        <circle id="mo-cut" cx="790" cy="640" r="165" fill="#e8e3ef" opacity="0" />
+
+        <ellipse id="mo-doorglow" cx="540" cy="900" rx="120" ry="110" fill="url(#mo-dg)" opacity="0" />
+        <path id="mo-door" d="M482 960 V838 a58 58 0 0 1 116 0 V960 Z" fill="url(#mo-door)" opacity="0" />
+      </g>
+    </svg>
+    </div>
+    <div id="mo-capz">
+      <div class="mo-lab" id="mo-l0"><b>6:30</b> · wake up gently</div>
+      <div class="mo-lab" id="mo-l1">Lights that <b>follow you</b></div>
+      <div class="mo-lab" id="mo-l2">Always <b>just right</b></div>
+      <div class="mo-lab" id="mo-l3">Music in <b>every room</b></div>
+      <div class="mo-lab" id="mo-l4">All of it, <b>one app</b></div>
+      <div class="mo-lab" id="mo-l5">Everything <b>connected</b></div>
+      <div class="mo-lab" id="mo-l6">Doors that <b>lock themselves</b></div>
+      <div class="mo-lab" id="mo-l7"><b>Good night</b></div>
+      <div id="mo-word"><span>n</span><span>o</span><span>o</span><span>k</span></div>
+      <div id="mo-tag">A home that runs itself.</div>
+    </div>
+    </div></div>
+
+  </div>
+
+  <script>
+    (function () {
+      // music hits on the film clock (research/audio_hits.py) — quick events snap to them in tl.commit()
+      const HITS = [0.29, 1.869, 3.692, 5.097, 5.399, 6.06, 6.943, 7.488, 7.883, 9.694, 11.134, 12.806, 13.177, 14.036, 14.884, 15.43, 17.02, 18.831, 19.888, 21.026, 22.233, 24.044, 24.706, 25.298];
+      const TL = gsap.timeline({ paused: true });
+      const tl = beatSync(TL, HITS, { t0: 0 });
+      // BEAT SYNC (MotionKit primitive 22) — make a scene's events land on the music without hand-retiming every tween.
+      // Usage: const TL = gsap.timeline({ paused: true }); const tl = beatSync(TL, HITS, { t0: sceneStart });
+      //        …author tweens on tl as usual (to / fromTo / set with a numeric position)…
+      //        tl.commit(), then register TL (not tl) as the scene timeline.
+      // HITS: strong audio hit times on the FILM clock (research/audio_hits.py). Quick tweens (≤ maxDur) are grouped into
+      // clusters (starts within `gap` of each other); each cluster shifts as a block so its first start lands on the nearest
+      // hit within ±tol. Staggers, order and long tweens (camera drivers, slow drifts) are untouched.
+      function beatSync(TL, hits, opt) {
+        opt = opt || {};
+        const tol = opt.tol == null ? 0.2 : opt.tol, maxDur = opt.maxDur == null ? 1.0 : opt.maxDur, gap = opt.gap == null ? 0.18 : opt.gap;
+        const H = hits.map((h) => h - (opt.t0 || 0));
+        const calls = [];
+        const rec = {
+          to: (...a) => (calls.push(["to", a]), rec),
+          fromTo: (...a) => (calls.push(["fromTo", a]), rec),
+          set: (...a) => (calls.push(["set", a]), rec),
+          commit() {
+            const info = calls.map(([m, a]) => {
+              const pi = m === "fromTo" ? 3 : 2, vars = m === "fromTo" ? a[2] : a[1];
+              return { m, a, pi, pos: a[pi], dur: m === "set" ? 0 : vars && vars.duration != null ? vars.duration : 0.5, shift: 0 };
+            });
+            const ev = info.filter((c) => typeof c.pos === "number" && c.dur <= maxDur && c.pos > 0.05).sort((x, y) => x.pos - y.pos);
+            const cl = [];
+            ev.forEach((c) => {
+              const last = cl[cl.length - 1];
+              if (last && c.pos - last.end <= gap) { last.items.push(c); last.end = Math.max(last.end, c.pos); }
+              else cl.push({ start: c.pos, end: c.pos, items: [c] });
+            });
+            let prevNew = -1e9;
+            cl.forEach((k) => {
+              let d = null;
+              H.forEach((h) => { const x = h - k.start; if (Math.abs(x) <= tol && (d === null || Math.abs(x) < Math.abs(d))) d = x; });
+              d = d || 0;
+              if (k.start + d < prevNew + 0.05) d = 0; // never reorder clusters
+              k.items.forEach((c) => (c.shift = d));
+              prevNew = k.start + d;
+            });
+            info.forEach((c) => { const a = c.a.slice(); if (c.shift) a[c.pi] = c.pos + c.shift; TL[c.m](...a); });
+            rec.report = cl.map((k) => ({ at: +k.start.toFixed(2), shift: +(k.items[0].shift || 0).toFixed(3) }));
+            return TL;
+          },
+        };
+        return rec;
+      }
+
+      // CAMERA RIG v3 (MotionKit primitive 15) — keyframed camera on a 3D world, a pure function of timeline time.
+      // world: element with transform-style: preserve-3d inside a perspective lens.
+      // KF: [{ t, x, y, z (dolly toward scene), rx, ry, rz (deg), f (focus depth), e }]
+      //   e = GSAP ease name for the segment INTO this key (bell-shaped "power2.inOut"/"sine.inOut" for moves),
+      //   or e = "glide": consecutive glide keys form ONE continuous monotone spline (no stops at inner keys) —
+      //   use it to track a sentence word by word without stop-start hops; the run starts and ends at zero velocity.
+      // dof: [{ el, z, max }] — leaf layers blurred by distance from the focus depth.
+      // opt: { t0 (scene start on the film clock), drift (0–1), seed (int: per-film drift character), dofK, onRender(c, t) }
+      function cameraRig(tl, world, D, KF, dof, opt) {
+        opt = opt || {};
+        const drift = opt.drift == null ? 1 : opt.drift;
+        const keys = ["x", "y", "z", "rx", "ry", "rz", "f"];
+        let prev = { x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0, f: 0 };
+        const K = KF.slice().sort((a, b) => a.t - b.t).map((k) => (prev = Object.assign({}, prev, { e: "power2.inOut" }, k)));
+        const E = {}, ez = (n) => E[n] || (E[n] = gsap.parseEase(n));
+        // monotone cubic tangents (Fritsch–Butland) for glide runs; zero at run ends => smooth start/stop
+        const M = {};
+        keys.forEach((k) => {
+          const m = K.map(() => 0);
+          for (let i = 1; i < K.length - 1; i++) {
+            if (K[i].e !== "glide" || K[i + 1].e !== "glide") continue;
+            const h0 = K[i].t - K[i - 1].t, h1 = K[i + 1].t - K[i].t;
+            const d0 = (K[i][k] - K[i - 1][k]) / h0, d1 = (K[i + 1][k] - K[i][k]) / h1;
+            if (d0 * d1 > 0) m[i] = (3 * (h0 + h1)) / ((2 * h1 + h0) / d0 + (h1 + 2 * h0) / d1);
+          }
+          M[k] = m;
+        });
+        // seeded drift: each film gets its own frequencies, phases and amplitudes (no repeated, predictable sway)
+        let s = (opt.seed || 1) >>> 0;
+        const rnd = () => { s = (s + 0x6d2b79f5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+        const osc = () => ({ f: 0.035 + rnd() * 0.12, p: rnd() * 6.283, a: 0.6 + rnd() * 0.8 });
+        const DR = { x: [osc(), osc()], y: [osc(), osc()], rz: [osc()], rx: [osc()] };
+        const T0 = opt.t0 || 0;
+        const sway = (ch, t, amp) => DR[ch].reduce((v, o, j) => v + amp[j] * o.a * Math.sin(6.283 * o.f * (t + T0) + o.p), 0);
+        function render(t) {
+          let i = 0;
+          while (i < K.length - 1 && K[i + 1].t <= t) i++;
+          const j = Math.min(i + 1, K.length - 1), a = K[i], b = K[j];
+          const h = b.t - a.t, u = h > 0 ? Math.min(1, Math.max(0, (t - a.t) / h)) : 1;
+          const c = {};
+          keys.forEach((k) => {
+            if (b.e === "glide" && h > 0) {
+              const u2 = u * u, u3 = u2 * u;
+              c[k] = (2 * u3 - 3 * u2 + 1) * a[k] + (u3 - 2 * u2 + u) * h * M[k][i] + (-2 * u3 + 3 * u2) * b[k] + (u3 - u2) * h * M[k][j];
+            } else c[k] = a[k] + (b[k] - a[k]) * (h > 0 ? ez(b.e)(u) : 1);
+          });
+          c.x += drift * sway("x", t, [6, 2.5]);
+          c.y += drift * sway("y", t, [4.5, 2]);
+          c.rz += drift * sway("rz", t, [0.2]);
+          c.rx += drift * sway("rx", t, [0.22]);
+          world.style.transform = "translate3d(" + (-c.x).toFixed(2) + "px," + (-c.y).toFixed(2) + "px," + c.z.toFixed(2) + "px) rotateX(" +
+            c.rx.toFixed(3) + "deg) rotateY(" + c.ry.toFixed(3) + "deg) rotateZ(" + c.rz.toFixed(3) + "deg)";
+          (dof || []).forEach((d) => {
+            const bl = Math.min(d.max || 8, Math.abs(d.z - c.f) * (opt.dofK || 0.022));
+            d.el.style.filter = bl < 0.3 ? "none" : "blur(" + bl.toFixed(2) + "px)";
+          });
+          if (opt.onRender) opt.onRender(c, t);
+        }
+        const drv = { t: 0 };
+        tl.fromTo(drv, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: () => render(drv.t) }, 0);
+        render(0);
+      }
+      // seeded helper for motivated moves: varied direction/size so no two films (or beats) move the same way
+      function camSeed(seed) {
+        let s = seed >>> 0;
+        const r = () => { s = (s + 0x6d2b79f5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+        return { r, range: (a, b) => a + (b - a) * r(), sign: () => (r() < 0.5 ? -1 : 1), pick: (arr) => arr[Math.floor(r() * arr.length)] };
+      }
+
+      const CX = 540, CY = 820;
+      const SIL = ["#mo-h", "#mo-hm", "#mo-hs", "#mo-hg"];
+      // the morph: every state is the same rect, re-proportioned; rim and contact shadow ride along
+      function shape(t, d, w, h, rx, ease) {
+        ease = ease || "power2.inOut";
+        tl.to(SIL, { attr: { x: CX - w / 2, y: CY - h / 2, width: w, height: h, rx: rx }, duration: d, ease }, t);
+        tl.to("#mo-hr", { attr: { x: CX - w / 2 + 1, y: CY - h / 2 + 1, width: w - 2, height: h - 2, rx: Math.max(0, rx - 1) }, duration: d, ease }, t);
+        tl.to("#mo-cshadow", { attr: { cy: CY + h / 2 + 46, rx: w * 0.46, ry: 18 + w * 0.02 }, duration: d, ease }, t);
+      }
+      function fill(t, d, c) { tl.to("#mo-h", { attr: { fill: c }, duration: d, ease: "power1.inOut" }, t); }
+      function gloss(t, o) { tl.to("#mo-hg", { opacity: o, duration: 0.5, ease: "power1.inOut" }, t); }
+      function label(i, tin, tout) {
+        tl.fromTo("#mo-l" + i, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "power2.out" }, tin);
+        tl.to("#mo-l" + i, { opacity: 0, filter: "blur(10px)", duration: 0.25, ease: "power2.in" }, tout);
+      }
+      const O = { svgOrigin: "540 820" };
+
+      // 0 · SUN (frame 0 is already the sun — the hook)
+      tl.fromTo("#mo-rays", Object.assign({ rotation: 0 }, O), Object.assign({ rotation: 48, duration: 2.6, ease: "none" }, O), 0);
+      label(0, 0.35, 2.15);
+
+      // 1 · BULB — rays draw back into the disc, colour drains to warm glass, the base slides out
+      tl.to("#mo-rays", Object.assign({ scale: 0.72, opacity: 0, duration: 0.5, ease: "power3.in" }, O), 2.1);
+      shape(2.3, 0.7, 300, 300, 150);
+      fill(2.3, 0.6, "#ffe9b8"); gloss(2.3, 0.75);
+      tl.fromTo("#mo-base", { opacity: 0, y: -96 }, { opacity: 1, y: 0, duration: 0.7, ease: "back.out(1.4)" }, 2.6);
+      tl.fromTo("#mo-fil", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 3.0);
+      label(1, 2.75, 4.35);
+      // onset 4.63: the bulb switches on
+      tl.set("#mo-glow", { opacity: 0.85 }, 4.6);
+      tl.set("#mo-h", { attr: { fill: "#fff6de" } }, 4.6);
+      tl.to("#mo-glow", { opacity: 0.45, duration: 0.9, ease: "power2.out" }, 4.65);
+      tl.fromTo("#mo-hero", { scale: 1, transformOrigin: "540px 820px" }, { scale: 1.06, duration: 0.12, ease: "power2.out" }, 4.6);
+      tl.to("#mo-hero", { scale: 1, duration: 0.6, ease: "elastic.out(1, 0.6)" }, 4.72);
+
+      // 2 · THERMOSTAT — drain to neutral, grow, the dial assembles and warms to 21°
+      tl.to("#mo-base", { opacity: 0, y: -96, duration: 0.45, ease: "power3.in" }, 5.05);
+      tl.to("#mo-fil", { opacity: 0, duration: 0.3 }, 5.05);
+      tl.to("#mo-glow", { opacity: 0, duration: 0.5 }, 5.56);
+      fill(5.1, 0.35, "#d9d6de");
+      shape(5.2, 0.8, 390, 390, 195);
+      fill(5.5, 0.5, "#f7f5fa"); gloss(5.4, 0.35);
+      const dial = document.getElementById("mo-dial");
+      tl.fromTo("#mo-dial", Object.assign({ opacity: 0, rotation: -120 }, O), Object.assign({ opacity: 1, rotation: 0, duration: 0.9, ease: "expo.out" }, O), 5.55);
+      tl.fromTo("#mo-arc", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 5.8);
+      tl.to("#mo-arc", { attr: { "stroke-dasharray": "62 100" }, duration: 1.1, ease: "power2.inOut" }, 5.8);
+      const temp = document.getElementById("mo-temp"), tv = { v: 18 };
+      tl.fromTo("#mo-temp", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 5.75);
+      tl.fromTo(tv, { v: 18 }, { v: 21, duration: 1.1, ease: "power2.inOut", onUpdate: () => { temp.textContent = Math.round(tv.v) + "°"; } }, 5.8);
+      label(2, 5.75, 7.0);
+
+      // 3 · SPEAKER — dial unwinds, the disc stretches into a tall pill, mesh appears, colour blooms on top
+      tl.to("#mo-dial", Object.assign({ opacity: 0, rotation: 90, duration: 0.45, ease: "power3.in" }, O), 7.05);
+      tl.to("#mo-arc", { attr: { "stroke-dasharray": "0 100" }, duration: 0.4, ease: "power3.in" }, 7.05);
+      tl.to("#mo-arc", { opacity: 0, duration: 0.15 }, 7.35);
+      tl.to("#mo-temp", { opacity: 0, duration: 0.25 }, 7.05);
+      fill(7.2, 0.5, "#45444c"); gloss(7.2, 0.18);
+      shape(7.25, 0.85, 300, 440, 150);
+      tl.to("#mo-hm", { opacity: 0.16, duration: 0.6 }, 7.6);
+      tl.fromTo("#mo-spk", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 7.75);
+      tl.fromTo(["#mo-s0", "#mo-s1", "#mo-s2"], { x: 0, y: 0 }, { x: (i) => [22, -24, 6][i], y: (i) => [12, 18, -14][i], duration: 1.4, ease: "sine.inOut" }, 7.75);
+      ["#mo-w0", "#mo-w1", "#mo-w2", "#mo-w3"].forEach((w, i) => {
+        tl.fromTo(w, { opacity: 0, x: 0 }, { opacity: 0.85, x: (i % 2 ? 1 : -1) * 22, duration: 0.5, ease: "power2.out" }, 7.95 + (i > 1 ? 0.25 : 0));
+        tl.to(w, { opacity: 0, x: (i % 2 ? 1 : -1) * 50, duration: 0.45, ease: "power2.in" }, 8.55 + (i > 1 ? 0.15 : 0));
+      });
+      tl.set("#mo-waves", { opacity: 1 }, 7.9);
+      label(3, 7.75, 8.95);
+
+      // 4 · PHONE — the pill straightens into a phone; the screen grows inside; four tiles pop
+      tl.to(["#mo-spk", "#mo-hm"], { opacity: 0, duration: 0.35 }, 8.95);
+      fill(9.0, 0.5, "#1d1d1f"); gloss(9.0, 0.12);
+      shape(9.0, 0.85, 340, 700, 64, "power3.inOut");
+      tl.fromTo("#mo-phone", { opacity: 0, scale: 0.94, transformOrigin: "540px 820px" }, { opacity: 1, scale: 1, duration: 0.55, ease: "expo.out" }, 9.55);
+      [0, 1, 2, 3].forEach((i) => {
+        tl.fromTo("#mo-t" + i, { opacity: 0, scale: 0.4, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.7)" }, 9.85 + i * 0.12);
+      });
+      label(4, 9.45, 10.55);
+
+      // 5 · HUB — the phone shrinks into a hub, its tiles fly out into orbit, spokes connect them
+      const grid = [[475, 690], [605, 690], [475, 820], [605, 820]], ring = [[540, 520], [840, 820], [540, 1120], [240, 820]];
+      tl.to("#mo-phone", { opacity: 0, duration: 0.3, ease: "power1.in" }, 11.2);
+      shape(11.25, 0.8, 230, 230, 115, "power3.inOut");
+      gloss(11.3, 0.3);
+      [0, 1, 2, 3].forEach((i) => {
+        tl.to("#mo-t" + i, { x: ring[i][0] - grid[i][0], y: ring[i][1] - grid[i][1], scale: 1.12, duration: 0.95, ease: "power3.inOut" }, 11.25 + i * 0.04);
+        tl.fromTo("#mo-t" + i, { rotation: 0 }, { rotation: -55, duration: 2.75, ease: "none" }, 12.15);
+        tl.to("#mo-k" + i, { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.out" }, 12.0 + i * 0.08);
+      });
+      tl.fromTo("#mo-orbit", Object.assign({ rotation: 0 }, O), Object.assign({ rotation: 55, duration: 2.75, ease: "none" }, O), 12.15);
+      tl.fromTo("#mo-hubdot", { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 11.9);
+      label(5, 12.1, 14.75);
+      // onset 14.9: the whole network pulses
+      tl.fromTo("#mo-pulse", { attr: { r: 115 }, opacity: 0.8 }, { attr: { r: 430 }, opacity: 0, duration: 1.0, ease: "power2.out", immediateRender: false }, 14.88);
+      tl.to("#mo-spokes", { attr: { stroke: "#ff6b57" }, strokeOpacity: 0.7, duration: 0.15 }, 14.88);
+
+      // 6 · LOCK — tiles fall into the hub; the hub becomes a lock body; the shackle draws and clicks
+      [0, 1, 2, 3].forEach((i) => {
+        tl.to("#mo-t" + i, { x: CX - grid[i][0], y: CY - grid[i][1], scale: 0, duration: 0.5, ease: "power3.in" }, 15.05 + i * 0.03);
+      });
+      tl.to(["#mo-spokes", "#mo-hubdot"], { opacity: 0, duration: 0.35 }, 15.1);
+      fill(15.35, 0.6, "#ff6b57"); gloss(15.35, 0.42);
+      shape(15.3, 0.65, 280, 230, 56, "back.out(1.3)");
+      tl.fromTo("#mo-shackle", { y: -46, attr: { "stroke-dashoffset": 110 } }, { y: -46, attr: { "stroke-dashoffset": 0 }, duration: 0.6, ease: "power2.out" }, 15.7);
+      tl.fromTo("#mo-key", { opacity: 0, scale: 0.4, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 15.95);
+      tl.to("#mo-shackle", { y: 0, duration: 0.16, ease: "power4.in" }, 16.45);
+      tl.fromTo("#mo-hero", { scaleY: 1 }, { scaleY: 0.96, duration: 0.08, ease: "power1.out" }, 16.61);
+      tl.to("#mo-hero", { scaleY: 1, duration: 0.5, ease: "elastic.out(1, 0.5)" }, 16.69);
+      label(6, 15.75, 17.05);
+
+      // 7 · MOON — lock dissolves into a deep-indigo disc; a canvas-coloured cutter carves the crescent
+      tl.to(["#mo-shackle", "#mo-key"], { opacity: 0, duration: 0.3 }, 17.05);
+      fill(17.15, 0.75, "#3e4196"); gloss(17.15, 0.3);
+      shape(17.1, 0.8, 330, 330, 165);
+      tl.fromTo("#mo-cut", { attr: { cx: 830, cy: 590 } }, { attr: { cx: 640, cy: 740 }, duration: 1.0, ease: "power2.inOut" }, 17.6);
+      tl.fromTo("#mo-cut", { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: false }, 17.59);
+      [0, 1, 2, 3, 4, 5, 6].forEach((i) => {
+        tl.fromTo("#mo-st" + i, { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.2)" }, 18.1 + i * 0.12);
+      });
+      label(7, 17.75, 19.25);
+
+      // 8 · NOOK — the night folds into the app icon; a warm doorway opens inside it
+      tl.to("#mo-stars path", { opacity: 0, scale: 0, duration: 0.3, stagger: 0.03, ease: "power2.in" }, 19.3);
+      tl.to("#mo-cut", { attr: { cx: 900, cy: 480 }, duration: 0.6, ease: "power3.in" }, 19.35);
+      tl.set("#mo-cut", { opacity: 0 }, 19.96);
+      fill(19.55, 0.5, "#1d1d1f"); gloss(19.55, 0.2);
+      shape(19.55, 0.75, 330, 330, 92, "power3.inOut");
+      tl.fromTo(["#mo-door", "#mo-doorglow"], { opacity: 0, scaleY: 0, transformOrigin: "50% 100%" }, { opacity: 1, scaleY: 1, duration: 0.8, ease: "expo.out" }, 20.2);
+      tl.to("#mo-doorglow", { opacity: 0.7, duration: 0.6 }, 20.6);
+      tl.to("#mo-hero", { y: -150, duration: 1.0, ease: "power3.inOut" }, 21.0);
+      document.querySelectorAll("#mo-word span").forEach((s, i) => {
+        tl.fromTo(s, { opacity: 0, y: 40, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.7, ease: "expo.out" }, 21.4 + i * 0.07);
+      });
+      tl.fromTo("#mo-tag", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "power2.out" }, 22.2);
+
+      // dial ticks are generated geometry inside one static group (not timed clips)
+      for (let i = 0; i < 48; i++) {
+        const a = (i / 48) * Math.PI * 2, r1 = i % 4 ? 160 : 150, r2 = 172;
+        const l = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        l.setAttribute("x1", (CX + r1 * Math.cos(a)).toFixed(1)); l.setAttribute("y1", (CY + r1 * Math.sin(a)).toFixed(1));
+        l.setAttribute("x2", (CX + r2 * Math.cos(a)).toFixed(1)); l.setAttribute("y2", (CY + r2 * Math.sin(a)).toFixed(1));
+        l.setAttribute("stroke", i % 4 ? "#b8b4c0" : "#6e6e73"); l.setAttribute("stroke-width", i % 4 ? 3 : 5); l.setAttribute("stroke-linecap", "round");
+        dial.appendChild(l);
+      }
+      // ── camera: element-driven film => the camera stays almost still and only moves when something motivates it
+      //    (references: Bentomotion v06 and v52 keep a locked camera; the objects carry the motion). Seeded so it never repeats a pattern.
+      const cs = camSeed(9137), roll = cs.sign();
+      cameraRig(tl, document.getElementById("mo-world"), 26, [
+        { t: 0, z: -50, rz: roll * cs.range(0.6, 1.2) },
+        { t: 2.2, z: 0, rz: 0, e: "sine.inOut" },                                   // settle on the sun
+        { t: 4.58, z: 10, e: "power1.inOut" },
+        { t: 4.7, z: 46, e: "power2.out" },                                          // kick: the bulb switches on
+        { t: 5.6, z: 18, e: "power2.inOut" },
+        { t: 9.4, z: 22, e: "sine.inOut" },
+        { t: 11.0, z: cs.range(55, 75), x: cs.sign() * cs.range(10, 22), e: "sine.inOut" },   // lean into the phone screen
+        { t: 12.3, z: -cs.range(70, 95), x: 0, rz: -roll * cs.range(0.8, 1.6), e: "power2.inOut" }, // pull back to fit the network
+        { t: 15.0, z: -60, rz: 0, e: "sine.inOut" },
+        { t: 16.42, z: -12, e: "power2.inOut" },
+        { t: 16.52, z: 14, e: "power2.out" },                                        // kick: the lock clicks shut
+        { t: 17.4, z: 0, e: "power2.inOut" },
+        { t: 20.2, z: 10, e: "sine.inOut" },
+        { t: 26, z: cs.range(55, 80), y: -cs.range(15, 30), e: "sine.inOut" },       // slow push on the brand
+      ], null, { drift: 0.35, seed: 9137 });
+      tl.commit();
+      window.__timelines["morph"] = TL;
+    })();
+  </script>
+</template>

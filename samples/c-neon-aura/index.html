@@ -1,0 +1,38 @@
+<!doctype html>
+<html
+  lang="en"
+  data-resolution="portrait"
+  data-composition-variables='[
+    {"id":"rim-1","type":"color","label":"Rim orange","default":"#FF8A2A"},
+    {"id":"rim-2","type":"color","label":"Rim magenta","default":"#FF2BD6"},
+    {"id":"rim-3","type":"color","label":"Rim violet","default":"#7B3CFF"},
+    {"id":"rim-4","type":"color","label":"Rim blue","default":"#2E6BFF"},
+    {"id":"rim-5","type":"color","label":"Rim cyan","default":"#29E3FF"}
+  ]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root { --rim-1: #ff8a2a; --rim-2: #ff2bd6; --rim-3: #7b3cff; --rim-4: #2e6bff; --rim-5: #29e3ff; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+      body { font-family: "Inter", sans-serif; }
+      #void { position: absolute; inset: 0; background: #000; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="27" data-motion-blur="on" data-motion-blur-events="on" data-width="1080" data-height="1920">
+      <div id="void"></div>
+      <div id="neon" class="clip" data-composition-id="neon" data-composition-src="compositions/neon.html"
+        data-start="0" data-duration="27" data-track-index="1" data-track-kind="graphics"
+        data-width="1080" data-height="1920" style="z-index:2"></div>
+      <audio id="music" class="clip" src="assets/music.mp3" data-start="0" data-duration="27"
+        data-track-index="2" data-volume="1" data-fade-in="0.2" data-fade-out="1.8"></audio>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

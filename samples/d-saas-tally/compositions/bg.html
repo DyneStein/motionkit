@@ -1,0 +1,22 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: var(--color-ground); }
+    .bg-blob { position: absolute; border-radius: 50%; filter: blur(130px); }
+    #bg-b0 { left: -260px; top: 520px; width: 1100px; height: 900px; background: rgba(125,134,240,0.55); }
+    #bg-b1 { left: 1180px; top: 560px; width: 1100px; height: 860px; background: rgba(38,57,201,0.32); }
+    #bg-b2 { left: 560px; top: -520px; width: 900px; height: 700px; background: rgba(201,204,248,0.75); }
+  </style>
+  <div id="root" data-composition-id="bg" data-width="1920" data-height="1080">
+    <div class="bg-blob" id="bg-b0" data-layout-ignore></div>
+    <div class="bg-blob" id="bg-b1" data-layout-ignore></div>
+    <div class="bg-blob" id="bg-b2" data-layout-ignore></div>
+  </div>
+  <script>
+    // the gradient breathes: each pool drifts on its own slow sine (world motion, not title motion)
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#bg-b0", { x: 0, y: 0, scale: 1 }, { x: 160, y: -80, scale: 1.1, duration: 9.1, ease: "sine.inOut", yoyo: true, repeat: 2 }, 0);
+    tl.fromTo("#bg-b1", { x: 0, y: 0, scale: 1.05 }, { x: -200, y: -60, scale: 0.92, duration: 13.65, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+    tl.fromTo("#bg-b2", { x: 0, y: 0 }, { x: 180, y: 70, duration: 27.3, ease: "sine.inOut" }, 0);
+    window.__timelines["bg"] = tl;
+  </script>
+</template>

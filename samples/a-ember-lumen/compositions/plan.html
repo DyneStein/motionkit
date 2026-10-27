@@ -1,0 +1,289 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #pl-stage, #pl-clens { position: absolute; inset: 0; perspective: 1500px; perspective-origin: 540px 800px; }
+    #pl-world, #pl-cworld { position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 540px 800px; }
+    .motes { position: absolute; left: -1500px; top: -1500px; width: 4600px; height: 5000px; transform: translateZ(-520px) scale(1.35); pointer-events: none; }
+    .capz { position: absolute; inset: 0; transform: translateZ(90px); transform-style: preserve-3d; }
+    #pl-cardsvg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #pl-card { position: absolute; left: 130px; top: 500px; width: 820px; height: 600px; color: #fff; }
+    #pl-label { position: absolute; left: 60px; top: 54px; font: 500 30px/1 "Inter", sans-serif; opacity: 0.85; letter-spacing: 0.04em; }
+    #pl-head { position: absolute; left: 60px; top: 104px; font: 600 66px/1.05 "Inter", sans-serif; letter-spacing: -0.02em; }
+    #pl-head em { font-family: "EB Garamond", serif; font-style: italic; font-weight: 500; font-size: 78px; }
+    .pl-row {
+      position: absolute; left: 44px; right: 44px; height: 96px; border-radius: 48px;
+      background: rgba(255,255,255,0.2); display: flex; align-items: center; padding: 0 32px 0 26px;
+      font: 500 36px/1 "Inter", sans-serif;
+    }
+    .pl-row b { margin-left: auto; font-weight: 400; opacity: 0.85; font-size: 32px; }
+    .pl-chk { width: 44px; height: 44px; border-radius: 50%; border: 3px solid #fff; margin-right: 24px; position: relative; flex: none; }
+    .pl-fill { position: absolute; inset: -3px; border-radius: 50%; background: #fff; }
+    .pl-fill svg { position: absolute; inset: 8px; }
+    #pl-cream { position: absolute; inset: 0; background: #f6efe6; }
+    #pl-cream::before {
+      content: ""; position: absolute; left: 140px; top: 500px; width: 800px; height: 800px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,160,90,0.28) 0%, rgba(255,160,90,0) 65%);
+    }
+    #pl-string { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    .pl-node {
+      position: absolute; width: 300px; height: 100px; margin: -50px 0 0 -150px; border-radius: 50px;
+      background: #1c1410; color: #f6efe6; display: flex; align-items: center; justify-content: center; gap: 16px;
+      font: 500 40px/1 "Inter", sans-serif; transform-origin: 50% 0%;
+      box-shadow: 0 18px 40px rgba(60,30,10,0.18);
+      overflow: hidden;
+    }
+    .pl-heat { position: absolute; inset: 0; background: linear-gradient(110deg, #ff4f6d 0%, #ff7a1a 60%, #ffb547 100%); }
+    .pl-node span, .pl-node i { position: relative; }
+    .pl-node i { width: 18px; height: 18px; border-radius: 50%; background: #ffb547; font-style: normal; }
+    .pl-cap {
+      position: absolute; left: 60px; right: 60px; top: 1196px; text-align: center;
+      font: 400 64px/1.15 "Inter", sans-serif; color: #f6efe6;
+    }
+    .pl-cap span { display: inline-block; }
+    .pl-cap em { font-family: "EB Garamond", serif; font-style: italic; font-size: 76px; color: #ffb547; }
+    #pl-c2 { color: #1c1410; }
+    #pl-c2 em { color: #e8601a; }
+  </style>
+
+  <div id="root" data-composition-id="plan" data-width="1080" data-height="1920">
+    <div id="pl-stage"><div id="pl-world">
+<svg class="motes" id="pl-motes" viewBox="-1500 -1500 4600 5000" data-layout-ignore><circle cx="1008" cy="-626" r="2.7" fill="#ffd890" opacity="0.28"/><circle cx="2541" cy="1901" r="2.3" fill="#ff7a1a" opacity="0.15"/><circle cx="738" cy="2958" r="2.1" fill="#ffb547" opacity="0.39"/><circle cx="751" cy="-394" r="3.6" fill="#ff7a1a" opacity="0.21"/><circle cx="-291" cy="1204" r="3.8" fill="#ffd890" opacity="0.49"/><circle cx="2665" cy="168" r="4.5" fill="#ffb547" opacity="0.19"/><circle cx="-586" cy="2281" r="1.7" fill="#ffb547" opacity="0.40"/><circle cx="1969" cy="580" r="2.0" fill="#ffd890" opacity="0.28"/><circle cx="-1179" cy="445" r="3.7" fill="#ffb547" opacity="0.38"/><circle cx="344" cy="-1285" r="3.7" fill="#ff7a1a" opacity="0.33"/><circle cx="1171" cy="-506" r="1.9" fill="#ffd890" opacity="0.17"/><circle cx="-903" cy="2849" r="3.3" fill="#ffb547" opacity="0.22"/><circle cx="-1427" cy="70" r="3.5" fill="#ff7a1a" opacity="0.27"/><circle cx="675" cy="495" r="4.3" fill="#ffb547" opacity="0.25"/><circle cx="2347" cy="858" r="4.0" fill="#ff7a1a" opacity="0.19"/><circle cx="386" cy="1953" r="4.6" fill="#ffb547" opacity="0.48"/><circle cx="2671" cy="818" r="4.7" fill="#ffb547" opacity="0.50"/><circle cx="2203" cy="2055" r="2.8" fill="#ff7a1a" opacity="0.49"/><circle cx="-1493" cy="2263" r="1.5" fill="#ff7a1a" opacity="0.17"/><circle cx="2811" cy="17" r="2.4" fill="#ff7a1a" opacity="0.22"/><circle cx="1320" cy="2122" r="4.9" fill="#ffb547" opacity="0.31"/><circle cx="-475" cy="-1007" r="2.1" fill="#ff7a1a" opacity="0.34"/><circle cx="-270" cy="638" r="3.8" fill="#ff7a1a" opacity="0.44"/><circle cx="-1215" cy="689" r="4.3" fill="#ffd890" opacity="0.37"/><circle cx="2644" cy="2248" r="2.2" fill="#ffb547" opacity="0.41"/><circle cx="-1173" cy="3161" r="4.5" fill="#ffb547" opacity="0.48"/><circle cx="1935" cy="1999" r="4.7" fill="#ffd890" opacity="0.37"/><circle cx="1488" cy="-1434" r="4.1" fill="#ff7a1a" opacity="0.33"/><circle cx="-1494" cy="1863" r="2.0" fill="#ffb547" opacity="0.22"/><circle cx="1933" cy="-1047" r="2.0" fill="#ffb547" opacity="0.28"/><circle cx="1500" cy="-912" r="2.3" fill="#ffb547" opacity="0.40"/><circle cx="1826" cy="-811" r="1.6" fill="#ffd890" opacity="0.23"/><circle cx="1443" cy="2744" r="4.6" fill="#ffb547" opacity="0.48"/><circle cx="-465" cy="-1463" r="5.0" fill="#ff7a1a" opacity="0.20"/><circle cx="140" cy="-913" r="4.6" fill="#ff7a1a" opacity="0.46"/><circle cx="2362" cy="3220" r="3.8" fill="#ffd890" opacity="0.22"/><circle cx="1920" cy="862" r="2.7" fill="#ffd890" opacity="0.31"/><circle cx="2808" cy="3366" r="2.6" fill="#ffd890" opacity="0.23"/><circle cx="-117" cy="-633" r="3.2" fill="#ffd890" opacity="0.21"/><circle cx="-150" cy="864" r="4.9" fill="#ffb547" opacity="0.34"/><circle cx="1002" cy="536" r="2.5" fill="#ffd890" opacity="0.31"/><circle cx="2267" cy="1802" r="3.8" fill="#ff7a1a" opacity="0.37"/><circle cx="-478" cy="1741" r="2.2" fill="#ffb547" opacity="0.42"/><circle cx="1893" cy="170" r="4.8" fill="#ff7a1a" opacity="0.19"/><circle cx="-139" cy="-1095" r="1.7" fill="#ff7a1a" opacity="0.38"/><circle cx="2667" cy="222" r="4.9" fill="#ff7a1a" opacity="0.19"/><circle cx="1576" cy="3195" r="3.9" fill="#ffd890" opacity="0.38"/><circle cx="-22" cy="265" r="2.5" fill="#ff7a1a" opacity="0.27"/><circle cx="19" cy="2410" r="2.5" fill="#ffb547" opacity="0.26"/><circle cx="-182" cy="2422" r="4.9" fill="#ffd890" opacity="0.29"/><circle cx="-260" cy="-1437" r="2.1" fill="#ffd890" opacity="0.28"/><circle cx="2785" cy="3147" r="2.2" fill="#ffb547" opacity="0.38"/><circle cx="1532" cy="-478" r="3.3" fill="#ff7a1a" opacity="0.45"/><circle cx="2088" cy="-322" r="2.9" fill="#ffb547" opacity="0.13"/><circle cx="1854" cy="3107" r="2.9" fill="#ffd890" opacity="0.13"/><circle cx="1443" cy="104" r="4.2" fill="#ffd890" opacity="0.29"/><circle cx="2425" cy="1427" r="3.7" fill="#ffb547" opacity="0.40"/><circle cx="-700" cy="1313" r="3.3" fill="#ff7a1a" opacity="0.49"/><circle cx="-1421" cy="484" r="2.8" fill="#ff7a1a" opacity="0.18"/><circle cx="2826" cy="1375" r="2.0" fill="#ffd890" opacity="0.34"/><circle cx="375" cy="-110" r="3.1" fill="#ffb547" opacity="0.23"/><circle cx="176" cy="3094" r="1.9" fill="#ffb547" opacity="0.17"/><circle cx="1802" cy="-936" r="3.8" fill="#ffb547" opacity="0.21"/><circle cx="2544" cy="132" r="1.5" fill="#ff7a1a" opacity="0.13"/><circle cx="-32" cy="-987" r="3.1" fill="#ff7a1a" opacity="0.38"/><circle cx="-374" cy="3325" r="3.2" fill="#ffb547" opacity="0.35"/><circle cx="-1449" cy="2062" r="2.0" fill="#ff7a1a" opacity="0.49"/><circle cx="1556" cy="-613" r="3.4" fill="#ffd890" opacity="0.35"/><circle cx="-1088" cy="111" r="3.0" fill="#ffd890" opacity="0.20"/><circle cx="1665" cy="-1039" r="4.0" fill="#ffb547" opacity="0.27"/></svg>
+
+      <svg id="pl-cardsvg" viewBox="0 0 1080 1920" data-layout-ignore>
+        <defs>
+          <linearGradient id="pl-cg" gradientUnits="userSpaceOnUse" x1="260" y1="740" x2="820" y2="860">
+            <stop offset="0" stop-color="#ff4f6d" /><stop offset="0.6" stop-color="#ff7a1a" /><stop offset="1" stop-color="#ffb547" />
+          </linearGradient>
+          <radialGradient id="pl-hi" cx="0.3" cy="0" r="0.75"><stop offset="0" stop-color="#fff" stop-opacity="0.32" /><stop offset="1" stop-color="#fff" stop-opacity="0" /></radialGradient>
+        </defs>
+        <rect id="pl-cr" x="260" y="740" width="560" height="120" rx="60" fill="url(#pl-cg)" />
+        <rect id="pl-ch" x="260" y="740" width="560" height="120" rx="60" fill="url(#pl-hi)" />
+      </svg>
+      <div id="pl-card">
+        <div id="pl-label">LUMEN · TOMORROW</div>
+        <div id="pl-head"><span>Tomorrow,</span> <em>clearly</em></div>
+        <div class="pl-row" id="pl-row0" style="top:236px"><div class="pl-chk"><div class="pl-fill" id="pl-f0"><svg viewBox="0 0 24 24"><path id="pl-t0" d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#ff7a1a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" /></svg></div></div>Draft the pitch<b>9:00</b></div>
+        <div class="pl-row" id="pl-row1" style="top:350px"><div class="pl-chk"><div class="pl-fill" id="pl-f1"><svg viewBox="0 0 24 24"><path id="pl-t1" d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#ff7a1a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" /></svg></div></div>Call Maya<b>11:30</b></div>
+        <div class="pl-row" id="pl-row2" style="top:464px"><div class="pl-chk"><div class="pl-fill" id="pl-f2"><svg viewBox="0 0 24 24"><path id="pl-t2" d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#ff7a1a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" /></svg></div></div>Ship v2<b>16:00</b></div>
+      </div>
+      <div class="capz"><div class="pl-cap" id="pl-c1"><span>Into</span> <span>one</span> <span>clear</span> <span><em>plan</em></span></div></div>
+    </div></div>
+
+    <div id="pl-cream">
+      <div id="pl-clens"><div id="pl-cworld">
+<svg class="motes" id="pl-cmotes" viewBox="-1500 -1500 4600 5000" data-layout-ignore><circle cx="-328" cy="-542" r="4.3" fill="#e8a46a" opacity="0.31"/><circle cx="2424" cy="2906" r="1.8" fill="#e8a46a" opacity="0.34"/><circle cx="2529" cy="1421" r="2.4" fill="#e8a46a" opacity="0.20"/><circle cx="621" cy="1598" r="3.0" fill="#d9b08a" opacity="0.25"/><circle cx="1408" cy="2174" r="3.0" fill="#e8916a" opacity="0.20"/><circle cx="1758" cy="-1265" r="3.0" fill="#e8916a" opacity="0.15"/><circle cx="-1472" cy="1863" r="3.0" fill="#d9b08a" opacity="0.12"/><circle cx="441" cy="684" r="4.4" fill="#e8a46a" opacity="0.26"/><circle cx="2364" cy="1477" r="3.4" fill="#e8a46a" opacity="0.37"/><circle cx="2271" cy="1426" r="1.5" fill="#e8916a" opacity="0.17"/><circle cx="1161" cy="573" r="1.8" fill="#e8916a" opacity="0.34"/><circle cx="2355" cy="-1214" r="2.8" fill="#e8a46a" opacity="0.26"/><circle cx="-212" cy="-930" r="1.9" fill="#e8916a" opacity="0.37"/><circle cx="1174" cy="1556" r="4.8" fill="#d9b08a" opacity="0.19"/><circle cx="172" cy="1427" r="4.6" fill="#d9b08a" opacity="0.46"/><circle cx="-712" cy="1260" r="4.7" fill="#e8916a" opacity="0.24"/><circle cx="1838" cy="853" r="2.9" fill="#e8a46a" opacity="0.46"/><circle cx="1353" cy="-1359" r="1.8" fill="#d9b08a" opacity="0.38"/><circle cx="1848" cy="-727" r="2.7" fill="#e8a46a" opacity="0.20"/><circle cx="-695" cy="171" r="2.2" fill="#d9b08a" opacity="0.30"/><circle cx="2789" cy="-192" r="3.8" fill="#e8916a" opacity="0.15"/><circle cx="2047" cy="1024" r="2.1" fill="#d9b08a" opacity="0.23"/><circle cx="2175" cy="2091" r="1.6" fill="#e8a46a" opacity="0.44"/><circle cx="1461" cy="-190" r="4.8" fill="#e8916a" opacity="0.49"/><circle cx="-763" cy="986" r="3.6" fill="#e8a46a" opacity="0.16"/><circle cx="1667" cy="-1157" r="1.9" fill="#d9b08a" opacity="0.24"/><circle cx="1198" cy="800" r="4.4" fill="#d9b08a" opacity="0.42"/><circle cx="1542" cy="-1363" r="3.2" fill="#e8916a" opacity="0.27"/><circle cx="-1144" cy="-936" r="1.9" fill="#d9b08a" opacity="0.18"/><circle cx="1686" cy="-1326" r="4.0" fill="#d9b08a" opacity="0.12"/><circle cx="-191" cy="928" r="3.7" fill="#e8916a" opacity="0.45"/><circle cx="1683" cy="8" r="4.0" fill="#e8916a" opacity="0.25"/><circle cx="-1446" cy="1435" r="2.3" fill="#e8a46a" opacity="0.24"/><circle cx="2821" cy="925" r="3.4" fill="#e8a46a" opacity="0.24"/><circle cx="653" cy="2869" r="2.0" fill="#e8a46a" opacity="0.38"/><circle cx="136" cy="1528" r="4.4" fill="#d9b08a" opacity="0.47"/><circle cx="-1392" cy="2312" r="3.4" fill="#d9b08a" opacity="0.33"/><circle cx="859" cy="-1397" r="2.9" fill="#d9b08a" opacity="0.25"/><circle cx="361" cy="-56" r="1.7" fill="#e8916a" opacity="0.44"/><circle cx="-430" cy="366" r="3.1" fill="#e8916a" opacity="0.25"/><circle cx="2006" cy="793" r="4.4" fill="#e8a46a" opacity="0.35"/><circle cx="935" cy="-1482" r="2.9" fill="#d9b08a" opacity="0.16"/><circle cx="-571" cy="975" r="3.2" fill="#e8916a" opacity="0.13"/><circle cx="995" cy="-620" r="2.0" fill="#e8a46a" opacity="0.47"/><circle cx="1177" cy="3386" r="4.4" fill="#e8916a" opacity="0.39"/><circle cx="2410" cy="-1458" r="3.4" fill="#e8916a" opacity="0.29"/><circle cx="-1470" cy="1610" r="4.9" fill="#e8a46a" opacity="0.30"/><circle cx="-1324" cy="1404" r="4.8" fill="#e8916a" opacity="0.17"/><circle cx="2545" cy="-1070" r="3.0" fill="#e8916a" opacity="0.34"/><circle cx="772" cy="2001" r="2.1" fill="#e8916a" opacity="0.16"/><circle cx="2979" cy="1102" r="4.4" fill="#e8916a" opacity="0.46"/><circle cx="2926" cy="1522" r="4.8" fill="#d9b08a" opacity="0.25"/><circle cx="-919" cy="1412" r="4.1" fill="#e8a46a" opacity="0.42"/><circle cx="97" cy="2804" r="2.5" fill="#e8916a" opacity="0.30"/><circle cx="-444" cy="-1237" r="4.9" fill="#e8a46a" opacity="0.46"/><circle cx="366" cy="-305" r="4.0" fill="#e8916a" opacity="0.37"/><circle cx="1091" cy="-1382" r="4.2" fill="#e8a46a" opacity="0.44"/><circle cx="-308" cy="2393" r="3.6" fill="#e8a46a" opacity="0.26"/><circle cx="982" cy="1820" r="3.6" fill="#d9b08a" opacity="0.47"/><circle cx="2716" cy="-1437" r="2.8" fill="#e8a46a" opacity="0.46"/><circle cx="-1383" cy="2117" r="3.4" fill="#d9b08a" opacity="0.49"/><circle cx="-937" cy="2114" r="4.5" fill="#d9b08a" opacity="0.17"/><circle cx="2672" cy="-1118" r="4.9" fill="#e8916a" opacity="0.27"/><circle cx="1717" cy="-1218" r="1.8" fill="#d9b08a" opacity="0.40"/><circle cx="2486" cy="1523" r="1.9" fill="#e8a46a" opacity="0.19"/><circle cx="-1371" cy="2107" r="1.9" fill="#e8a46a" opacity="0.21"/><circle cx="2254" cy="744" r="2.9" fill="#d9b08a" opacity="0.28"/><circle cx="-353" cy="1739" r="2.0" fill="#e8916a" opacity="0.46"/><circle cx="580" cy="-1486" r="4.4" fill="#d9b08a" opacity="0.25"/><circle cx="-1078" cy="299" r="3.0" fill="#e8a46a" opacity="0.21"/></svg>
+
+      <svg id="pl-string" viewBox="0 0 1080 1920" data-layout-ignore>
+        <defs>
+          <linearGradient id="pl-strgrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff7a1a" /><stop offset="1" stop-color="#ff4f6d" /></linearGradient>
+        </defs>
+        <path id="pl-str" d="M380 650 C 380 760, 700 690, 700 772 M 700 872 C 700 980, 420 900, 420 992" fill="none"
+          stroke="url(#pl-strgrad)" stroke-width="4" stroke-linecap="round" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" />
+        <circle id="pl-bead" cx="380" cy="650" r="9" fill="#ff7a1a" />
+      </svg>
+      <div class="pl-node" id="pl-n0" style="left:380px;top:600px"><div class="pl-heat" id="pl-h0"></div><i></i><span>Think</span></div>
+      <div class="pl-node" id="pl-n1" style="left:700px;top:822px"><div class="pl-heat" id="pl-h1"></div><i></i><span>Plan</span></div>
+      <div class="pl-node" id="pl-n2" style="left:420px;top:1042px"><div class="pl-heat" id="pl-h2"></div><i></i><span>Do</span></div>
+      <div class="capz"><div class="pl-cap" id="pl-c2"><span>From</span> <span>thought</span> <span>to</span> <span><em>done</em></span></div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // music hits on the film clock (research/audio_hits.py) — quick events snap to them in tl.commit()
+      const HITS = [0.07, 0.522, 0.964, 1.544, 5.515, 6.165, 6.931, 7.883, 8.348, 9.276, 10.484, 11.122, 11.714, 13.317, 13.851, 14.385, 14.919, 15.871, 16.579, 18.1, 19.458, 23.684, 24.137, 27.899, 28.537, 29.872];
+      const TL = gsap.timeline({ paused: true });
+      const tl = beatSync(TL, HITS, { t0: 11.5, tol: 0.32 });
+      // BEAT SYNC (MotionKit primitive 22) — make a scene's events land on the music without hand-retiming every tween.
+      // Usage: const TL = gsap.timeline({ paused: true }); const tl = beatSync(TL, HITS, { t0: sceneStart });
+      //        …author tweens on tl as usual (to / fromTo / set with a numeric position)…
+      //        tl.commit(), then register TL (not tl) as the scene timeline.
+      // HITS: strong audio hit times on the FILM clock (research/audio_hits.py). Quick tweens (≤ maxDur) are grouped into
+      // clusters (starts within `gap` of each other); each cluster shifts as a block so its first start lands on the nearest
+      // hit within ±tol. Staggers, order and long tweens (camera drivers, slow drifts) are untouched.
+      function beatSync(TL, hits, opt) {
+        opt = opt || {};
+        const tol = opt.tol == null ? 0.2 : opt.tol, maxDur = opt.maxDur == null ? 1.0 : opt.maxDur, gap = opt.gap == null ? 0.18 : opt.gap;
+        const H = hits.map((h) => h - (opt.t0 || 0));
+        const calls = [];
+        const rec = {
+          to: (...a) => (calls.push(["to", a]), rec),
+          fromTo: (...a) => (calls.push(["fromTo", a]), rec),
+          set: (...a) => (calls.push(["set", a]), rec),
+          commit() {
+            const info = calls.map(([m, a]) => {
+              const pi = m === "fromTo" ? 3 : 2, vars = m === "fromTo" ? a[2] : a[1];
+              return { m, a, pi, pos: a[pi], dur: m === "set" ? 0 : vars && vars.duration != null ? vars.duration : 0.5, shift: 0 };
+            });
+            const ev = info.filter((c) => typeof c.pos === "number" && c.dur <= maxDur && c.pos > 0.05).sort((x, y) => x.pos - y.pos);
+            const cl = [];
+            ev.forEach((c) => {
+              const last = cl[cl.length - 1];
+              if (last && c.pos - last.end <= gap) { last.items.push(c); last.end = Math.max(last.end, c.pos); }
+              else cl.push({ start: c.pos, end: c.pos, items: [c] });
+            });
+            let prevNew = -1e9;
+            cl.forEach((k) => {
+              let d = null;
+              H.forEach((h) => { const x = h - k.start; if (Math.abs(x) <= tol && (d === null || Math.abs(x) < Math.abs(d))) d = x; });
+              d = d || 0;
+              if (k.start + d < prevNew + 0.05) d = 0; // never reorder clusters
+              k.items.forEach((c) => (c.shift = d));
+              prevNew = k.start + d;
+            });
+            info.forEach((c) => { const a = c.a.slice(); if (c.shift) a[c.pi] = c.pos + c.shift; TL[c.m](...a); });
+            rec.report = cl.map((k) => ({ at: +k.start.toFixed(2), shift: +(k.items[0].shift || 0).toFixed(3) }));
+            return TL;
+          },
+        };
+        return rec;
+      }
+
+      // CAMERA RIG v3 (MotionKit primitive 15) — keyframed camera on a 3D world, a pure function of timeline time.
+      // world: element with transform-style: preserve-3d inside a perspective lens.
+      // KF: [{ t, x, y, z (dolly toward scene), rx, ry, rz (deg), f (focus depth), e }]
+      //   e = GSAP ease name for the segment INTO this key (bell-shaped "power2.inOut"/"sine.inOut" for moves),
+      //   or e = "glide": consecutive glide keys form ONE continuous monotone spline (no stops at inner keys) —
+      //   use it to track a sentence word by word without stop-start hops; the run starts and ends at zero velocity.
+      // dof: [{ el, z, max }] — leaf layers blurred by distance from the focus depth.
+      // opt: { t0 (scene start on the film clock), drift (0–1), seed (int: per-film drift character), dofK, onRender(c, t) }
+      function cameraRig(tl, world, D, KF, dof, opt) {
+        opt = opt || {};
+        const drift = opt.drift == null ? 1 : opt.drift;
+        const keys = ["x", "y", "z", "rx", "ry", "rz", "f"];
+        let prev = { x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0, f: 0 };
+        const K = KF.slice().sort((a, b) => a.t - b.t).map((k) => (prev = Object.assign({}, prev, { e: "power2.inOut" }, k)));
+        const E = {}, ez = (n) => E[n] || (E[n] = gsap.parseEase(n));
+        // monotone cubic tangents (Fritsch–Butland) for glide runs; zero at run ends => smooth start/stop
+        const M = {};
+        keys.forEach((k) => {
+          const m = K.map(() => 0);
+          for (let i = 1; i < K.length - 1; i++) {
+            if (K[i].e !== "glide" || K[i + 1].e !== "glide") continue;
+            const h0 = K[i].t - K[i - 1].t, h1 = K[i + 1].t - K[i].t;
+            const d0 = (K[i][k] - K[i - 1][k]) / h0, d1 = (K[i + 1][k] - K[i][k]) / h1;
+            if (d0 * d1 > 0) m[i] = (3 * (h0 + h1)) / ((2 * h1 + h0) / d0 + (h1 + 2 * h0) / d1);
+          }
+          M[k] = m;
+        });
+        // seeded drift: each film gets its own frequencies, phases and amplitudes (no repeated, predictable sway)
+        let s = (opt.seed || 1) >>> 0;
+        const rnd = () => { s = (s + 0x6d2b79f5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+        const osc = () => ({ f: 0.035 + rnd() * 0.12, p: rnd() * 6.283, a: 0.6 + rnd() * 0.8 });
+        const DR = { x: [osc(), osc()], y: [osc(), osc()], rz: [osc()], rx: [osc()] };
+        const T0 = opt.t0 || 0;
+        const sway = (ch, t, amp) => DR[ch].reduce((v, o, j) => v + amp[j] * o.a * Math.sin(6.283 * o.f * (t + T0) + o.p), 0);
+        function render(t) {
+          let i = 0;
+          while (i < K.length - 1 && K[i + 1].t <= t) i++;
+          const j = Math.min(i + 1, K.length - 1), a = K[i], b = K[j];
+          const h = b.t - a.t, u = h > 0 ? Math.min(1, Math.max(0, (t - a.t) / h)) : 1;
+          const c = {};
+          keys.forEach((k) => {
+            if (b.e === "glide" && h > 0) {
+              const u2 = u * u, u3 = u2 * u;
+              c[k] = (2 * u3 - 3 * u2 + 1) * a[k] + (u3 - 2 * u2 + u) * h * M[k][i] + (-2 * u3 + 3 * u2) * b[k] + (u3 - u2) * h * M[k][j];
+            } else c[k] = a[k] + (b[k] - a[k]) * (h > 0 ? ez(b.e)(u) : 1);
+          });
+          c.x += drift * sway("x", t, [6, 2.5]);
+          c.y += drift * sway("y", t, [4.5, 2]);
+          c.rz += drift * sway("rz", t, [0.2]);
+          c.rx += drift * sway("rx", t, [0.22]);
+          world.style.transform = "translate3d(" + (-c.x).toFixed(2) + "px," + (-c.y).toFixed(2) + "px," + c.z.toFixed(2) + "px) rotateX(" +
+            c.rx.toFixed(3) + "deg) rotateY(" + c.ry.toFixed(3) + "deg) rotateZ(" + c.rz.toFixed(3) + "deg)";
+          (dof || []).forEach((d) => {
+            const bl = Math.min(d.max || 8, Math.abs(d.z - c.f) * (opt.dofK || 0.022));
+            d.el.style.filter = bl < 0.3 ? "none" : "blur(" + bl.toFixed(2) + "px)";
+          });
+          if (opt.onRender) opt.onRender(c, t);
+        }
+        const drv = { t: 0 };
+        tl.fromTo(drv, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: () => render(drv.t) }, 0);
+        render(0);
+      }
+      // seeded helper for motivated moves: varied direction/size so no two films (or beats) move the same way
+      function camSeed(seed) {
+        let s = seed >>> 0;
+        const r = () => { s = (s + 0x6d2b79f5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+        return { r, range: (a, b) => a + (b - a) * r(), sign: () => (r() < 0.5 ? -1 : 1), pick: (arr) => arr[Math.floor(r() * arr.length)] };
+      }
+
+      function caption(sel, tin, tout) {
+        document.querySelectorAll(sel + " span").forEach((w, i) => {
+          tl.fromTo(w, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.32, ease: "power2.out" }, tin + i * 0.09);
+          tl.to(w, { opacity: 0, filter: "blur(10px)", duration: 0.26, ease: "power2.in" }, tout + i * 0.04);
+        });
+      }
+
+      // --- the pill (same box as spark's last frame) opens into the plan card, tilting back to flat
+      const CARD = ["#pl-cr", "#pl-ch"];
+      tl.fromTo(CARD, { attr: { x: 260, y: 740, width: 560, height: 120, rx: 60 } },
+        { attr: { x: 130, y: 500, width: 820, height: 600, rx: 44 }, duration: 0.75, ease: "power3.inOut" }, 0.1);
+      tl.fromTo("#pl-cg", { attr: { x1: 260, y1: 740, x2: 820, y2: 860 } }, { attr: { x1: 130, y1: 500, x2: 950, y2: 1100 }, duration: 0.75, ease: "power3.inOut" }, 0.1);
+      tl.fromTo(["#pl-label", "#pl-head"], { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.35, stagger: 0.1, ease: "power2.out" }, 0.75);
+      ["#pl-row0", "#pl-row1", "#pl-row2"].forEach((r, i) => {
+        tl.fromTo(r, { opacity: 0, filter: "blur(8px)", scale: 0.96 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.45, ease: "expo.out" }, 1.1 + i * 0.28);
+        tl.fromTo("#pl-f" + i, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.6)" }, 2.35 + i * 0.32);
+        tl.to("#pl-t" + i, { attr: { "stroke-dashoffset": 0 }, duration: 0.3, ease: "power2.out" }, 2.5 + i * 0.32);
+      });
+      caption("#pl-c1", 0.6, 3.35);
+
+      // --- card condenses to an ember point, then cream floods out from it (iris)
+      tl.to(["#pl-label", "#pl-head", "#pl-row0", "#pl-row1", "#pl-row2"], { opacity: 0, filter: "blur(8px)", duration: 0.22, stagger: 0.03, ease: "power2.in" }, 3.3);
+      tl.to(CARD, { attr: { x: 510, y: 770, width: 60, height: 60, rx: 30 }, duration: 0.5, ease: "power3.in" }, 3.55);
+      tl.to("#pl-cardsvg", { opacity: 0, duration: 0.12, ease: "none" }, 4.0);
+      tl.fromTo("#pl-cream", { clipPath: "circle(0px at 540px 800px)" }, { clipPath: "circle(1500px at 540px 800px)", duration: 0.65, ease: "power3.inOut" }, 3.98);
+
+      // --- cream act: three hanging pills, the string carries heat from one to the next
+      const nodes = ["#pl-n0", "#pl-n1", "#pl-n2"], arrive = [4.45, 5.75, 6.85];
+      nodes.forEach((n, i) => {
+        tl.fromTo(n, { scale: 0.2, opacity: 0, rotation: -14 }, { scale: 1, opacity: 1, duration: 0.55, ease: "back.out(1.5)" }, arrive[i]);
+        tl.to(n, { rotation: 0, duration: 1.2, ease: "elastic.out(1, 0.35)" }, arrive[i] + 0.05);
+        tl.fromTo("#pl-h" + i, { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, arrive[i] + 0.35);
+        if (i > 0) tl.to(nodes[i - 1] + " .pl-heat", { opacity: 0.0, duration: 0.5, ease: "power2.inOut" }, arrive[i] + 0.3);
+      });
+      tl.to("#pl-str", { attr: { "stroke-dashoffset": 50 }, duration: 1.15, ease: "power2.inOut" }, 4.8);
+      tl.to("#pl-str", { attr: { "stroke-dashoffset": 0 }, duration: 1.0, ease: "power2.inOut" }, 6.0);
+      const str = document.getElementById("pl-str"), bead = document.getElementById("pl-bead");
+      const bp = { u: 0 };
+      // sample the string once at build time; the bead then rides the drawn tip by lookup only
+      const L = str.getTotalLength() || 1, PTS = [];
+      for (let i = 0; i <= 200; i++) { const p = str.getPointAtLength((L * i) / 200); PTS.push([p.x, p.y]); }
+      function moveBead() {
+        const pt = PTS[Math.round(bp.u * 200)] || PTS[0];
+        bead.setAttribute("cx", pt[0].toFixed(1)); bead.setAttribute("cy", pt[1].toFixed(1));
+      }
+      tl.fromTo(bp, { u: 0 }, { u: 0.5, duration: 1.15, ease: "power2.inOut", onUpdate: moveBead }, 4.8);
+      tl.to(bp, { u: 1, duration: 1.0, ease: "power2.inOut", onUpdate: moveBead }, 6.0);
+      tl.fromTo("#pl-bead", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 4.8);
+      tl.to("#pl-bead", { opacity: 0, duration: 0.25 }, 7.0);
+      caption("#pl-c2", 5.0, 7.6);
+
+      // --- everything gathers to the centre and the cream closes back to the dark (inverse iris)
+      tl.to(nodes, { scale: 0.3, opacity: 0, duration: 0.35, stagger: 0.05, ease: "power3.in" }, 7.75);
+      tl.to("#pl-string", { opacity: 0, duration: 0.3 }, 7.75);
+      tl.to("#pl-cream", { clipPath: "circle(0px at 540px 800px)", duration: 0.6, ease: "power3.inOut" }, 8.05);
+
+      cameraRig(tl, document.getElementById("pl-world"), 8.8, [
+        { t: 0, z: 0, rx: 8 },
+        { t: 1.2, z: -30, rx: 3, e: "sine.inOut" },                 // the card opens: settle back
+        { t: 3.35, z: 55, ry: -4, e: "sine.inOut" },                // slow push while the plan checks off
+        { t: 3.95, z: 0, rx: 0, ry: 0, e: "power2.inOut" },
+      ], null, { t0: 11.5, drift: 0.35, seed: 3302 });
+      // follow the bead down the string: Think (380,600) → Plan (700,822) → Do (420,1042)
+      // the bead travels down the string — the one moving protagonist here, so the camera glides with it (one continuous spline)
+      cameraRig(tl, document.getElementById("pl-cworld"), 8.8, [
+        { t: 0, x: -110, y: -150, z: -40 },
+        { t: 4.6, x: -110, y: -150, z: -40, e: "power1.inOut" },
+        { t: 5.95, x: 100, y: 10, z: -20, e: "glide" },
+        { t: 7.05, x: -80, y: 170, z: 10, e: "glide" },
+        { t: 7.8, x: 0, y: 0, z: -40, e: "glide" },
+        { t: 8.8, z: 40, e: "power2.in" },
+      ], null, { t0: 11.5, drift: 0.35, seed: 3303 });
+      moveBead();
+      tl.commit();
+      window.__timelines["plan"] = TL;
+    })();
+  </script>
+</template>

@@ -1,0 +1,352 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    .sp-abs { position: absolute; left: 0; top: 0; }
+    #sp-fx { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #sp-lens { position: absolute; inset: 0; perspective: 1500px; perspective-origin: 540px 800px; }
+    #sp-world { position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 540px 800px; }
+    #sp-orbit { transform-style: preserve-3d; }
+    #sp-carrier { position: absolute; inset: 0; transform-style: preserve-3d; }
+    .motes { position: absolute; left: -1500px; top: -1500px; width: 4600px; height: 5000px; transform: translateZ(-520px) scale(1.35); pointer-events: none; }
+
+    #sp-capz { position: absolute; inset: 0; transform: translateZ(35px); transform-style: preserve-3d; }
+    /* the ember: white-hot core inside an orange halo */
+    #sp-ember { position: absolute; left: 526px; top: 786px; width: 28px; height: 28px; }
+    #sp-ember-halo {
+      position: absolute; inset: -34px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,181,71,0.55) 0%, rgba(255,140,40,0.18) 32%, rgba(255,122,26,0.05) 55%, rgba(255,122,26,0) 70%);
+    }
+    #sp-ember-core {
+      position: absolute; inset: 0; border-radius: 50%;
+      background: radial-gradient(circle at 45% 40%, #fffaf0 0%, #ffd890 40%, #ffb547 70%, #ff7a1a 100%);
+      box-shadow: 0 0 10px 2px rgba(255,181,71,0.6);
+    }
+    /* the sun: a crisp disc with a tight bloom; atmosphere is a faint, wide, eased falloff (never a muddy halo) */
+    #sp-sun { position: absolute; left: 425px; top: 615px; width: 230px; height: 230px; opacity: 0; }
+    #sp-sun-air {
+      position: absolute; inset: -150px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,170,70,0.20) 0%, rgba(255,150,60,0.09) 30%, rgba(255,130,50,0.03) 52%, rgba(255,120,40,0) 70%);
+    }
+    #sp-sun-disc {
+      position: absolute; inset: 0; border-radius: 50%;
+      background: radial-gradient(circle at 42% 38%, #fffdf6 0%, #ffe7b4 30%, #ffc566 62%, #ff9a3a 100%);
+      box-shadow: 0 0 22px rgba(255,190,110,0.55), 0 0 70px rgba(255,140,50,0.18);
+    }
+    #sp-refl {
+      position: absolute; left: 340px; top: 850px; width: 400px; height: 120px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255,181,71,0.28) 0%, rgba(255,122,26,0.08) 45%, rgba(0,0,0,0) 70%);
+    }
+    #sp-flare {
+      position: absolute; left: 0; top: 798px; width: 1080px; height: 4px;
+      height: 2px; background: linear-gradient(90deg, rgba(255,181,71,0) 8%, rgba(255,226,170,0.7) 50%, rgba(255,181,71,0) 92%);
+    }
+    .sp-p {
+      position: absolute; left: 531px; top: 791px; width: 18px; height: 18px; border-radius: 50%;
+      background: radial-gradient(circle, #fff3dc 0%, #ffb547 55%, #ff7a1a 100%);
+      box-shadow: 0 0 7px 1px rgba(255,170,70,0.45);
+    }
+    .sp-cap {
+      position: absolute; left: 60px; right: 60px; top: 1150px; text-align: center;
+      font: 400 64px/1.15 "Inter", sans-serif; color: #f6efe6; letter-spacing: -0.01em;
+    }
+    .sp-cap span { display: inline-block; }
+    .sp-cap em { font-family: "EB Garamond", serif; font-style: italic; font-size: 76px; color: #ffb547; }
+  </style>
+
+  <div id="root" data-composition-id="spark" data-width="1080" data-height="1920">
+    <div id="sp-lens"><div id="sp-world">
+<svg class="motes" id="sp-motes" viewBox="-1500 -1500 4600 5000" data-layout-ignore><circle cx="1502" cy="408" r="2.7" fill="#ffb547" opacity="0.26"/><circle cx="1827" cy="2639" r="3.1" fill="#ffd890" opacity="0.43"/><circle cx="-667" cy="-1349" r="2.6" fill="#ffb547" opacity="0.27"/><circle cx="3067" cy="1222" r="1.9" fill="#ffd890" opacity="0.19"/><circle cx="2169" cy="-643" r="4.4" fill="#ffb547" opacity="0.13"/><circle cx="2176" cy="-186" r="2.7" fill="#ffb547" opacity="0.47"/><circle cx="-1087" cy="2217" r="1.9" fill="#ff7a1a" opacity="0.46"/><circle cx="2347" cy="-852" r="4.8" fill="#ff7a1a" opacity="0.36"/><circle cx="384" cy="-1253" r="1.7" fill="#ffb547" opacity="0.29"/><circle cx="773" cy="2785" r="3.0" fill="#ffb547" opacity="0.25"/><circle cx="733" cy="202" r="2.1" fill="#ffb547" opacity="0.31"/><circle cx="1882" cy="410" r="4.7" fill="#ffd890" opacity="0.18"/><circle cx="2289" cy="218" r="3.0" fill="#ff7a1a" opacity="0.23"/><circle cx="-209" cy="1327" r="4.4" fill="#ffb547" opacity="0.47"/><circle cx="884" cy="3129" r="4.0" fill="#ffd890" opacity="0.33"/><circle cx="448" cy="-1041" r="3.1" fill="#ff7a1a" opacity="0.43"/><circle cx="-1419" cy="-468" r="3.5" fill="#ffb547" opacity="0.29"/><circle cx="178" cy="-315" r="3.2" fill="#ffd890" opacity="0.42"/><circle cx="773" cy="-41" r="4.7" fill="#ffb547" opacity="0.44"/><circle cx="-1223" cy="870" r="2.8" fill="#ffd890" opacity="0.47"/><circle cx="-983" cy="-150" r="3.1" fill="#ff7a1a" opacity="0.24"/><circle cx="3049" cy="292" r="4.1" fill="#ff7a1a" opacity="0.50"/><circle cx="-1250" cy="-1233" r="1.8" fill="#ffb547" opacity="0.41"/><circle cx="2787" cy="-689" r="2.0" fill="#ffb547" opacity="0.46"/><circle cx="-1339" cy="3361" r="4.3" fill="#ffb547" opacity="0.26"/><circle cx="1367" cy="1815" r="2.9" fill="#ffd890" opacity="0.16"/><circle cx="1095" cy="1311" r="3.2" fill="#ffd890" opacity="0.30"/><circle cx="2665" cy="2190" r="4.4" fill="#ffd890" opacity="0.23"/><circle cx="2238" cy="1729" r="3.5" fill="#ffb547" opacity="0.45"/><circle cx="1435" cy="122" r="2.8" fill="#ffb547" opacity="0.20"/><circle cx="2772" cy="726" r="2.7" fill="#ffb547" opacity="0.42"/><circle cx="2965" cy="-164" r="3.3" fill="#ff7a1a" opacity="0.15"/><circle cx="645" cy="3323" r="3.2" fill="#ffd890" opacity="0.28"/><circle cx="1048" cy="3264" r="3.8" fill="#ffb547" opacity="0.23"/><circle cx="1059" cy="-962" r="2.0" fill="#ff7a1a" opacity="0.13"/><circle cx="1808" cy="2555" r="1.6" fill="#ffb547" opacity="0.14"/><circle cx="2970" cy="2710" r="3.8" fill="#ffd890" opacity="0.14"/><circle cx="616" cy="-943" r="3.4" fill="#ffb547" opacity="0.14"/><circle cx="1656" cy="-1258" r="2.0" fill="#ffb547" opacity="0.39"/><circle cx="-1027" cy="396" r="4.9" fill="#ff7a1a" opacity="0.38"/><circle cx="-308" cy="366" r="2.5" fill="#ffd890" opacity="0.32"/><circle cx="1713" cy="1375" r="1.5" fill="#ffb547" opacity="0.37"/><circle cx="2182" cy="147" r="4.8" fill="#ffd890" opacity="0.50"/><circle cx="-50" cy="-17" r="4.1" fill="#ffb547" opacity="0.31"/><circle cx="1802" cy="3084" r="2.0" fill="#ff7a1a" opacity="0.35"/><circle cx="356" cy="-1266" r="3.5" fill="#ffb547" opacity="0.37"/><circle cx="60" cy="-1286" r="3.6" fill="#ffb547" opacity="0.48"/><circle cx="-860" cy="752" r="3.2" fill="#ff7a1a" opacity="0.46"/><circle cx="-695" cy="3044" r="2.4" fill="#ffb547" opacity="0.15"/><circle cx="3070" cy="1260" r="4.3" fill="#ffb547" opacity="0.24"/><circle cx="505" cy="-904" r="2.3" fill="#ffb547" opacity="0.32"/><circle cx="1282" cy="429" r="3.8" fill="#ffd890" opacity="0.41"/><circle cx="2269" cy="1012" r="3.2" fill="#ffb547" opacity="0.20"/><circle cx="-544" cy="-356" r="5.0" fill="#ffd890" opacity="0.18"/><circle cx="2616" cy="113" r="3.9" fill="#ffb547" opacity="0.21"/><circle cx="-100" cy="2109" r="2.6" fill="#ffb547" opacity="0.41"/><circle cx="-1339" cy="1641" r="4.0" fill="#ff7a1a" opacity="0.19"/><circle cx="2094" cy="2178" r="2.1" fill="#ffd890" opacity="0.24"/><circle cx="-923" cy="2374" r="4.6" fill="#ffd890" opacity="0.34"/><circle cx="-577" cy="2763" r="4.3" fill="#ff7a1a" opacity="0.25"/><circle cx="1344" cy="1337" r="2.9" fill="#ff7a1a" opacity="0.33"/><circle cx="122" cy="3449" r="2.1" fill="#ff7a1a" opacity="0.43"/><circle cx="-319" cy="2755" r="5.0" fill="#ffb547" opacity="0.48"/><circle cx="-205" cy="531" r="3.3" fill="#ffd890" opacity="0.47"/><circle cx="72" cy="1664" r="2.9" fill="#ff7a1a" opacity="0.17"/><circle cx="1708" cy="807" r="2.4" fill="#ffb547" opacity="0.37"/><circle cx="-831" cy="2473" r="3.4" fill="#ffb547" opacity="0.28"/><circle cx="2630" cy="629" r="1.7" fill="#ff7a1a" opacity="0.49"/><circle cx="59" cy="-1240" r="1.9" fill="#ffd890" opacity="0.26"/><circle cx="2557" cy="2185" r="1.6" fill="#ffb547" opacity="0.13"/><circle cx="812" cy="2953" r="4.4" fill="#ffd890" opacity="0.43"/><circle cx="-902" cy="2235" r="2.2" fill="#ffb547" opacity="0.18"/><circle cx="-237" cy="1716" r="1.7" fill="#ffd890" opacity="0.28"/><circle cx="484" cy="1372" r="1.8" fill="#ffd890" opacity="0.26"/><circle cx="2415" cy="1224" r="3.7" fill="#ffb547" opacity="0.35"/><circle cx="-1363" cy="1173" r="3.3" fill="#ffb547" opacity="0.46"/><circle cx="2048" cy="408" r="2.4" fill="#ffb547" opacity="0.22"/><circle cx="-1026" cy="-667" r="2.4" fill="#ffb547" opacity="0.18"/><circle cx="972" cy="-952" r="4.1" fill="#ff7a1a" opacity="0.15"/><circle cx="-1146" cy="760" r="4.8" fill="#ff7a1a" opacity="0.48"/><circle cx="-1219" cy="739" r="3.1" fill="#ff7a1a" opacity="0.12"/><circle cx="176" cy="2662" r="3.1" fill="#ff7a1a" opacity="0.20"/><circle cx="872" cy="2514" r="2.7" fill="#ffb547" opacity="0.20"/><circle cx="1711" cy="649" r="3.6" fill="#ffd890" opacity="0.39"/><circle cx="16" cy="2759" r="4.6" fill="#ff7a1a" opacity="0.33"/><circle cx="-757" cy="2774" r="4.0" fill="#ffb547" opacity="0.26"/><circle cx="-951" cy="1307" r="2.7" fill="#ff7a1a" opacity="0.44"/><circle cx="-638" cy="1010" r="4.8" fill="#ffd890" opacity="0.40"/><circle cx="1827" cy="-361" r="4.1" fill="#ff7a1a" opacity="0.50"/><circle cx="-1129" cy="1915" r="3.9" fill="#ffd890" opacity="0.29"/></svg>
+    <div id="sp-carrier">
+    <div id="sp-refl" data-layout-ignore></div>
+    <div id="sp-flare"></div>
+
+    <svg id="sp-fx" viewBox="0 0 1080 1920" data-layout-ignore>
+      <defs>
+        <linearGradient id="sp-blobfill" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ffb547" /><stop offset="0.55" stop-color="#ff7a1a" /><stop offset="1" stop-color="#ff4f6d" />
+        </linearGradient>
+        <filter id="sp-glow" filterUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920">
+          <feGaussianBlur stdDeviation="4" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+        <linearGradient id="sp-pillfill" gradientUnits="userSpaceOnUse" x1="260" y1="740" x2="820" y2="860">
+          <stop offset="0" stop-color="#ff4f6d" /><stop offset="0.6" stop-color="#ff7a1a" /><stop offset="1" stop-color="#ffb547" />
+        </linearGradient>
+        <linearGradient id="sp-sheenfill" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#fff" stop-opacity="0" /><stop offset="0.5" stop-color="#fff" stop-opacity="0.5" /><stop offset="1" stop-color="#fff" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="sp-pillshade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fff" stop-opacity="0.28" /><stop offset="0.5" stop-color="#fff" stop-opacity="0" /><stop offset="1" stop-color="#000" stop-opacity="0.08" />
+        </linearGradient>
+        <clipPath id="sp-pillclip"><rect id="sp-pc" x="480" y="740" width="120" height="120" rx="60" /></clipPath>
+      </defs>
+      <g fill="none" stroke="#ffb547" stroke-width="2.5">
+        <ellipse id="sp-r0" cx="540" cy="812" rx="10" ry="2" />
+        <ellipse id="sp-r1" cx="540" cy="812" rx="10" ry="2" />
+        <ellipse id="sp-r2" cx="540" cy="812" rx="10" ry="2" />
+        <ellipse id="sp-r3" cx="540" cy="812" rx="10" ry="2" />
+      </g>
+      <g fill="#ffd890">
+        <circle id="sp-d0" cx="540" cy="806" r="5" /><circle id="sp-d1" cx="540" cy="806" r="4" />
+        <circle id="sp-d2" cx="540" cy="806" r="6" /><circle id="sp-d3" cx="540" cy="806" r="4" />
+        <circle id="sp-d4" cx="540" cy="806" r="5" /><circle id="sp-d5" cx="540" cy="806" r="3" />
+      </g>
+      <circle id="sp-ring" cx="540" cy="800" r="230" fill="none" stroke="#ffb547" stroke-width="3" pathLength="100"
+        stroke-dasharray="100 120" stroke-dashoffset="110" filter="url(#sp-glow)" />
+      <path id="sp-blob" d="" fill="url(#sp-blobfill)" fill-opacity="0" stroke="#ffcf8a" stroke-width="3" filter="url(#sp-glow)" />
+      <g id="sp-pill" opacity="0">
+        <rect id="sp-pr" x="480" y="740" width="120" height="120" rx="60" fill="url(#sp-pillfill)" />
+        <rect id="sp-ps" x="480" y="740" width="120" height="120" rx="60" fill="url(#sp-pillshade)" />
+        <g clip-path="url(#sp-pillclip)"><rect id="sp-sheen" x="100" y="720" width="120" height="160" fill="url(#sp-sheenfill)" /></g>
+      </g>
+    </svg>
+
+    <div id="sp-orbit" class="sp-abs" data-layout-ignore style="width:1080px;height:1920px;transform-origin:540px 800px">
+      <div class="sp-p" id="sp-p0"></div><div class="sp-p" id="sp-p1"></div><div class="sp-p" id="sp-p2"></div><div class="sp-p" id="sp-p3"></div>
+      <div class="sp-p" id="sp-p4"></div><div class="sp-p" id="sp-p5"></div><div class="sp-p" id="sp-p6"></div><div class="sp-p" id="sp-p7"></div>
+      <div class="sp-p" id="sp-p8"></div><div class="sp-p" id="sp-p9"></div><div class="sp-p" id="sp-p10"></div><div class="sp-p" id="sp-p11"></div>
+      <div class="sp-p" id="sp-p12"></div><div class="sp-p" id="sp-p13"></div><div class="sp-p" id="sp-p14"></div><div class="sp-p" id="sp-p15"></div>
+    </div>
+
+    <div id="sp-sun"><div id="sp-sun-air" data-layout-ignore></div><div id="sp-sun-disc"></div></div>
+    <div id="sp-ember"><div id="sp-ember-halo" data-layout-ignore></div><div id="sp-ember-core"></div></div>
+    </div>
+    <div id="sp-capz">
+      <div class="sp-cap" id="sp-c1"><span>Every</span> <span>idea</span> <span>starts</span> <span>as</span> <span>a</span> <span><em>spark</em></span></div>
+      <div class="sp-cap" id="sp-c2"><span>Most</span> <span>of</span> <span>them</span> <span><em>scatter</em></span></div>
+      <div class="sp-cap" id="sp-c3"><span>Lumen</span> <span><em>gathers</em></span> <span>them</span></div>
+    </div>
+    </div></div>
+
+  </div>
+
+  <script>
+    (function () {
+      // music hits on the film clock (research/audio_hits.py) — quick events snap to them in tl.commit()
+      const HITS = [0.07, 0.522, 0.964, 1.544, 5.515, 6.165, 6.931, 7.883, 8.348, 9.276, 10.484, 11.122, 11.714, 13.317, 13.851, 14.385, 14.919, 15.871, 16.579, 18.1, 19.458, 23.684, 24.137, 27.899, 28.537, 29.872];
+      const TL = gsap.timeline({ paused: true });
+      const tl = beatSync(TL, HITS, { t0: 0, tol: 0.32 });
+      // BEAT SYNC (MotionKit primitive 22) — make a scene's events land on the music without hand-retiming every tween.
+      // Usage: const TL = gsap.timeline({ paused: true }); const tl = beatSync(TL, HITS, { t0: sceneStart });
+      //        …author tweens on tl as usual (to / fromTo / set with a numeric position)…
+      //        tl.commit(), then register TL (not tl) as the scene timeline.
+      // HITS: strong audio hit times on the FILM clock (research/audio_hits.py). Quick tweens (≤ maxDur) are grouped into
+      // clusters (starts within `gap` of each other); each cluster shifts as a block so its first start lands on the nearest
+      // hit within ±tol. Staggers, order and long tweens (camera drivers, slow drifts) are untouched.
+      function beatSync(TL, hits, opt) {
+        opt = opt || {};
+        const tol = opt.tol == null ? 0.2 : opt.tol, maxDur = opt.maxDur == null ? 1.0 : opt.maxDur, gap = opt.gap == null ? 0.18 : opt.gap;
+        const H = hits.map((h) => h - (opt.t0 || 0));
+        const calls = [];
+        const rec = {
+          to: (...a) => (calls.push(["to", a]), rec),
+          fromTo: (...a) => (calls.push(["fromTo", a]), rec),
+          set: (...a) => (calls.push(["set", a]), rec),
+          commit() {
+            const info = calls.map(([m, a]) => {
+              const pi = m === "fromTo" ? 3 : 2, vars = m === "fromTo" ? a[2] : a[1];
+              return { m, a, pi, pos: a[pi], dur: m === "set" ? 0 : vars && vars.duration != null ? vars.duration : 0.5, shift: 0 };
+            });
+            const ev = info.filter((c) => typeof c.pos === "number" && c.dur <= maxDur && c.pos > 0.05).sort((x, y) => x.pos - y.pos);
+            const cl = [];
+            ev.forEach((c) => {
+              const last = cl[cl.length - 1];
+              if (last && c.pos - last.end <= gap) { last.items.push(c); last.end = Math.max(last.end, c.pos); }
+              else cl.push({ start: c.pos, end: c.pos, items: [c] });
+            });
+            let prevNew = -1e9;
+            cl.forEach((k) => {
+              let d = null;
+              H.forEach((h) => { const x = h - k.start; if (Math.abs(x) <= tol && (d === null || Math.abs(x) < Math.abs(d))) d = x; });
+              d = d || 0;
+              if (k.start + d < prevNew + 0.05) d = 0; // never reorder clusters
+              k.items.forEach((c) => (c.shift = d));
+              prevNew = k.start + d;
+            });
+            info.forEach((c) => { const a = c.a.slice(); if (c.shift) a[c.pi] = c.pos + c.shift; TL[c.m](...a); });
+            rec.report = cl.map((k) => ({ at: +k.start.toFixed(2), shift: +(k.items[0].shift || 0).toFixed(3) }));
+            return TL;
+          },
+        };
+        return rec;
+      }
+
+      // CAMERA RIG v3 (MotionKit primitive 15) — keyframed camera on a 3D world, a pure function of timeline time.
+      // world: element with transform-style: preserve-3d inside a perspective lens.
+      // KF: [{ t, x, y, z (dolly toward scene), rx, ry, rz (deg), f (focus depth), e }]
+      //   e = GSAP ease name for the segment INTO this key (bell-shaped "power2.inOut"/"sine.inOut" for moves),
+      //   or e = "glide": consecutive glide keys form ONE continuous monotone spline (no stops at inner keys) —
+      //   use it to track a sentence word by word without stop-start hops; the run starts and ends at zero velocity.
+      // dof: [{ el, z, max }] — leaf layers blurred by distance from the focus depth.
+      // opt: { t0 (scene start on the film clock), drift (0–1), seed (int: per-film drift character), dofK, onRender(c, t) }
+      function cameraRig(tl, world, D, KF, dof, opt) {
+        opt = opt || {};
+        const drift = opt.drift == null ? 1 : opt.drift;
+        const keys = ["x", "y", "z", "rx", "ry", "rz", "f"];
+        let prev = { x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0, f: 0 };
+        const K = KF.slice().sort((a, b) => a.t - b.t).map((k) => (prev = Object.assign({}, prev, { e: "power2.inOut" }, k)));
+        const E = {}, ez = (n) => E[n] || (E[n] = gsap.parseEase(n));
+        // monotone cubic tangents (Fritsch–Butland) for glide runs; zero at run ends => smooth start/stop
+        const M = {};
+        keys.forEach((k) => {
+          const m = K.map(() => 0);
+          for (let i = 1; i < K.length - 1; i++) {
+            if (K[i].e !== "glide" || K[i + 1].e !== "glide") continue;
+            const h0 = K[i].t - K[i - 1].t, h1 = K[i + 1].t - K[i].t;
+            const d0 = (K[i][k] - K[i - 1][k]) / h0, d1 = (K[i + 1][k] - K[i][k]) / h1;
+            if (d0 * d1 > 0) m[i] = (3 * (h0 + h1)) / ((2 * h1 + h0) / d0 + (h1 + 2 * h0) / d1);
+          }
+          M[k] = m;
+        });
+        // seeded drift: each film gets its own frequencies, phases and amplitudes (no repeated, predictable sway)
+        let s = (opt.seed || 1) >>> 0;
+        const rnd = () => { s = (s + 0x6d2b79f5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+        const osc = () => ({ f: 0.035 + rnd() * 0.12, p: rnd() * 6.283, a: 0.6 + rnd() * 0.8 });
+        const DR = { x: [osc(), osc()], y: [osc(), osc()], rz: [osc()], rx: [osc()] };
+        const T0 = opt.t0 || 0;
+        const sway = (ch, t, amp) => DR[ch].reduce((v, o, j) => v + amp[j] * o.a * Math.sin(6.283 * o.f * (t + T0) + o.p), 0);
+        function render(t) {
+          let i = 0;
+          while (i < K.length - 1 && K[i + 1].t <= t) i++;
+          const j = Math.min(i + 1, K.length - 1), a = K[i], b = K[j];
+          const h = b.t - a.t, u = h > 0 ? Math.min(1, Math.max(0, (t - a.t) / h)) : 1;
+          const c = {};
+          keys.forEach((k) => {
+            if (b.e === "glide" && h > 0) {
+              const u2 = u * u, u3 = u2 * u;
+              c[k] = (2 * u3 - 3 * u2 + 1) * a[k] + (u3 - 2 * u2 + u) * h * M[k][i] + (-2 * u3 + 3 * u2) * b[k] + (u3 - u2) * h * M[k][j];
+            } else c[k] = a[k] + (b[k] - a[k]) * (h > 0 ? ez(b.e)(u) : 1);
+          });
+          c.x += drift * sway("x", t, [6, 2.5]);
+          c.y += drift * sway("y", t, [4.5, 2]);
+          c.rz += drift * sway("rz", t, [0.2]);
+          c.rx += drift * sway("rx", t, [0.22]);
+          world.style.transform = "translate3d(" + (-c.x).toFixed(2) + "px," + (-c.y).toFixed(2) + "px," + c.z.toFixed(2) + "px) rotateX(" +
+            c.rx.toFixed(3) + "deg) rotateY(" + c.ry.toFixed(3) + "deg) rotateZ(" + c.rz.toFixed(3) + "deg)";
+          (dof || []).forEach((d) => {
+            const bl = Math.min(d.max || 8, Math.abs(d.z - c.f) * (opt.dofK || 0.022));
+            d.el.style.filter = bl < 0.3 ? "none" : "blur(" + bl.toFixed(2) + "px)";
+          });
+          if (opt.onRender) opt.onRender(c, t);
+        }
+        const drv = { t: 0 };
+        tl.fromTo(drv, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: () => render(drv.t) }, 0);
+        render(0);
+      }
+      // seeded helper for motivated moves: varied direction/size so no two films (or beats) move the same way
+      function camSeed(seed) {
+        let s = seed >>> 0;
+        const r = () => { s = (s + 0x6d2b79f5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+        return { r, range: (a, b) => a + (b - a) * r(), sign: () => (r() < 0.5 ? -1 : 1), pick: (arr) => arr[Math.floor(r() * arr.length)] };
+      }
+
+      const CX = 540, CY = 800;
+      function rng(seed) { return function () { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+      const rand = rng(52);
+
+      // words arrive blurred, one by one, no translate; leave blurred
+      function caption(sel, tin, tout, scatter) {
+        const words = document.querySelectorAll(sel + " span");
+        tl.set(sel, { opacity: 1 }, 0);
+        words.forEach((w, i) => {
+          tl.fromTo(w, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.32, ease: "power2.out" }, tin + i * 0.09);
+          const out = scatter ? { x: (rand() - 0.5) * 220, y: (rand() - 0.5) * 120, rotation: (rand() - 0.5) * 18 } : {};
+          tl.to(w, Object.assign({ opacity: 0, filter: "blur(10px)", duration: 0.28, ease: "power2.in" }, out), tout + i * 0.04);
+        });
+      }
+
+      // --- 0 · ember is already in frame (hook), then falls and lands on the 1.0 s onset
+      tl.fromTo("#sp-ember", { y: -470 }, { y: 0, duration: 0.82, ease: "power2.in" }, 0.15);
+      tl.fromTo("#sp-ember", { scaleX: 1, scaleY: 1 }, { scaleX: 1.5, scaleY: 0.62, duration: 0.06, ease: "power1.out" }, 0.97);
+      tl.to("#sp-ember", { scaleX: 1, scaleY: 1, duration: 0.5, ease: "elastic.out(1, 0.55)" }, 1.03);
+      ["#sp-r0", "#sp-r1", "#sp-r2", "#sp-r3"].forEach((r, i) => {
+        tl.fromTo(r, { attr: { rx: 10, ry: 2 }, opacity: 0.7 }, { attr: { rx: 470 - i * 70, ry: (470 - i * 70) * 0.17 }, opacity: 0, duration: 2.3, ease: "power2.out" }, 0.98 + i * 0.2);
+      });
+      for (let i = 0; i < 6; i++) {
+        const dx = (i - 2.5) * 46 + (rand() - 0.5) * 20, h = 70 + rand() * 90;
+        tl.fromTo("#sp-d" + i, { opacity: 0 }, { opacity: 1, duration: 0.01, ease: "none" }, 0.97);
+        tl.fromTo("#sp-d" + i, { attr: { cx: 540, cy: 806 } }, { attr: { cx: 540 + dx }, duration: 0.75, ease: "none" }, 0.98);
+        tl.to("#sp-d" + i, { attr: { cy: 806 - h }, duration: 0.33, ease: "power2.out" }, 0.98);
+        tl.to("#sp-d" + i, { attr: { cy: 812 }, opacity: 0, duration: 0.42, ease: "power2.in" }, 1.31);
+      }
+
+      // --- swell into a sun with a lens flare and a reflection on the dark floor
+      tl.fromTo("#sp-ember", { scale: 1 }, { scale: 3.2, y: -70, opacity: 0, duration: 0.75, ease: "power2.in" }, 1.3);
+      tl.fromTo("#sp-sun", { scale: 0.12, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.5, ease: "power3.out", immediateRender: true }, 1.55);
+      tl.fromTo("#sp-refl", { opacity: 0, scaleX: 0.3 }, { opacity: 1, scaleX: 1, duration: 1.5, ease: "power2.out" }, 1.5);
+      tl.fromTo("#sp-flare", { opacity: 0, scaleX: 0 }, { opacity: 0.6, scaleX: 1, duration: 0.8, ease: "expo.out" }, 2.05);
+      tl.to("#sp-flare", { opacity: 0, duration: 0.5, ease: "power2.in" }, 3.1);
+      caption("#sp-c1", 1.5, 3.4, false);
+      tl.to("#sp-sun", { scale: 0.1, opacity: 0, duration: 0.55, ease: "power3.in" }, 3.4);
+      tl.fromTo("#sp-ember", { scale: 3.2, y: -70, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.55, ease: "power3.in", immediateRender: false }, 3.4);
+      tl.to("#sp-refl", { opacity: 0, scaleX: 0.2, duration: 0.5, ease: "power3.in" }, 3.4);
+
+      // --- burst: one spark becomes many thoughts drifting apart
+      const ring = [];
+      for (let i = 0; i < 16; i++) {
+        const a = rand() * Math.PI * 2, r = 150 + rand() * 300;
+        const sx = Math.cos(a) * r, sy = Math.sin(a) * r * 1.25;
+        const ra = (i / 16) * Math.PI * 2 - Math.PI / 2;
+        ring.push([Math.cos(ra) * 230, Math.sin(ra) * 230]);
+        const p = "#sp-p" + i, sc = 0.6 + rand() * 0.9, pz = -380 + rand() * 640, pb = Math.min(5, Math.abs(pz) * 0.012);
+        tl.fromTo(p, { x: 0, y: 0, z: 0, scale: 0, opacity: 0, filter: "blur(0px)" }, { x: sx, y: sy, z: pz, scale: sc, opacity: 1, filter: "blur(" + pb.toFixed(1) + "px)", duration: 0.95, ease: "expo.out" }, 3.95 + i * 0.012);
+        tl.to(p, { x: sx + (rand() - 0.5) * 70, y: sy + (rand() - 0.5) * 70, duration: 2.1, ease: "sine.inOut" }, 4.9);
+        // pulled into orbit, back onto one plane
+        tl.to(p, { x: ring[i][0], y: ring[i][1], z: 0, filter: "blur(0px)", scale: 0.85, duration: 1.3, ease: "power3.inOut" }, 7.0 + i * 0.025);
+        tl.to(p, { scale: 0, opacity: 0, duration: 0.45, ease: "power2.in" }, 8.75 + i * 0.01);
+      }
+      tl.to("#sp-ember", { scale: 0.55, opacity: 0.55, duration: 0.6, ease: "power2.out" }, 3.95);
+      tl.to("#sp-ember", { scale: 0, opacity: 0, duration: 0.5, ease: "power2.in" }, 7.1);
+      caption("#sp-c2", 4.35, 6.75, true);
+      tl.fromTo("#sp-orbit", { rotation: 0 }, { rotation: 140, duration: 5.6, ease: "none" }, 3.95);
+      tl.to("#sp-ring", { attr: { "stroke-dashoffset": 0 }, duration: 1.1, ease: "power2.inOut" }, 7.5);
+      caption("#sp-c3", 7.6, 10.05, false);
+
+      // --- the ring melts: wobbling blob, then condenses into a glowing disc (one driver, seek-safe)
+      const blob = document.getElementById("sp-blob");
+      const drv = { u: 0 };
+      function blobPath(R, amp, ph) {
+        let d = "";
+        for (let i = 0; i <= 96; i++) {
+          const a = (i / 96) * Math.PI * 2;
+          const r = R * (1 + amp * Math.sin(5 * a + ph) + amp * 0.45 * Math.sin(7 * a - ph * 1.4));
+          d += (i ? "L" : "M") + (CX + r * Math.cos(a)).toFixed(1) + "," + (CY + r * Math.sin(a)).toFixed(1);
+        }
+        return d + "Z";
+      }
+      function drawBlob() {
+        const u = drv.u;
+        const grow = Math.min(1, u / 0.35), shrink = Math.max(0, (u - 0.45) / 0.55);
+        const e = (x) => x * x * (3 - 2 * x);
+        const amp = 0.13 * e(grow) * (1 - e(shrink));
+        const R = 230 - 170 * e(shrink);
+        blob.setAttribute("d", blobPath(R, amp, u * 7));
+        blob.setAttribute("fill-opacity", (0.15 * e(grow) + 0.85 * e(shrink)).toFixed(3));
+        blob.style.opacity = u <= 0 ? 0 : 1;
+      }
+      tl.fromTo(drv, { u: 0 }, { u: 1, duration: 1.75, ease: "none", onUpdate: drawBlob }, 8.5);
+      tl.to("#sp-ring", { opacity: 0, duration: 0.3, ease: "power1.out" }, 8.6);
+
+      // --- disc becomes the pill on the 10.5 s onset
+      tl.fromTo("#sp-pill", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "none" }, 10.2);
+      tl.to("#sp-blob", { opacity: 0, duration: 0.15, ease: "none" }, 10.3);
+      tl.fromTo(["#sp-pr", "#sp-ps", "#sp-pc"], { attr: { x: 480, width: 120 } }, { attr: { x: 260, width: 560 }, duration: 0.6, ease: "power3.out" }, 10.4);
+      tl.fromTo("#sp-sheen", { attr: { x: 100 } }, { attr: { x: 860 }, duration: 0.9, ease: "power2.inOut" }, 10.75);
+
+      // element-driven: the camera only follows what moves (the falling ember) and breathes with the reveals. Seeded per film.
+      const cs = camSeed(3301), side = cs.sign();
+      cameraRig(tl, document.getElementById("sp-world"), 11.6, [
+        { t: 0, y: -210, rx: -3, z: -30 },
+        { t: 1.05, y: 0, rx: 6, z: 0, e: "power2.inOut" },                              // follow the ember down to the surface
+        { t: 3.35, z: cs.range(60, 85), rx: 3, e: "sine.inOut" },                        // slow push on the sun
+        { t: 4.3, z: -cs.range(70, 95), rx: 0, ry: side * cs.range(3, 5), e: "power2.inOut" }, // the sparks scatter: give them room
+        { t: 6.9, z: -cs.range(80, 100), ry: side * cs.range(1, 2), e: "sine.inOut" },
+        { t: 8.4, z: 10, ry: 0, e: "power2.inOut" },                                    // they gather: lean in
+        { t: 10.3, z: 40, rz: -side * 1.2, e: "sine.inOut" },
+        { t: 11.6, z: 0, rx: 8, rz: 0, e: "power2.inOut" },
+      ], null, { t0: 0, drift: 0.35, seed: 3301 });
+      drawBlob();
+      tl.commit();
+      window.__timelines["spark"] = TL;
+    })();
+  </script>
+</template>

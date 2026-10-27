@@ -1,0 +1,159 @@
+/* MotionKit element library — premium UI/3D elements distilled from the references (research/element-notes.md).
+   Prefix: mk-. Size with font-size / CSS variables; animate children with GSAP, never the timed .clip itself. */
+
+/* ───────── shared materials ───────── */
+.mk-soft-shadow { box-shadow: 0 30px 60px rgba(24, 22, 60, 0.10), 0 2px 6px rgba(24, 22, 60, 0.05); }
+
+/* ───────── 1 · macOS-style dock + app icons ───────── */
+.mk-dock {
+  display: inline-flex; align-items: center; gap: 24px; padding: 20px 24px; border-radius: 32px; background: #fff;
+  box-shadow: 0 30px 60px rgba(24, 22, 60, 0.10), 0 3px 8px rgba(24, 22, 60, 0.05);
+}
+.mk-app {
+  position: relative; width: 104px; height: 104px; border-radius: 23.5px; overflow: hidden; flex: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 6px 14px rgba(24, 22, 60, 0.12), 0 1px 2px rgba(24, 22, 60, 0.08);
+}
+.mk-app--notes { background: linear-gradient(#fbfaf7, #efede8); }
+.mk-app--notes::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 34%; background: linear-gradient(#ffe984, #ffd23a); }
+.mk-app--notes::after {
+  content: ""; position: absolute; left: 14%; right: 14%; top: 34%; height: 46%;
+  background: radial-gradient(circle, #d6b54a 1.3px, transparent 1.6px) 0 -2px / 7px 6px repeat-x,
+    linear-gradient(#d9d6cf, #d9d6cf) 0 46% / 100% 2px no-repeat, linear-gradient(#d9d6cf, #d9d6cf) 0 82% / 100% 2px no-repeat;
+}
+.mk-app--cal { background: linear-gradient(#ffffff, #f2f2f4); text-align: center; font-family: "Inter Tight", "Inter", sans-serif; }
+.mk-app--cal b { display: block; margin-top: 12px; font-size: 19px; font-weight: 600; color: #ff3b30; }
+.mk-app--cal i { display: block; font-style: normal; font-size: 58px; line-height: 58px; font-weight: 300; color: #1c1c1e; letter-spacing: -0.03em; }
+.mk-app--mail { background: linear-gradient(180deg, #3cb8ff 0%, #1f6bff 100%); }
+.mk-app--mail svg { position: absolute; inset: 22% 16%; width: 68%; height: 56%; }
+.mk-app--brand { background: radial-gradient(circle at 34% 26%, #b9b0ff 0%, #8673ff 34%, #4a30ff 78%, #3a20e6 100%); }
+.mk-app--brand::before { content: ""; position: absolute; left: 14%; top: 8%; width: 58%; height: 34%; border-radius: 50%; background: radial-gradient(ellipse, rgba(255,255,255,0.55), rgba(255,255,255,0) 70%); }
+.mk-app--brand::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 -6px 14px rgba(24, 0, 120, 0.35), inset 0 2px 2px rgba(255,255,255,0.5); }
+.mk-app--brand span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font: 600 38px/1 "JetBrains Mono", monospace; letter-spacing: -0.06em; text-shadow: 0 2px 6px rgba(30, 0, 120, 0.35); }
+
+/* ───────── 2 · dark device toolbar pill ───────── */
+.mk-toolbar {
+  display: inline-flex; align-items: center; gap: 44px; height: 104px; padding: 0 40px 0 46px; border-radius: 52px;
+  background: linear-gradient(#26262a, #1b1b1e); color: #fff;
+  box-shadow: inset 0 1px 0 #3d3d44, inset 0 -1px 0 #121214, 0 20px 50px rgba(0, 0, 0, 0.25);
+  font-family: "Inter Tight", "Inter", sans-serif;
+}
+.mk-toolbar b { display: block; font-size: 30px; font-weight: 600; letter-spacing: -0.01em; }
+.mk-toolbar small { display: block; font-size: 22px; font-weight: 500; color: rgba(255,255,255,0.45); margin-top: 2px; }
+.mk-toolbar .icons { display: flex; gap: 30px; margin-left: 40px; }
+.mk-toolbar svg { width: 40px; height: 40px; fill: none; stroke: #d1d1d8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ───────── 3 · cursors (macOS arrow + glove hand) ───────── */
+.mk-cursor { width: 46px; height: 58px; filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.28)); }
+.mk-hand { width: 66px; height: 74px; filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.22)); }
+
+/* ───────── 4 · prompt box with inline tag + caret ───────── */
+.mk-prompt {
+  width: 860px; padding: 34px 38px 26px; border-radius: 30px; background: #fff; border: 1px solid #ececf2;
+  box-shadow: 0 30px 70px rgba(40, 40, 120, 0.12), 0 2px 6px rgba(40, 40, 120, 0.05);
+  font: 500 34px/1.35 "Inter Tight", "Inter", sans-serif; color: #121216; letter-spacing: -0.01em;
+}
+.mk-tag { display: inline-block; padding: 2px 14px 4px; margin-right: 8px; border-radius: 10px; background: #ebe8ff; color: #6b5bff; }
+.mk-caret { display: inline-block; width: 3px; height: 1.05em; margin-left: 2px; background: #121216; vertical-align: -0.16em; border-radius: 2px; }
+.mk-prompt .foot { display: flex; align-items: center; gap: 30px; margin-top: 34px; font-size: 28px; color: #2b2b33; }
+.mk-prompt .send { margin-left: auto; width: 60px; height: 60px; border-radius: 50%; background: #121216; display: flex; align-items: center; justify-content: center; }
+.mk-prompt .send svg { width: 28px; height: 28px; fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ───────── 5 · reeded / fluted glass gradient pill ───────── */
+.mk-reed { position: relative; width: 760px; height: 210px; border-radius: 105px; overflow: hidden; }
+.mk-reed .flute { position: absolute; top: 0; bottom: 0; overflow: hidden; }
+.mk-reed .flute::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0.40) 0%, rgba(255,255,255,0.10) 12%, rgba(255,255,255,0) 40%, rgba(60,0,80,0) 78%, rgba(60,0,80,0.10) 100%);
+}
+.mk-reed .scene { position: absolute; top: 0; height: 100%; }
+.mk-reed .blob {
+  position: absolute; inset: -30% -10%; filter: blur(26px);
+  background: radial-gradient(ellipse 46% 60% at 50% 50%, #ff7a1a 0%, #ff4fa0 42%, #8b6bff 70%, #a9bcff 86%, rgba(255,255,255,0) 100%);
+}
+.mk-reed .word { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font: 600 86px/1 "Chillax", "Outfit", sans-serif; letter-spacing: -0.02em; }
+
+/* ───────── 6 · iridescent marble sphere + city tags ───────── */
+.mk-marble { position: relative; width: 520px; height: 520px; border-radius: 50%; overflow: hidden;
+  box-shadow: inset -26px -34px 60px rgba(110, 70, 255, 0.35), inset 16px 20px 40px rgba(255,255,255,0.65), 0 40px 80px rgba(120, 70, 200, 0.18); }
+.mk-marble .swirl { position: absolute; inset: -12%; filter: blur(18px); transform: rotate(-24deg);
+  background:
+    radial-gradient(ellipse 34% 11% at 52% 40%, #ffffff 0%, rgba(255,255,255,0.85) 40%, rgba(255,255,255,0) 100%),
+    radial-gradient(ellipse 46% 14% at 46% 64%, #ff6a1a 0%, rgba(255,106,26,0.8) 45%, rgba(255,106,26,0) 100%),
+    radial-gradient(ellipse 30% 20% at 30% 80%, #ff4fa0 0%, rgba(255,79,160,0) 100%),
+    radial-gradient(ellipse 28% 34% at 82% 48%, #7f6bff 0%, rgba(127,107,255,0) 100%),
+    radial-gradient(ellipse 30% 26% at 30% 26%, #a9c3ff 0%, rgba(169,195,255,0) 100%),
+    conic-gradient(from 200deg at 56% 58%, #ff7a3d, #ff4fa0, #8b6bff, #a8c4ff, #f4f0ff, #ffa05a, #ff7a3d); }
+.mk-marble .spec { position: absolute; left: 14%; top: 10%; width: 46%; height: 34%; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.35) 45%, rgba(255,255,255,0) 72%); }
+.mk-citytag { position: absolute; display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 8px; border-radius: 99px; background: rgba(255,255,255,0.92); border: 1px solid #e6e6ee;
+  box-shadow: 0 6px 16px rgba(40, 30, 90, 0.10); font: 500 20px/1 "Inter Tight", sans-serif; color: #2a2a35; }
+.mk-citytag i { width: 22px; height: 22px; border-radius: 50%; background: var(--flag, linear-gradient(#e53 50%, #fff 50%)); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08); }
+
+/* ───────── 7 · convex glass icon buttons ───────── */
+.mk-gbtn { position: relative; width: 190px; height: 190px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(circle at 50% 28%, #fbfafd 0%, #efeef3 55%, #e5e4ea 100%);
+  box-shadow: inset 0 4px 8px rgba(255,255,255,0.95), inset 0 -6px 14px rgba(40, 30, 90, 0.07), 0 1px 0 rgba(255,255,255,0.9), 0 16px 36px rgba(40, 30, 90, 0.09); }
+.mk-gbtn::before { content: ""; position: absolute; inset: -34px; border-radius: 50%; background: radial-gradient(circle, rgba(225, 222, 245, 0) 56%, rgba(225, 222, 245, 0.7) 66%, rgba(225, 222, 245, 0) 78%); z-index: -1; }
+.mk-gbtn svg { width: 92px; height: 92px; }
+
+/* ───────── 8 · 3D candlesticks (built by mkCandles() in elements.js) ───────── */
+.mk-candles { position: relative; perspective: 1600px; }
+.mk-candles .rig { position: absolute; left: 50%; top: 50%; transform-style: preserve-3d; transform: rotateX(-18deg) rotateY(-34deg); }
+.mk-candles .face { position: absolute; backface-visibility: hidden; }
+
+/* ───────── 9 · halftone-reveal pill + dashed connector ───────── */
+.mk-hpill { position: relative; display: inline-flex; align-items: center; justify-content: center; height: 108px; padding: 0 56px; border-radius: 26px; overflow: hidden;
+  background: linear-gradient(#ee4f63, #c8323f); color: #fff; font: 600 56px/1 "Satoshi", "Inter", sans-serif; letter-spacing: -0.02em;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.28), inset 0 0 0 1.5px rgba(100, 10, 30, 0.35), 0 16px 34px rgba(200, 40, 60, 0.20); --p: 1; }
+.mk-hpill .dots { position: absolute; inset: 0;
+  background: radial-gradient(circle, #111 2.3px, transparent 2.8px) 0 0 / 11px 11px, linear-gradient(90deg, #ff8fb0, #ff5f86 40%, #fff 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent calc(var(--p) * 140% - 40%), #000 calc(var(--p) * 140% - 10%));
+  mask-image: linear-gradient(90deg, transparent calc(var(--p) * 140% - 40%), #000 calc(var(--p) * 140% - 10%)); }
+.mk-hpill span { position: relative; }
+.mk-dash { display: inline-flex; align-items: center; gap: 14px; }
+.mk-dash i { width: 34px; height: 5px; border-radius: 3px; background: #1a1a3a; }
+.mk-dash b { width: 16px; height: 16px; border-radius: 50%; background: #1a1a3a; }
+
+/* ───────── 10 · light cone (bottleneck) ───────── */
+.mk-cone { position: relative; width: 1200px; height: 900px; }
+.mk-cone .wedge { position: absolute; inset: 0; clip-path: polygon(0 0, 100% 50%, 0 100%);
+  background: radial-gradient(ellipse 70% 44% at 100% 50%, #ffffff 0%, #c9c9ff 3%, #5a5aff 11%, #2a20b8 24%, #0d0a4a 42%, #040312 64%, #000 82%); }
+.mk-cone .beam { position: absolute; left: 0; right: 0; top: calc(50% - 1px); height: 2px;
+  background: linear-gradient(90deg, rgba(110,110,255,0.5), #9a9aff 60%, #fff); box-shadow: 0 0 6px rgba(140, 140, 255, 0.8); }
+
+/* ───────── 11 · liquid-glass orb + state slab (emerald) ───────── */
+.mk-orb { position: relative; width: 300px; height: 300px; border-radius: 50%; overflow: hidden;
+  background: radial-gradient(circle at 40% 36%, #ffffff 0%, #eafff1 30%, #c9f7da 62%, #9fe9c0 100%);
+  box-shadow: 0 0 0 2px rgba(214, 255, 120, 0.55), 0 0 24px rgba(190, 255, 90, 0.35), inset -18px -22px 40px rgba(30, 140, 90, 0.25); }
+.mk-orb .swirl { position: absolute; inset: 6%; border-radius: 50%; filter: blur(16px); opacity: 0.85;
+  background: conic-gradient(from 40deg, rgba(120, 240, 200, 0) 0deg, #7af0c8 60deg, #d8ff5a 120deg, rgba(255, 255, 255, 0) 190deg, #5ee0e8 260deg, rgba(120, 240, 200, 0) 360deg); }
+.mk-orb .spec { position: absolute; left: 18%; top: 12%; width: 40%; height: 26%; border-radius: 50%; background: radial-gradient(ellipse, rgba(255,255,255,0.95), rgba(255,255,255,0) 70%); }
+.mk-slab { display: inline-flex; align-items: center; height: 230px; padding: 0 70px; border-radius: 115px;
+  background: linear-gradient(180deg, #145a43 0%, #0e3b2c 100%); color: #cfff5e; font: 400 112px/1 "Sora", sans-serif; letter-spacing: -0.03em;
+  box-shadow: inset 0 2px 0 rgba(160, 255, 200, 0.18), 0 30px 60px rgba(0, 0, 0, 0.30); }
+
+/* ───────── 12 · iOS toggle (knob travel stays inside the track) ───────── */
+.mk-toggle { --on: 0; --tw: 200px; --th: 120px; --pad: 8px; position: relative; width: var(--tw); height: var(--th); border-radius: calc(var(--th) / 2);
+  background: #e3e3e9; box-shadow: inset 0 2px 5px rgba(20, 20, 50, 0.10); }
+.mk-toggle .on { position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(90deg, #4b5bff, #2639c9); opacity: var(--on); }
+.mk-toggle .knob { position: absolute; left: var(--pad); top: var(--pad); width: calc(var(--th) - 2 * var(--pad)); height: calc(var(--th) - 2 * var(--pad)); border-radius: 50%;
+  background: linear-gradient(#ffffff, #f4f4f7); box-shadow: 0 6px 14px rgba(20, 20, 60, 0.20), 0 2px 3px rgba(20, 20, 60, 0.10), inset 0 -1px 0 rgba(0,0,0,0.04);
+  transform: translateX(calc(var(--on) * (var(--tw) - var(--th)))); }
+
+/* ───────── 13 · macOS notification card ───────── */
+.mk-notif { display: flex; align-items: center; gap: 20px; width: 640px; padding: 20px 26px 20px 20px; border-radius: 26px;
+  background: rgba(248, 248, 250, 0.88); backdrop-filter: blur(24px) saturate(160%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 0 0 1px rgba(20, 20, 50, 0.05), 0 24px 50px rgba(20, 20, 60, 0.14);
+  font-family: "Inter Tight", "Inter", sans-serif; }
+.mk-notif .ic { width: 64px; height: 64px; border-radius: 15px; flex: none; }
+.mk-notif b { display: block; font-size: 26px; font-weight: 600; color: #121216; letter-spacing: -0.01em; }
+.mk-notif p { margin: 4px 0 0; font-size: 24px; color: #3a3a40; }
+.mk-notif time { margin-left: auto; align-self: flex-start; font-size: 20px; color: #8e8e95; }
+
+/* ───────── 14 · funnel chips ───────── */
+.mk-funnel { display: inline-flex; align-items: center; gap: 10px; font: 600 54px/1 "Cabinet Grotesk", "Inter", sans-serif; letter-spacing: -0.02em; }
+.mk-funnel .pill { height: 108px; padding: 0 40px; border-radius: 26px; background: #0b0b0e; color: #fff; display: flex; align-items: center; }
+.mk-funnel .pill em { font-style: normal; font-weight: 500; color: rgba(255,255,255,0.85); margin-left: 14px; }
+.mk-funnel .step { width: 120px; height: 128px; border-radius: 28px; background: linear-gradient(#2ee07a, #17c25e); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.35), 0 14px 28px rgba(23, 194, 94, 0.25); }
+.mk-funnel .step span { font-size: 30px; background: #fff; color: #0b0b0e; border-radius: 14px; padding: 4px 10px; }

@@ -1,0 +1,420 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #000; }
+    #ne-lens { position: absolute; inset: 0; perspective: 1500px; perspective-origin: 540px 800px; }
+    #ne-cam { position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 540px 800px; }
+    #ne-far { position: absolute; left: -900px; top: -1200px; width: 6000px; height: 4200px; transform: translateZ(-650px) scale(1.43); }
+    #ne-carrier { position: absolute; inset: 0; transform-style: preserve-3d; }
+    #ne-haze {
+      position: absolute; left: 90px; top: 350px; width: 900px; height: 900px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(123,60,255,0.22) 0%, rgba(46,107,255,0.10) 38%, rgba(0,0,0,0) 68%);
+    }
+    /* the rim component: travelling spectral light around a rounded black core */
+    .rim { position: absolute; border-radius: var(--r); --a: 0deg; isolation: isolate; }
+    .rim::before {
+      content: ""; position: absolute; inset: -3px; border-radius: inherit;
+      background: conic-gradient(from var(--a), var(--rim-1), var(--rim-2), var(--rim-3), var(--rim-4), var(--rim-5), var(--rim-1));
+    }
+    .rim::after {
+      content: ""; position: absolute; inset: -4px; border-radius: inherit; z-index: -1; opacity: 0.85;
+      background: conic-gradient(from var(--a), var(--rim-1), var(--rim-2), var(--rim-3), var(--rim-4), var(--rim-5), var(--rim-1));
+      filter: blur(26px);
+    }
+    .rim .core {
+      position: absolute; inset: 0; border-radius: inherit; background: #050507;
+      display: flex; align-items: center; justify-content: center; color: #f5f5f7;
+      font: 500 40px/1 "Inter", sans-serif; letter-spacing: -0.01em;
+    }
+    #ne-pill { left: 190px; top: 725px; width: 700px; height: 150px; --r: 75px; }
+    #ne-pill .core { font-size: 50px; gap: 18px; }
+    #ne-pill .core b { color: #ff8a9a; font-weight: 600; }
+    .ne-chip { width: 380px; height: 96px; --r: 48px; left: 350px; top: 752px; }
+    .ne-chip .core { font-size: 36px; }
+    #ne-line {
+      position: absolute; left: 190px; top: 797px; width: 700px; height: 6px; border-radius: 3px;
+      background: linear-gradient(90deg, rgba(255,255,255,0), #fff 20%, #fff 80%, rgba(255,255,255,0));
+      box-shadow: 0 0 22px 6px rgba(160,120,255,0.6);
+    }
+    #ne-svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #ne-pupil { left: 410px; top: 752px; width: 260px; height: 96px; --r: 48px; }
+    #ne-pupil .core { font-size: 38px; }
+    #ne-card { position: absolute; left: 150px; top: 350px; width: 780px; height: 900px; padding: 64px 56px; color: #f5f5f7; }
+    #ne-cardsvg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #ne-day { font: 600 64px/1 "Inter", sans-serif; letter-spacing: -0.02em; }
+    #ne-sub { margin-top: 18px; font: 400 32px/1 "Inter", sans-serif; color: #9a9aa4; }
+    .ne-row {
+      margin-top: 30px; height: 132px; border-radius: 30px; background: #111117; position: relative;
+      display: flex; align-items: center; padding: 0 34px 0 46px; font: 500 38px/1 "Inter", sans-serif;
+    }
+    .ne-row small { font: 400 30px/1 "Inter", sans-serif; color: #8d8d97; width: 120px; }
+    .ne-row i { margin-left: auto; font-style: normal; font: 500 28px/1 "Inter", sans-serif; color: #c8c8d0; padding: 12px 18px; border-radius: 22px; background: #1d1d26; }
+    .ne-row.focus { background: linear-gradient(90deg, rgba(123,60,255,0.35), rgba(46,107,255,0.18)); }
+    .ne-row.focus::before { content: ""; position: absolute; left: 16px; top: 22px; bottom: 22px; width: 8px; border-radius: 4px; background: linear-gradient(#ff2bd6, #29e3ff); box-shadow: 0 0 14px #b05cff; }
+    .ne-row.focus i { background: rgba(41,227,255,0.18); color: #9ff3ff; }
+    #ne-bar {
+      position: absolute; left: 150px; top: 797px; width: 780px; height: 6px; border-radius: 3px; background: #fff;
+      box-shadow: 0 0 26px 8px rgba(176,92,255,0.8), 0 0 70px 20px rgba(46,107,255,0.45);
+    }
+    #ne-star { position: absolute; left: 340px; top: 600px; width: 400px; height: 400px; }
+    #ne-logo { left: 270px; top: 690px; width: 540px; height: 190px; --r: 95px; }
+    #ne-logo .core { font: 600 110px/1 "Inter", sans-serif; letter-spacing: -0.04em; }
+    #ne-capz { position: absolute; inset: 0; transform: translateZ(80px); transform-style: preserve-3d; }
+    .ne-cap {
+      position: absolute; left: 60px; right: 60px; top: 1120px; text-align: center;
+      font: 500 60px/1.15 "Inter", sans-serif; color: #f5f5f7; letter-spacing: -0.015em;
+    }
+    .ne-cap span { display: inline-block; }
+    .ne-cap em {
+      font-style: normal; background: linear-gradient(90deg, #ff8a2a, #ff2bd6 40%, #7b3cff 70%, #29e3ff);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    #ne-tag { position: absolute; left: 0; right: 0; top: 960px; text-align: center; font: 400 44px/1.25 "Inter", sans-serif; color: #c9c9d1; }
+    #ne-url { position: absolute; left: 0; right: 0; top: 1100px; text-align: center; font: 500 34px/1 "Inter", sans-serif; color: #7c7c86; letter-spacing: 0.04em; }
+  </style>
+
+  <div id="root" data-composition-id="neon" data-width="1080" data-height="1920">
+    <div id="ne-lens"><div id="ne-cam">
+      <svg id="ne-far" viewBox="-900 -1200 6000 4200" data-layout-ignore><circle cx="2682" cy="57" r="2.3" fill="#7fe9ff" opacity="0.53"/><circle cx="-284" cy="2906" r="4.3" fill="#5f8dff" opacity="0.30"/><circle cx="1153" cy="2051" r="4.1" fill="#8f7bff" opacity="0.57"/><circle cx="-841" cy="618" r="3.5" fill="#8f7bff" opacity="0.47"/><circle cx="-854" cy="1167" r="1.7" fill="#ff6fd8" opacity="0.63"/><circle cx="1778" cy="2855" r="3.0" fill="#5f8dff" opacity="0.58"/><circle cx="1659" cy="455" r="3.8" fill="#7fe9ff" opacity="0.25"/><circle cx="3507" cy="1460" r="1.5" fill="#7fe9ff" opacity="0.33"/><circle cx="2772" cy="543" r="1.3" fill="#8f7bff" opacity="0.62"/><circle cx="1980" cy="518" r="1.9" fill="#8f7bff" opacity="0.26"/><circle cx="744" cy="2225" r="2.0" fill="#ff6fd8" opacity="0.47"/><circle cx="4361" cy="1516" r="2.3" fill="#ff6fd8" opacity="0.19"/><circle cx="726" cy="2883" r="2.8" fill="#ff6fd8" opacity="0.51"/><circle cx="1916" cy="1058" r="2.5" fill="#8f7bff" opacity="0.55"/><circle cx="661" cy="1850" r="3.7" fill="#ff6fd8" opacity="0.18"/><circle cx="2210" cy="-91" r="3.6" fill="#7fe9ff" opacity="0.64"/><circle cx="1020" cy="-269" r="1.5" fill="#7fe9ff" opacity="0.49"/><circle cx="4744" cy="2568" r="2.2" fill="#7fe9ff" opacity="0.37"/><circle cx="3702" cy="-914" r="2.3" fill="#8f7bff" opacity="0.27"/><circle cx="4038" cy="2983" r="2.4" fill="#ff6fd8" opacity="0.45"/><circle cx="-115" cy="-49" r="4.2" fill="#5f8dff" opacity="0.31"/><circle cx="3159" cy="1618" r="2.4" fill="#8f7bff" opacity="0.26"/><circle cx="3047" cy="137" r="1.6" fill="#8f7bff" opacity="0.63"/><circle cx="3488" cy="2998" r="1.9" fill="#7fe9ff" opacity="0.64"/><circle cx="175" cy="1976" r="2.9" fill="#5f8dff" opacity="0.43"/><circle cx="2510" cy="728" r="3.4" fill="#5f8dff" opacity="0.39"/><circle cx="-573" cy="2029" r="2.7" fill="#7fe9ff" opacity="0.50"/><circle cx="-172" cy="2531" r="2.8" fill="#5f8dff" opacity="0.30"/><circle cx="2612" cy="2747" r="2.3" fill="#8f7bff" opacity="0.56"/><circle cx="1623" cy="1881" r="2.7" fill="#8f7bff" opacity="0.61"/><circle cx="-86" cy="-574" r="3.9" fill="#ff6fd8" opacity="0.38"/><circle cx="771" cy="446" r="3.0" fill="#ff6fd8" opacity="0.56"/><circle cx="2704" cy="1706" r="2.3" fill="#5f8dff" opacity="0.23"/><circle cx="898" cy="1716" r="3.0" fill="#7fe9ff" opacity="0.39"/><circle cx="158" cy="610" r="1.6" fill="#8f7bff" opacity="0.55"/><circle cx="-766" cy="196" r="3.0" fill="#5f8dff" opacity="0.26"/><circle cx="-875" cy="2364" r="3.2" fill="#ff6fd8" opacity="0.25"/><circle cx="2233" cy="1890" r="1.7" fill="#ff6fd8" opacity="0.47"/><circle cx="2374" cy="-499" r="3.3" fill="#7fe9ff" opacity="0.48"/><circle cx="1074" cy="2536" r="2.0" fill="#ff6fd8" opacity="0.65"/><circle cx="4389" cy="-778" r="2.9" fill="#8f7bff" opacity="0.22"/><circle cx="4344" cy="-150" r="3.4" fill="#ff6fd8" opacity="0.64"/><circle cx="4393" cy="-365" r="3.4" fill="#8f7bff" opacity="0.30"/><circle cx="3882" cy="1407" r="2.3" fill="#8f7bff" opacity="0.31"/><circle cx="3609" cy="2943" r="4.4" fill="#7fe9ff" opacity="0.64"/><circle cx="46" cy="2929" r="2.2" fill="#ff6fd8" opacity="0.44"/><circle cx="99" cy="-850" r="2.6" fill="#5f8dff" opacity="0.35"/><circle cx="3885" cy="-331" r="3.5" fill="#8f7bff" opacity="0.61"/><circle cx="2181" cy="-828" r="2.5" fill="#8f7bff" opacity="0.63"/><circle cx="3045" cy="1574" r="3.4" fill="#ff6fd8" opacity="0.19"/><circle cx="4548" cy="-865" r="3.1" fill="#7fe9ff" opacity="0.25"/><circle cx="3028" cy="437" r="3.7" fill="#8f7bff" opacity="0.36"/><circle cx="181" cy="-1111" r="2.6" fill="#ff6fd8" opacity="0.34"/><circle cx="2823" cy="-760" r="2.3" fill="#ff6fd8" opacity="0.25"/><circle cx="104" cy="-1033" r="1.4" fill="#5f8dff" opacity="0.35"/><circle cx="3293" cy="-895" r="3.0" fill="#8f7bff" opacity="0.34"/><circle cx="4301" cy="101" r="2.7" fill="#ff6fd8" opacity="0.51"/><circle cx="1155" cy="1158" r="3.5" fill="#5f8dff" opacity="0.68"/><circle cx="2875" cy="-998" r="3.7" fill="#5f8dff" opacity="0.54"/><circle cx="2316" cy="-981" r="2.3" fill="#ff6fd8" opacity="0.61"/><circle cx="-873" cy="1955" r="3.8" fill="#7fe9ff" opacity="0.42"/><circle cx="4847" cy="705" r="4.3" fill="#5f8dff" opacity="0.44"/><circle cx="1792" cy="-563" r="3.3" fill="#7fe9ff" opacity="0.31"/><circle cx="1373" cy="264" r="4.0" fill="#8f7bff" opacity="0.20"/><circle cx="590" cy="274" r="3.0" fill="#8f7bff" opacity="0.50"/><circle cx="2229" cy="-21" r="3.2" fill="#5f8dff" opacity="0.25"/><circle cx="-377" cy="-1087" r="3.2" fill="#8f7bff" opacity="0.44"/><circle cx="3785" cy="1345" r="1.3" fill="#5f8dff" opacity="0.43"/><circle cx="-628" cy="605" r="1.5" fill="#8f7bff" opacity="0.44"/><circle cx="1994" cy="2519" r="1.3" fill="#8f7bff" opacity="0.62"/><circle cx="4239" cy="2686" r="4.3" fill="#8f7bff" opacity="0.43"/><circle cx="2818" cy="1015" r="2.1" fill="#8f7bff" opacity="0.65"/><circle cx="1113" cy="2976" r="2.2" fill="#ff6fd8" opacity="0.58"/><circle cx="-81" cy="2171" r="1.5" fill="#8f7bff" opacity="0.28"/><circle cx="1453" cy="1917" r="1.7" fill="#7fe9ff" opacity="0.25"/><circle cx="3129" cy="2236" r="3.0" fill="#ff6fd8" opacity="0.55"/><circle cx="1207" cy="2851" r="1.8" fill="#5f8dff" opacity="0.38"/><circle cx="53" cy="2626" r="4.2" fill="#7fe9ff" opacity="0.51"/><circle cx="3732" cy="1118" r="2.8" fill="#8f7bff" opacity="0.22"/><circle cx="2824" cy="1331" r="3.7" fill="#5f8dff" opacity="0.41"/><circle cx="5009" cy="286" r="1.6" fill="#8f7bff" opacity="0.25"/><circle cx="3918" cy="-747" r="3.8" fill="#ff6fd8" opacity="0.64"/><circle cx="2104" cy="709" r="3.3" fill="#ff6fd8" opacity="0.63"/><circle cx="4201" cy="2091" r="1.5" fill="#7fe9ff" opacity="0.34"/><circle cx="3269" cy="2965" r="3.8" fill="#7fe9ff" opacity="0.57"/><circle cx="4297" cy="-265" r="2.3" fill="#ff6fd8" opacity="0.58"/><circle cx="-436" cy="-884" r="3.3" fill="#7fe9ff" opacity="0.26"/><circle cx="4218" cy="126" r="3.5" fill="#7fe9ff" opacity="0.43"/><circle cx="1594" cy="2527" r="2.6" fill="#ff6fd8" opacity="0.65"/><circle cx="-841" cy="2533" r="2.0" fill="#ff6fd8" opacity="0.28"/><circle cx="1304" cy="1168" r="3.6" fill="#ff6fd8" opacity="0.45"/><circle cx="2775" cy="2402" r="1.5" fill="#8f7bff" opacity="0.37"/><circle cx="1766" cy="2263" r="2.2" fill="#8f7bff" opacity="0.50"/><circle cx="2303" cy="1307" r="2.4" fill="#8f7bff" opacity="0.46"/><circle cx="2065" cy="623" r="2.9" fill="#7fe9ff" opacity="0.49"/><circle cx="3847" cy="2060" r="2.5" fill="#5f8dff" opacity="0.46"/><circle cx="3711" cy="-12" r="2.1" fill="#ff6fd8" opacity="0.61"/><circle cx="257" cy="1483" r="3.0" fill="#7fe9ff" opacity="0.44"/><circle cx="1936" cy="-822" r="3.0" fill="#5f8dff" opacity="0.42"/><circle cx="-447" cy="2857" r="4.2" fill="#5f8dff" opacity="0.57"/><circle cx="3950" cy="-30" r="1.6" fill="#7fe9ff" opacity="0.61"/><circle cx="22" cy="-476" r="4.1" fill="#8f7bff" opacity="0.49"/><circle cx="900" cy="398" r="1.2" fill="#5f8dff" opacity="0.40"/><circle cx="2205" cy="727" r="3.4" fill="#7fe9ff" opacity="0.38"/><circle cx="-670" cy="-275" r="2.7" fill="#8f7bff" opacity="0.62"/><circle cx="3204" cy="-709" r="1.6" fill="#5f8dff" opacity="0.52"/><circle cx="3453" cy="-1081" r="3.6" fill="#7fe9ff" opacity="0.36"/><circle cx="418" cy="6" r="2.5" fill="#5f8dff" opacity="0.65"/><circle cx="1851" cy="356" r="1.9" fill="#7fe9ff" opacity="0.48"/><circle cx="3101" cy="-772" r="3.1" fill="#ff6fd8" opacity="0.46"/><circle cx="1599" cy="-52" r="4.4" fill="#5f8dff" opacity="0.64"/><circle cx="321" cy="1209" r="2.7" fill="#5f8dff" opacity="0.65"/><circle cx="1406" cy="-1163" r="4.1" fill="#7fe9ff" opacity="0.30"/><circle cx="2316" cy="-409" r="2.1" fill="#7fe9ff" opacity="0.22"/><circle cx="3538" cy="1236" r="2.5" fill="#8f7bff" opacity="0.21"/><circle cx="3951" cy="109" r="1.6" fill="#5f8dff" opacity="0.65"/><circle cx="2245" cy="2544" r="3.3" fill="#5f8dff" opacity="0.49"/><circle cx="3449" cy="1232" r="4.4" fill="#7fe9ff" opacity="0.55"/><circle cx="4354" cy="1931" r="2.7" fill="#7fe9ff" opacity="0.63"/><circle cx="1886" cy="2211" r="4.2" fill="#ff6fd8" opacity="0.50"/><circle cx="3972" cy="-791" r="2.1" fill="#5f8dff" opacity="0.21"/><circle cx="429" cy="-1037" r="3.0" fill="#5f8dff" opacity="0.26"/><circle cx="2023" cy="-116" r="3.3" fill="#ff6fd8" opacity="0.61"/><circle cx="178" cy="-42" r="3.4" fill="#5f8dff" opacity="0.22"/><circle cx="4888" cy="2404" r="2.9" fill="#ff6fd8" opacity="0.38"/><circle cx="1062" cy="-186" r="2.2" fill="#ff6fd8" opacity="0.47"/><circle cx="3051" cy="-163" r="2.6" fill="#5f8dff" opacity="0.52"/><circle cx="2643" cy="772" r="3.9" fill="#8f7bff" opacity="0.26"/><circle cx="498" cy="745" r="2.7" fill="#8f7bff" opacity="0.21"/><circle cx="341" cy="2012" r="1.4" fill="#5f8dff" opacity="0.42"/><circle cx="1050" cy="2441" r="2.7" fill="#8f7bff" opacity="0.38"/><circle cx="4587" cy="2871" r="1.4" fill="#ff6fd8" opacity="0.59"/><circle cx="988" cy="2309" r="2.0" fill="#5f8dff" opacity="0.33"/><circle cx="1092" cy="2782" r="1.8" fill="#7fe9ff" opacity="0.22"/><circle cx="4567" cy="746" r="3.7" fill="#ff6fd8" opacity="0.66"/><circle cx="3013" cy="2747" r="2.7" fill="#8f7bff" opacity="0.47"/><circle cx="4488" cy="2459" r="3.6" fill="#5f8dff" opacity="0.65"/><circle cx="1512" cy="218" r="3.2" fill="#5f8dff" opacity="0.63"/><circle cx="1485" cy="306" r="4.3" fill="#7fe9ff" opacity="0.40"/><circle cx="1381" cy="2665" r="2.1" fill="#8f7bff" opacity="0.64"/><circle cx="3933" cy="-629" r="2.3" fill="#5f8dff" opacity="0.35"/><circle cx="4167" cy="2709" r="1.8" fill="#8f7bff" opacity="0.66"/><circle cx="2300" cy="1353" r="3.8" fill="#7fe9ff" opacity="0.47"/><circle cx="1982" cy="1262" r="3.7" fill="#ff6fd8" opacity="0.53"/><circle cx="333" cy="-1146" r="4.2" fill="#5f8dff" opacity="0.60"/><circle cx="2005" cy="2767" r="3.9" fill="#5f8dff" opacity="0.36"/><circle cx="1584" cy="1163" r="1.3" fill="#8f7bff" opacity="0.48"/><circle cx="-14" cy="2801" r="3.1" fill="#8f7bff" opacity="0.33"/><circle cx="4268" cy="2559" r="3.0" fill="#7fe9ff" opacity="0.20"/><circle cx="1959" cy="154" r="2.8" fill="#5f8dff" opacity="0.64"/></svg>
+      <div id="ne-carrier">
+      <div id="ne-haze" data-layout-ignore></div>
+
+      <div class="rim" id="ne-pill"><div class="core"><b>14</b> meetings today</div></div>
+      <div class="rim ne-chip" id="ne-ch0"><div class="core">Standup</div></div>
+      <div class="rim ne-chip" id="ne-ch1"><div class="core">1:1 · Sam</div></div>
+      <div class="rim ne-chip" id="ne-ch2"><div class="core">Design review</div></div>
+      <div class="rim ne-chip" id="ne-ch3"><div class="core">Quick sync?</div></div>
+      <div class="rim ne-chip" id="ne-ch4"><div class="core">Call · 15 min</div></div>
+      <div id="ne-line"></div>
+
+      <svg id="ne-svg" viewBox="0 0 1080 1920" data-layout-ignore>
+        <defs>
+          <linearGradient id="ne-spec" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#ff8a2a" /><stop offset="0.3" stop-color="#ff2bd6" /><stop offset="0.55" stop-color="#7b3cff" /><stop offset="0.8" stop-color="#2e6bff" /><stop offset="1" stop-color="#29e3ff" />
+          </linearGradient>
+          <filter id="ne-glow" filterUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920">
+            <feGaussianBlur stdDeviation="8" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+          <filter id="ne-soft" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="14" /></filter>
+        </defs>
+        <g id="ne-wave" fill="none" stroke-linecap="round" filter="url(#ne-glow)">
+          <path id="ne-w0" stroke="#ff2bd6" stroke-width="6" /><path id="ne-w1" stroke="#2e6bff" stroke-width="6" />
+          <path id="ne-w2" stroke="#29e3ff" stroke-width="5" /><path id="ne-w3" stroke="#ff8a2a" stroke-width="5" />
+        </g>
+        <g id="ne-ring">
+          <circle class="ne-o" cx="540" cy="570" r="40" /><circle class="ne-o" cx="702.6" cy="637.4" r="40" />
+          <circle class="ne-o" cx="770" cy="800" r="40" /><circle class="ne-o" cx="702.6" cy="962.6" r="40" />
+          <circle class="ne-o" cx="540" cy="1030" r="40" /><circle class="ne-o" cx="377.4" cy="962.6" r="40" />
+          <circle class="ne-o" cx="310" cy="800" r="40" /><circle class="ne-o" cx="377.4" cy="637.4" r="40" />
+        </g>
+        <circle id="ne-hot" cx="540" cy="570" r="40" fill="url(#ne-spec)" filter="url(#ne-glow)" opacity="0" />
+        <g id="ne-eye" fill="none" stroke="url(#ne-spec)" stroke-width="7" stroke-linecap="round" filter="url(#ne-glow)" opacity="0">
+          <path id="ne-lid0" d="M250 800 Q540 800 830 800" /><path id="ne-lid1" d="M250 800 Q540 800 830 800" />
+        </g>
+        <circle id="ne-iris" cx="540" cy="800" r="150" fill="none" stroke="url(#ne-spec)" stroke-width="6" filter="url(#ne-glow)"
+          pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" transform="rotate(-90 540 800)" opacity="0" />
+      </svg>
+
+      <div class="rim" id="ne-pupil"><div class="core">Focus</div></div>
+
+      <svg id="ne-cardsvg" viewBox="0 0 1080 1920" data-layout-ignore>
+        <defs>
+          <linearGradient id="ne-rimg" gradientUnits="userSpaceOnUse" x1="150" y1="800" x2="930" y2="800">
+            <stop offset="0" stop-color="#ff8a2a" /><stop offset="0.25" stop-color="#ff2bd6" /><stop offset="0.5" stop-color="#7b3cff" /><stop offset="0.75" stop-color="#2e6bff" /><stop offset="1" stop-color="#29e3ff" />
+          </linearGradient>
+          <filter id="ne-rimblur" filterUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920"><feGaussianBlur stdDeviation="16" /></filter>
+        </defs>
+        <rect id="ne-cg" x="410" y="752" width="260" height="96" rx="48" fill="none" stroke="url(#ne-rimg)" stroke-width="16" opacity="0.75" filter="url(#ne-rimblur)" />
+        <rect id="ne-cr" x="410" y="752" width="260" height="96" rx="48" fill="#050507" stroke="url(#ne-rimg)" stroke-width="3.5" />
+      </svg>
+      <div id="ne-card">
+        <div id="ne-day">Tuesday</div>
+        <div id="ne-sub">Aura rearranged 6 meetings</div>
+        <div class="ne-row focus" id="ne-r0"><small>9:00</small>Deep work<i>protected</i></div>
+        <div class="ne-row" id="ne-r1"><small>12:30</small>Lunch, actually<i>no calls</i></div>
+        <div class="ne-row" id="ne-r2"><small>14:00</small>Standup + sync<i>merged</i></div>
+        <div class="ne-row focus" id="ne-r3"><small>15:00</small>Deep work<i>protected</i></div>
+      </div>
+
+      <div id="ne-bar"></div>
+      <svg id="ne-star" viewBox="0 0 400 400" data-layout-ignore>
+        <g filter="url(#ne-glow)">
+          <path d="M200 40 C 206 170, 230 194, 360 200 C 230 206, 206 230, 200 360 C 194 230, 170 206, 40 200 C 170 194, 194 170, 200 40 Z" fill="#fff" />
+        </g>
+      </svg>
+      <div class="rim" id="ne-logo"><div class="core">aura</div></div>
+      </div>
+      <div id="ne-capz">
+        <div class="ne-cap" id="ne-c0"><span>Your</span> <span>day</span> <span>is</span> <span><em>loud.</em></span></div>
+        <div class="ne-cap" id="ne-c1"><span>Aura</span> <span><em>listens</em></span> <span>to</span> <span>it.</span></div>
+        <div class="ne-cap" id="ne-c2"><span>Finds</span> <span>the</span> <span><em>quiet</em></span> <span>hours.</span></div>
+        <div class="ne-cap" id="ne-c3"><span>Then</span> <span><em>guards</em></span> <span>them.</span></div>
+      </div>
+    </div></div>
+
+    <div id="ne-tag">Your calendar, with a sense of calm.</div>
+    <div id="ne-url">aura.so</div>
+  </div>
+
+  <script>
+    (function () {
+      // music hits on the film clock (research/audio_hits.py) — quick events snap to them in tl.commit()
+      const HITS = [0.104, 0.801, 1.579, 3.587, 5.248, 5.596, 6.153, 6.536, 7.245, 7.663, 8.533, 10.17, 10.53, 11.912, 13.026, 13.677, 14.164, 14.721, 15.128, 15.569, 16.834, 17.74, 18.355, 18.924, 19.365, 20.097, 20.503, 21.165, 21.502, 22.21, 23.069, 25.786, 26.424];
+      const TL = gsap.timeline({ paused: true });
+      const tl = beatSync(TL, HITS, { t0: 0 });
+      // BEAT SYNC (MotionKit primitive 22) — make a scene's events land on the music without hand-retiming every tween.
+      // Usage: const TL = gsap.timeline({ paused: true }); const tl = beatSync(TL, HITS, { t0: sceneStart });
+      //        …author tweens on tl as usual (to / fromTo / set with a numeric position)…
+      //        tl.commit(), then register TL (not tl) as the scene timeline.
+      // HITS: strong audio hit times on the FILM clock (research/audio_hits.py). Quick tweens (≤ maxDur) are grouped into
+      // clusters (starts within `gap` of each other); each cluster shifts as a block so its first start lands on the nearest
+      // hit within ±tol. Staggers, order and long tweens (camera drivers, slow drifts) are untouched.
+      function beatSync(TL, hits, opt) {
+        opt = opt || {};
+        const tol = opt.tol == null ? 0.2 : opt.tol, maxDur = opt.maxDur == null ? 1.0 : opt.maxDur, gap = opt.gap == null ? 0.18 : opt.gap;
+        const H = hits.map((h) => h - (opt.t0 || 0));
+        const calls = [];
+        const rec = {
+          to: (...a) => (calls.push(["to", a]), rec),
+          fromTo: (...a) => (calls.push(["fromTo", a]), rec),
+          set: (...a) => (calls.push(["set", a]), rec),
+          commit() {
+            const info = calls.map(([m, a]) => {
+              const pi = m === "fromTo" ? 3 : 2, vars = m === "fromTo" ? a[2] : a[1];
+              return { m, a, pi, pos: a[pi], dur: m === "set" ? 0 : vars && vars.duration != null ? vars.duration : 0.5, shift: 0 };
+            });
+            const ev = info.filter((c) => typeof c.pos === "number" && c.dur <= maxDur && c.pos > 0.05).sort((x, y) => x.pos - y.pos);
+            const cl = [];
+            ev.forEach((c) => {
+              const last = cl[cl.length - 1];
+              if (last && c.pos - last.end <= gap) { last.items.push(c); last.end = Math.max(last.end, c.pos); }
+              else cl.push({ start: c.pos, end: c.pos, items: [c] });
+            });
+            let prevNew = -1e9;
+            cl.forEach((k) => {
+              let d = null;
+              H.forEach((h) => { const x = h - k.start; if (Math.abs(x) <= tol && (d === null || Math.abs(x) < Math.abs(d))) d = x; });
+              d = d || 0;
+              if (k.start + d < prevNew + 0.05) d = 0; // never reorder clusters
+              k.items.forEach((c) => (c.shift = d));
+              prevNew = k.start + d;
+            });
+            info.forEach((c) => { const a = c.a.slice(); if (c.shift) a[c.pi] = c.pos + c.shift; TL[c.m](...a); });
+            rec.report = cl.map((k) => ({ at: +k.start.toFixed(2), shift: +(k.items[0].shift || 0).toFixed(3) }));
+            return TL;
+          },
+        };
+        return rec;
+      }
+
+      // CAMERA RIG v3 (MotionKit primitive 15) — keyframed camera on a 3D world, a pure function of timeline time.
+      // world: element with transform-style: preserve-3d inside a perspective lens.
+      // KF: [{ t, x, y, z (dolly toward scene), rx, ry, rz (deg), f (focus depth), e }]
+      //   e = GSAP ease name for the segment INTO this key (bell-shaped "power2.inOut"/"sine.inOut" for moves),
+      //   or e = "glide": consecutive glide keys form ONE continuous monotone spline (no stops at inner keys) —
+      //   use it to track a sentence word by word without stop-start hops; the run starts and ends at zero velocity.
+      // dof: [{ el, z, max }] — leaf layers blurred by distance from the focus depth.
+      // opt: { t0 (scene start on the film clock), drift (0–1), seed (int: per-film drift character), dofK, onRender(c, t) }
+      function cameraRig(tl, world, D, KF, dof, opt) {
+        opt = opt || {};
+        const drift = opt.drift == null ? 1 : opt.drift;
+        const keys = ["x", "y", "z", "rx", "ry", "rz", "f"];
+        let prev = { x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0, f: 0 };
+        const K = KF.slice().sort((a, b) => a.t - b.t).map((k) => (prev = Object.assign({}, prev, { e: "power2.inOut" }, k)));
+        const E = {}, ez = (n) => E[n] || (E[n] = gsap.parseEase(n));
+        // monotone cubic tangents (Fritsch–Butland) for glide runs; zero at run ends => smooth start/stop
+        const M = {};
+        keys.forEach((k) => {
+          const m = K.map(() => 0);
+          for (let i = 1; i < K.length - 1; i++) {
+            if (K[i].e !== "glide" || K[i + 1].e !== "glide") continue;
+            const h0 = K[i].t - K[i - 1].t, h1 = K[i + 1].t - K[i].t;
+            const d0 = (K[i][k] - K[i - 1][k]) / h0, d1 = (K[i + 1][k] - K[i][k]) / h1;
+            if (d0 * d1 > 0) m[i] = (3 * (h0 + h1)) / ((2 * h1 + h0) / d0 + (h1 + 2 * h0) / d1);
+          }
+          M[k] = m;
+        });
+        // seeded drift: each film gets its own frequencies, phases and amplitudes (no repeated, predictable sway)
+        let s = (opt.seed || 1) >>> 0;
+        const rnd = () => { s = (s + 0x6d2b79f5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+        const osc = () => ({ f: 0.035 + rnd() * 0.12, p: rnd() * 6.283, a: 0.6 + rnd() * 0.8 });
+        const DR = { x: [osc(), osc()], y: [osc(), osc()], rz: [osc()], rx: [osc()] };
+        const T0 = opt.t0 || 0;
+        const sway = (ch, t, amp) => DR[ch].reduce((v, o, j) => v + amp[j] * o.a * Math.sin(6.283 * o.f * (t + T0) + o.p), 0);
+        function render(t) {
+          let i = 0;
+          while (i < K.length - 1 && K[i + 1].t <= t) i++;
+          const j = Math.min(i + 1, K.length - 1), a = K[i], b = K[j];
+          const h = b.t - a.t, u = h > 0 ? Math.min(1, Math.max(0, (t - a.t) / h)) : 1;
+          const c = {};
+          keys.forEach((k) => {
+            if (b.e === "glide" && h > 0) {
+              const u2 = u * u, u3 = u2 * u;
+              c[k] = (2 * u3 - 3 * u2 + 1) * a[k] + (u3 - 2 * u2 + u) * h * M[k][i] + (-2 * u3 + 3 * u2) * b[k] + (u3 - u2) * h * M[k][j];
+            } else c[k] = a[k] + (b[k] - a[k]) * (h > 0 ? ez(b.e)(u) : 1);
+          });
+          c.x += drift * sway("x", t, [6, 2.5]);
+          c.y += drift * sway("y", t, [4.5, 2]);
+          c.rz += drift * sway("rz", t, [0.2]);
+          c.rx += drift * sway("rx", t, [0.22]);
+          world.style.transform = "translate3d(" + (-c.x).toFixed(2) + "px," + (-c.y).toFixed(2) + "px," + c.z.toFixed(2) + "px) rotateX(" +
+            c.rx.toFixed(3) + "deg) rotateY(" + c.ry.toFixed(3) + "deg) rotateZ(" + c.rz.toFixed(3) + "deg)";
+          (dof || []).forEach((d) => {
+            const bl = Math.min(d.max || 8, Math.abs(d.z - c.f) * (opt.dofK || 0.022));
+            d.el.style.filter = bl < 0.3 ? "none" : "blur(" + bl.toFixed(2) + "px)";
+          });
+          if (opt.onRender) opt.onRender(c, t);
+        }
+        const drv = { t: 0 };
+        tl.fromTo(drv, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: () => render(drv.t) }, 0);
+        render(0);
+      }
+      // seeded helper for motivated moves: varied direction/size so no two films (or beats) move the same way
+      function camSeed(seed) {
+        let s = seed >>> 0;
+        const r = () => { s = (s + 0x6d2b79f5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+        return { r, range: (a, b) => a + (b - a) * r(), sign: () => (r() < 0.5 ? -1 : 1), pick: (arr) => arr[Math.floor(r() * arr.length)] };
+      }
+      const CX = 540, CY = 800;
+      function spin(sel, t0, d, turns) { tl.fromTo(sel, { "--a": "0deg" }, { "--a": 360 * turns + "deg", duration: d, ease: "none" }, t0); }
+      function cap(id, tin, tout) {
+        document.querySelectorAll(id + " span").forEach((w, i) => {
+          tl.fromTo(w, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power2.out" }, tin + i * 0.08);
+          tl.to(w, { opacity: 0, filter: "blur(10px)", duration: 0.24, ease: "power2.in" }, tout + i * 0.035);
+        });
+      }
+      tl.fromTo("#ne-haze", { z: -420, scale: 1.1, rotation: 0 }, { z: -420, scale: 1.45, rotation: 40, duration: 27, ease: "sine.inOut" }, 0);
+
+      // 0 · hook: the loud pill is already glowing at frame 0
+      spin("#ne-pill", 0, 3.4, 1.4);
+      tl.fromTo("#ne-pill", { scale: 0.92, filter: "blur(6px)" }, { scale: 1, filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, 0);
+      cap("#ne-c0", 0.5, 4.6);
+
+      // 1 · the pill shatters into meeting chips that crowd the frame
+      tl.to("#ne-pill", { scale: 0.5, opacity: 0, duration: 0.35, ease: "power3.in" }, 2.95);
+      const CHZ = [-260, 140, -110, 230, -30];
+      const chipTo = [[-170, -390, -7], [190, -240, 5], [-200, -90, 4], [170, 60, -6], [-140, 205, 3]];
+      chipTo.forEach((c, i) => {
+        const s = "#ne-ch" + i;
+        spin(s, 2.9, 2.6, 1 + i * 0.2);
+        tl.fromTo(s, { x: 0, y: 0, z: 0, rotation: 0, scale: 0.4, opacity: 0 }, { x: c[0], y: c[1], z: CHZ[i], rotation: c[2], scale: 1, opacity: 1, duration: 0.7, ease: "back.out(1.4)" }, 3.05 + i * 0.07);
+        tl.to(s, { x: c[0] + (i % 2 ? 14 : -14), y: c[1] + (i % 3 ? -10 : 12), rotation: -c[2] * 0.6, duration: 1.2, ease: "sine.inOut" }, 3.8);
+        // onset 5.28: the crowd is pressed flat into one line of light
+        tl.to(s, { x: 0, y: 0, z: 0, rotation: 0, scaleY: 0.06, scaleX: 1.6, opacity: 0, duration: 0.45, ease: "power3.in" }, 5.0 + i * 0.02);
+      });
+      tl.fromTo("#ne-line", { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.35, ease: "expo.out" }, 5.28);
+
+      // 2 · the line starts to listen: it becomes a multi-colour voice wave
+      const W = [0, 1, 2, 3].map((i) => document.getElementById("ne-w" + i));
+      const wv = { t: 0, a: 0 };
+      const K = [0.021, 0.017, 0.026, 0.013], SP = [3.1, -2.4, 4.0, -1.7], PH = [0, 1.4, 2.6, 4.1], AM = [1, 0.8, 0.62, 0.9];
+      function drawWave() {
+        for (let i = 0; i < 4; i++) {
+          let d = "";
+          for (let x = 190; x <= 890; x += 7) {
+            const e = Math.exp(-Math.pow((x - CX) / 210, 2));
+            const y = CY + wv.a * 150 * AM[i] * e * Math.sin(K[i] * x + SP[i] * wv.t + PH[i]);
+            d += (x === 190 ? "M" : "L") + x + "," + y.toFixed(1);
+          }
+          W[i].setAttribute("d", d);
+        }
+      }
+      tl.fromTo(wv, { t: 0 }, { t: 6, duration: 6, ease: "none", onUpdate: drawWave }, 5.5);
+      tl.fromTo(wv, { a: 0 }, { a: 1, duration: 0.9, ease: "power2.out", immediateRender: false, onUpdate: drawWave }, 5.75);
+      tl.to(wv, { a: 0.0, duration: 0.7, ease: "power2.in", onUpdate: drawWave }, 8.9);
+      tl.to("#ne-line", { opacity: 0, duration: 0.4, ease: "power1.out" }, 5.75);
+      tl.fromTo("#ne-wave", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 5.6);
+      tl.to("#ne-wave", { opacity: 0, scale: 0.5, svgOrigin: "540 800", duration: 0.5, ease: "power3.in" }, 9.25);
+      cap("#ne-c1", 6.0, 8.75);
+
+      // 3 · the wave closes into a ring of hours; one quiet hour lights up and travels
+      tl.fromTo(".ne-o", { attr: { fill: "none", stroke: "#3c3c46", "stroke-width": 3 }, opacity: 0, scale: 0, transformOrigin: "50% 50%" },
+        { opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.8)", stagger: 0.06 }, 9.35);
+      const hot = [[540, 570], [702.6, 637.4], [770, 800], [702.6, 962.6]];
+      tl.fromTo("#ne-hot", { opacity: 0, attr: { cx: 540, cy: 570 } }, { opacity: 1, duration: 0.3 }, 9.95);
+      hot.forEach((p, i) => { if (i) tl.to("#ne-hot", { attr: { cx: p[0], cy: p[1] }, duration: 0.45, ease: "power3.inOut" }, 9.95 + i * 0.55); });
+      cap("#ne-c2", 9.6, 11.55);
+
+      // 4 · onset 11.95: the hours collapse into a neon eye; the iris draws; the pupil is a pill
+      tl.to(".ne-o", { attr: { cx: CX, cy: CY }, opacity: 0, duration: 0.5, ease: "power3.in", stagger: 0.02 }, 11.6);
+      tl.to("#ne-hot", { attr: { cx: CX, cy: CY }, opacity: 0, duration: 0.5, ease: "power3.in" }, 11.6);
+      const lid = { o: 0 }, L0 = document.getElementById("ne-lid0"), L1 = document.getElementById("ne-lid1");
+      function drawEye() {
+        const h = 330 * lid.o;
+        L0.setAttribute("d", "M250 800 Q540 " + (800 - h).toFixed(1) + " 830 800");
+        L1.setAttribute("d", "M250 800 Q540 " + (800 + h).toFixed(1) + " 830 800");
+      }
+      tl.fromTo("#ne-eye", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 11.95);
+      tl.fromTo(lid, { o: 0 }, { o: 1, duration: 0.9, ease: "expo.out", onUpdate: drawEye }, 12.0);
+      tl.to(lid, { o: 0.04, duration: 0.12, ease: "power2.in", onUpdate: drawEye }, 14.75);
+      tl.to(lid, { o: 1, duration: 0.45, ease: "expo.out", onUpdate: drawEye }, 14.9);
+      tl.fromTo("#ne-iris", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 12.3);
+      tl.to("#ne-iris", { attr: { "stroke-dashoffset": 0 }, duration: 0.9, ease: "power2.inOut" }, 12.3);
+      tl.fromTo("#ne-iris", { rotation: 0, svgOrigin: "540 800" }, { rotation: 120, svgOrigin: "540 800", duration: 4.5, ease: "none" }, 12.3);
+      tl.fromTo("#ne-pupil", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" }, 12.75);
+      spin("#ne-pupil", 12.75, 4.3, 2);
+      cap("#ne-c3", 13.0, 16.4);
+
+      // 5 · onset 16.86: the pupil opens into the whole day — the calendar card
+      tl.to(["#ne-eye", "#ne-iris"], { opacity: 0, scale: 1.3, svgOrigin: "540 800", duration: 0.45, ease: "power3.in" }, 16.6);
+      tl.set("#ne-pupil", { opacity: 0 }, 16.86);
+      // the pupil pill IS the card: one rounded rect re-proportions, corners stay round at every frame
+      const CARD = ["#ne-cg", "#ne-cr"];
+      tl.fromTo("#ne-cardsvg", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 16.85);
+      tl.fromTo(CARD, { attr: { x: 410, y: 752, width: 260, height: 96, rx: 48 } },
+        { attr: { x: 150, y: 350, width: 780, height: 900, rx: 60 }, duration: 0.75, ease: "power3.inOut", immediateRender: false }, 16.86);
+      const rimg = document.getElementById("ne-rimg"), rg = { a: 0 };
+      const rimRot = () => rimg.setAttribute("gradientTransform", "rotate(" + rg.a.toFixed(2) + " 540 800)");
+      tl.fromTo(rg, { a: 0 }, { a: 560, duration: 6.2, ease: "none", onUpdate: rimRot }, 16.86);
+      tl.set("#ne-card", { opacity: 1 }, 16.86);
+      tl.fromTo(["#ne-day", "#ne-sub"], { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.35, stagger: 0.1, ease: "power2.out" }, 17.45);
+      ["#ne-r0", "#ne-r1", "#ne-r2", "#ne-r3"].forEach((r, i) => {
+        tl.fromTo(r, { opacity: 0, filter: "blur(8px)", x: 30 }, { opacity: 1, filter: "blur(0px)", x: 0, duration: 0.5, ease: "expo.out" }, 17.7 + i * 0.18);
+      });
+
+
+      // 6 · the day folds into one line of light, the line draws into a star (onset 23.1)
+      tl.to(["#ne-day", "#ne-sub", "#ne-r0", "#ne-r1", "#ne-r2", "#ne-r3"], { opacity: 0, filter: "blur(8px)", duration: 0.25, stagger: 0.03, ease: "power2.in" }, 20.2);
+      tl.to(CARD, { attr: { y: 797, height: 6, rx: 3 }, duration: 0.55, ease: "power3.in" }, 20.5);
+      tl.set(["#ne-cardsvg", "#ne-card"], { opacity: 0 }, 21.06);
+      tl.fromTo("#ne-bar", { opacity: 0 }, { opacity: 1, duration: 0.05 }, 21.0);
+      tl.to("#ne-bar", { scaleX: 0.01, duration: 1.1, ease: "power3.inOut" }, 21.6);
+      tl.to("#ne-bar", { opacity: 0, duration: 0.1 }, 22.65);
+      tl.fromTo("#ne-star", { opacity: 0, scale: 0.1, rotation: -45 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: "expo.out" }, 22.6);
+      tl.to("#ne-star", { scale: 0.18, opacity: 0, rotation: 45, duration: 0.45, ease: "power3.in" }, 23.1);
+
+      // 7 · the star opens into the brand pill
+      tl.fromTo("#ne-logo", { z: -330, scale: 0.2, opacity: 0, filter: "blur(14px)" }, { z: -330, scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.8, ease: "expo.out" }, 23.35);
+      spin("#ne-logo", 23.35, 3.65, 1.1);
+      tl.fromTo("#ne-tag", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "power2.out" }, 24.1);
+      tl.fromTo("#ne-url", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power2.out" }, 24.6);
+
+      // ── camera: one seek-safe driver; dwell on each idea, sweep between them
+      // ── camera: element-driven film => near-locked camera; every move is motivated by an event on screen. Seeded per film.
+      const cs = camSeed(5521), side = cs.sign();
+      cameraRig(tl, document.getElementById("ne-cam"), 27, [
+        { t: 0, z: -120, rx: 6, y: 20 },
+        { t: 2.6, z: 0, rx: 0, y: 0, e: "sine.inOut" },                                           // settle onto the loud pill
+        { t: 3.1, z: 0, e: "power1.inOut" },
+        { t: 4.6, z: -cs.range(50, 75), ry: side * cs.range(4, 7), e: "power2.inOut" },           // chips scatter: give them room
+        { t: 5.4, z: 10, ry: 0, e: "power2.inOut" },                                              // the crowd presses into one line
+        { t: 8.9, z: 30, x: side * cs.range(8, 16), e: "sine.inOut" },
+        { t: 10.1, z: 0, x: 0, rx: cs.range(14, 20), e: "power2.inOut" },                         // read the ring of hours as a dial
+        { t: 11.5, rx: cs.range(10, 14), rz: -side * cs.range(2, 4), e: "sine.inOut" },
+        { t: 12.4, rx: 0, rz: 0, z: 0, e: "power2.inOut" },
+        { t: 16.5, z: cs.range(70, 95), e: "sine.inOut" },                                         // slow push into the eye
+        { t: 17.5, z: -45, e: "power2.inOut" },                                                    // pull back: the card fills the frame
+        { t: 20.3, z: -25, ry: -side * cs.range(4, 7), e: "sine.inOut" },
+        { t: 21.1, z: 0, ry: 0, e: "power2.inOut" },
+        { t: 22.6, z: 40, e: "sine.inOut" },
+        { t: 23.2, z: 260, e: "power3.in" },                                                       // dive through the star into the logo
+        { t: 27, z: 320, e: "expo.out" },
+      ], [0, 1, 2, 3, 4].map((i) => ({ el: document.getElementById("ne-ch" + i), z: CHZ[i] })), { drift: 0.35, seed: 5521 });
+
+      // hidden states at frame 0 for everything that arrives later
+      tl.set(["#ne-line", "#ne-bar", "#ne-star", "#ne-logo", "#ne-pupil", "#ne-card", "#ne-cardsvg", "#ne-tag", "#ne-url"], { opacity: 0 }, 0);
+      drawWave(); drawEye();
+      tl.commit();
+      window.__timelines["neon"] = TL;
+    })();
+  </script>
+</template>

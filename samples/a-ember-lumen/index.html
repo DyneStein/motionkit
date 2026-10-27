@@ -1,0 +1,59 @@
+<!doctype html>
+<html
+  lang="en"
+  data-resolution="portrait"
+  data-composition-variables='[
+    {"id":"color-ground","type":"color","label":"Ground","default":"#050403"},
+    {"id":"color-ember","type":"color","label":"Ember","default":"#FFB547"},
+    {"id":"color-orange","type":"color","label":"Orange","default":"#FF7A1A"},
+    {"id":"color-coral","type":"color","label":"Coral","default":"#FF4F6D"},
+    {"id":"color-cream","type":"color","label":"Cream","default":"#F6EFE6"}
+  ]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --color-ground: #050403;
+        --color-ember: #ffb547;
+        --color-orange: #ff7a1a;
+        --color-coral: #ff4f6d;
+        --color-cream: #f6efe6;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--color-ground); }
+      body { font-family: "Inter", sans-serif; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="31.5" data-motion-blur="on" data-motion-blur-events="on" data-width="1080" data-height="1920">
+      <div id="bg" class="clip" data-composition-id="bg" data-composition-src="compositions/bg.html"
+        data-start="0" data-duration="31.5" data-track-index="0" data-track-kind="graphics"
+        data-width="1080" data-height="1920" style="z-index:1"></div>
+
+      <div id="spark" class="clip" data-composition-id="spark" data-composition-src="compositions/spark.html"
+        data-start="0" data-duration="11.6" data-track-index="1" data-track-kind="graphics"
+        data-width="1080" data-height="1920" style="z-index:2"></div>
+
+      <div id="plan" class="clip" data-composition-id="plan" data-composition-src="compositions/plan.html"
+        data-start="11.5" data-duration="8.8" data-track-index="2" data-track-kind="graphics"
+        data-width="1080" data-height="1920" style="z-index:3"></div>
+
+      <div id="flow" class="clip" data-composition-id="flow" data-composition-src="compositions/flow.html"
+        data-start="20.2" data-duration="11.3" data-track-index="3" data-track-kind="graphics"
+        data-width="1080" data-height="1920" style="z-index:2"></div>
+
+      <div id="title" class="clip" data-composition-id="title" data-composition-src="compositions/title.html"
+        data-start="0" data-duration="31.5" data-track-index="4" data-track-kind="graphics"
+        data-width="1080" data-height="1920" style="z-index:10"></div>
+
+      <audio id="music" class="clip" src="assets/music.mp3" data-start="0" data-duration="31.5"
+        data-track-index="5" data-volume="1" data-fade-in="0.3" data-fade-out="1.6"></audio>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

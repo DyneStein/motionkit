@@ -1,0 +1,252 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #fl-svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #fl-mark { position: absolute; inset: 0; }
+    #fl-lens { position: absolute; inset: 0; perspective: 1500px; perspective-origin: 540px 800px; }
+    .motes { position: absolute; left: -1500px; top: -1500px; width: 4600px; height: 5000px; transform: translateZ(-520px) scale(1.35); pointer-events: none; }
+    #fl-capz { position: absolute; inset: 0; transform: translateZ(70px); transform-style: preserve-3d; }
+    #fl-world { position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 540px 780px; }
+    .fl-cap {
+      position: absolute; left: 60px; right: 60px; top: 1196px; text-align: center;
+      font: 400 64px/1.15 "Inter", sans-serif; color: #f6efe6;
+    }
+    .fl-cap span { display: inline-block; }
+    .fl-cap em { font-family: "EB Garamond", serif; font-style: italic; font-size: 76px; color: #ffb547; }
+    #fl-word {
+      position: absolute; left: 0; right: 0; top: 960px; text-align: center;
+      font: italic 500 168px/1 "EB Garamond", serif; color: #f6efe6; letter-spacing: -0.01em;
+    }
+    #fl-word span { display: inline-block; }
+    #fl-tag { position: absolute; left: 0; right: 0; top: 1160px; text-align: center; font: 400 42px/1 "Inter", sans-serif; color: #e9dccb; }
+    #fl-url {
+      position: absolute; left: 390px; top: 1236px; width: 300px; height: 72px; border-radius: 36px;
+      border: 2px solid rgba(255,181,71,0.75); background: rgba(255,122,26,0.12);
+      font: 500 32px/68px "Inter", sans-serif; color: #ffb547; text-align: center;
+      box-shadow: 0 0 28px rgba(255,122,26,0.35);
+    }
+  </style>
+
+  <div id="root" data-composition-id="flow" data-width="1080" data-height="1920">
+    <div id="fl-lens"><div id="fl-world">
+<svg class="motes" id="fl-motes" viewBox="-1500 -1500 4600 5000" data-layout-ignore><circle cx="75" cy="2742" r="4.1" fill="#ffb547" opacity="0.38"/><circle cx="2034" cy="1970" r="4.8" fill="#ff7a1a" opacity="0.20"/><circle cx="-624" cy="-1420" r="2.7" fill="#ffb547" opacity="0.13"/><circle cx="-1304" cy="2596" r="3.3" fill="#ff7a1a" opacity="0.39"/><circle cx="2387" cy="378" r="3.3" fill="#ffb547" opacity="0.41"/><circle cx="-574" cy="-847" r="2.8" fill="#ffd890" opacity="0.33"/><circle cx="1109" cy="957" r="4.6" fill="#ffd890" opacity="0.45"/><circle cx="-718" cy="2873" r="2.3" fill="#ffb547" opacity="0.17"/><circle cx="631" cy="2439" r="1.5" fill="#ffd890" opacity="0.31"/><circle cx="-393" cy="1994" r="3.7" fill="#ffd890" opacity="0.48"/><circle cx="-777" cy="-266" r="2.6" fill="#ffd890" opacity="0.15"/><circle cx="1816" cy="-1144" r="2.2" fill="#ff7a1a" opacity="0.43"/><circle cx="-885" cy="3325" r="3.1" fill="#ffb547" opacity="0.14"/><circle cx="-850" cy="-1129" r="2.5" fill="#ffd890" opacity="0.37"/><circle cx="-1144" cy="1577" r="2.4" fill="#ffd890" opacity="0.48"/><circle cx="80" cy="2477" r="2.3" fill="#ff7a1a" opacity="0.48"/><circle cx="101" cy="-1204" r="4.0" fill="#ffb547" opacity="0.32"/><circle cx="1674" cy="2563" r="3.2" fill="#ffb547" opacity="0.39"/><circle cx="2430" cy="3067" r="4.5" fill="#ffb547" opacity="0.42"/><circle cx="1572" cy="818" r="2.9" fill="#ffb547" opacity="0.42"/><circle cx="200" cy="1882" r="2.1" fill="#ffd890" opacity="0.28"/><circle cx="-711" cy="-1088" r="4.5" fill="#ffb547" opacity="0.37"/><circle cx="-720" cy="3092" r="4.4" fill="#ff7a1a" opacity="0.27"/><circle cx="1353" cy="1209" r="4.3" fill="#ff7a1a" opacity="0.35"/><circle cx="-912" cy="3138" r="4.6" fill="#ffb547" opacity="0.41"/><circle cx="1624" cy="1776" r="3.0" fill="#ffd890" opacity="0.43"/><circle cx="604" cy="3290" r="4.4" fill="#ff7a1a" opacity="0.34"/><circle cx="1089" cy="1607" r="2.7" fill="#ffb547" opacity="0.19"/><circle cx="844" cy="2003" r="2.5" fill="#ffd890" opacity="0.32"/><circle cx="1296" cy="-906" r="1.8" fill="#ffb547" opacity="0.49"/><circle cx="2266" cy="1987" r="2.2" fill="#ffb547" opacity="0.29"/><circle cx="2428" cy="-181" r="2.7" fill="#ff7a1a" opacity="0.13"/><circle cx="-283" cy="3444" r="3.5" fill="#ffb547" opacity="0.20"/><circle cx="1620" cy="2421" r="2.6" fill="#ff7a1a" opacity="0.43"/><circle cx="-467" cy="-384" r="4.4" fill="#ffb547" opacity="0.15"/><circle cx="2736" cy="2682" r="2.3" fill="#ffd890" opacity="0.41"/><circle cx="-370" cy="1636" r="1.6" fill="#ffd890" opacity="0.25"/><circle cx="40" cy="-227" r="3.2" fill="#ff7a1a" opacity="0.48"/><circle cx="672" cy="1075" r="3.1" fill="#ffd890" opacity="0.37"/><circle cx="535" cy="-1212" r="3.4" fill="#ff7a1a" opacity="0.46"/><circle cx="-569" cy="-126" r="3.4" fill="#ffd890" opacity="0.13"/><circle cx="2445" cy="-868" r="2.0" fill="#ffb547" opacity="0.46"/><circle cx="2498" cy="3004" r="1.7" fill="#ffd890" opacity="0.21"/><circle cx="1856" cy="844" r="1.5" fill="#ffd890" opacity="0.27"/><circle cx="2384" cy="3444" r="3.1" fill="#ff7a1a" opacity="0.34"/><circle cx="-1327" cy="2441" r="2.3" fill="#ff7a1a" opacity="0.43"/><circle cx="-1004" cy="1432" r="2.9" fill="#ffd890" opacity="0.36"/><circle cx="2655" cy="1272" r="4.7" fill="#ffb547" opacity="0.28"/><circle cx="322" cy="-325" r="1.7" fill="#ffd890" opacity="0.47"/><circle cx="1973" cy="2444" r="2.5" fill="#ff7a1a" opacity="0.24"/><circle cx="-98" cy="2783" r="4.2" fill="#ff7a1a" opacity="0.15"/><circle cx="2919" cy="2125" r="2.2" fill="#ffd890" opacity="0.36"/><circle cx="162" cy="1887" r="4.6" fill="#ffb547" opacity="0.20"/><circle cx="-93" cy="2213" r="2.1" fill="#ff7a1a" opacity="0.29"/><circle cx="1572" cy="-1300" r="4.8" fill="#ffb547" opacity="0.35"/><circle cx="-18" cy="2931" r="4.0" fill="#ffb547" opacity="0.15"/><circle cx="1780" cy="1454" r="1.8" fill="#ffb547" opacity="0.13"/><circle cx="2272" cy="-298" r="3.1" fill="#ffb547" opacity="0.36"/><circle cx="2026" cy="2647" r="4.7" fill="#ffb547" opacity="0.40"/><circle cx="2902" cy="2548" r="3.0" fill="#ffd890" opacity="0.30"/><circle cx="-432" cy="-305" r="4.8" fill="#ffd890" opacity="0.37"/><circle cx="1330" cy="2177" r="4.7" fill="#ff7a1a" opacity="0.17"/><circle cx="2488" cy="-1222" r="1.9" fill="#ffb547" opacity="0.16"/><circle cx="1614" cy="-1374" r="2.0" fill="#ffb547" opacity="0.48"/><circle cx="-534" cy="-1169" r="4.9" fill="#ffd890" opacity="0.16"/><circle cx="2320" cy="2858" r="3.6" fill="#ff7a1a" opacity="0.39"/><circle cx="-86" cy="1024" r="2.2" fill="#ffd890" opacity="0.48"/><circle cx="1693" cy="767" r="1.6" fill="#ff7a1a" opacity="0.35"/><circle cx="-416" cy="-1300" r="4.2" fill="#ffd890" opacity="0.13"/><circle cx="-663" cy="-372" r="3.3" fill="#ffd890" opacity="0.48"/><circle cx="233" cy="2875" r="2.5" fill="#ff7a1a" opacity="0.12"/><circle cx="-1329" cy="990" r="2.2" fill="#ffd890" opacity="0.23"/><circle cx="-185" cy="3470" r="3.2" fill="#ffb547" opacity="0.18"/><circle cx="-642" cy="3140" r="3.7" fill="#ffb547" opacity="0.44"/><circle cx="1579" cy="824" r="3.9" fill="#ffb547" opacity="0.40"/><circle cx="2718" cy="2574" r="2.1" fill="#ffb547" opacity="0.46"/><circle cx="2343" cy="58" r="4.4" fill="#ffb547" opacity="0.48"/><circle cx="1695" cy="-826" r="2.2" fill="#ffb547" opacity="0.24"/><circle cx="263" cy="1945" r="4.7" fill="#ffb547" opacity="0.19"/><circle cx="1438" cy="886" r="3.2" fill="#ff7a1a" opacity="0.37"/><circle cx="-536" cy="2477" r="1.7" fill="#ff7a1a" opacity="0.25"/><circle cx="-1140" cy="2590" r="1.8" fill="#ffd890" opacity="0.28"/><circle cx="935" cy="-1438" r="3.1" fill="#ffb547" opacity="0.41"/><circle cx="-803" cy="2290" r="2.7" fill="#ff7a1a" opacity="0.31"/><circle cx="2610" cy="-1167" r="4.5" fill="#ffd890" opacity="0.42"/><circle cx="2722" cy="2712" r="1.7" fill="#ffb547" opacity="0.22"/><circle cx="901" cy="498" r="2.9" fill="#ffd890" opacity="0.21"/><circle cx="2327" cy="-279" r="4.6" fill="#ff7a1a" opacity="0.16"/><circle cx="-1401" cy="179" r="3.8" fill="#ffd890" opacity="0.27"/><circle cx="932" cy="2489" r="4.1" fill="#ff7a1a" opacity="0.47"/></svg>
+
+    <svg id="fl-svg" viewBox="0 0 1080 1920" data-layout-ignore>
+      <defs>
+        <radialGradient id="fl-molten" gradientUnits="userSpaceOnUse" cx="510" cy="740" r="330">
+          <stop offset="0" stop-color="#ffe2a8" /><stop offset="0.35" stop-color="#ffb547" /><stop offset="0.7" stop-color="#ff7a1a" /><stop offset="1" stop-color="#ff4f6d" />
+        </radialGradient>
+        <filter id="fl-goo" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="16" result="b" />
+          <feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -11" />
+        </filter>
+        <filter id="fl-bloom" filterUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1920"><feGaussianBlur stdDeviation="22" /></filter>
+        <filter id="fl-soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" /></filter>
+        <linearGradient id="fl-ringgrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb547" /><stop offset="1" stop-color="#ff4f6d" /></linearGradient>
+      </defs>
+      <g id="fl-bloomgrp" filter="url(#fl-bloom)" opacity="0.28" fill="#ff7a1a">
+        <circle id="fl-gb0" cx="540" cy="800" r="0" /><circle id="fl-gb1" cx="540" cy="800" r="0" />
+        <circle id="fl-gb2" cx="540" cy="800" r="0" /><circle id="fl-gb3" cx="540" cy="800" r="0" />
+      </g>
+      <g id="fl-googrp" filter="url(#fl-goo)" fill="url(#fl-molten)">
+        <circle id="fl-b0" cx="540" cy="800" r="0" /><circle id="fl-b1" cx="540" cy="800" r="0" />
+        <circle id="fl-b2" cx="540" cy="800" r="0" /><circle id="fl-b3" cx="540" cy="800" r="0" />
+      </g>
+      <ellipse id="fl-spec" cx="520" cy="770" rx="26" ry="14" fill="#fff8ec" opacity="0" filter="url(#fl-soft)" />
+      <g id="fl-mark">
+        <circle id="fl-ring" cx="540" cy="760" r="132" fill="none" stroke="url(#fl-ringgrad)" stroke-width="5" pathLength="100"
+          stroke-dasharray="100 120" stroke-dashoffset="110" transform="rotate(-90 540 760)" />
+        <circle id="fl-bead" cx="540" cy="628" r="10" fill="#fff3dc" opacity="0" />
+      </g>
+    </svg>
+    <div id="fl-capz">
+      <div class="fl-cap" id="fl-c1"><span>Your</span> <span>mind,</span> <span>in</span> <span><em>flow</em></span></div>
+      <div id="fl-word"><span>l</span><span>u</span><span>m</span><span>e</span><span>n</span></div>
+      <div id="fl-tag">Think in light.</div>
+      <div id="fl-url">lumen.app</div>
+    </div>
+    </div></div>
+
+  </div>
+
+  <script>
+    (function () {
+      // music hits on the film clock (research/audio_hits.py) — quick events snap to them in tl.commit()
+      const HITS = [0.07, 0.522, 0.964, 1.544, 5.515, 6.165, 6.931, 7.883, 8.348, 9.276, 10.484, 11.122, 11.714, 13.317, 13.851, 14.385, 14.919, 15.871, 16.579, 18.1, 19.458, 23.684, 24.137, 27.899, 28.537, 29.872];
+      const TL = gsap.timeline({ paused: true });
+      const tl = beatSync(TL, HITS, { t0: 20.2, tol: 0.32 });
+      // BEAT SYNC (MotionKit primitive 22) — make a scene's events land on the music without hand-retiming every tween.
+      // Usage: const TL = gsap.timeline({ paused: true }); const tl = beatSync(TL, HITS, { t0: sceneStart });
+      //        …author tweens on tl as usual (to / fromTo / set with a numeric position)…
+      //        tl.commit(), then register TL (not tl) as the scene timeline.
+      // HITS: strong audio hit times on the FILM clock (research/audio_hits.py). Quick tweens (≤ maxDur) are grouped into
+      // clusters (starts within `gap` of each other); each cluster shifts as a block so its first start lands on the nearest
+      // hit within ±tol. Staggers, order and long tweens (camera drivers, slow drifts) are untouched.
+      function beatSync(TL, hits, opt) {
+        opt = opt || {};
+        const tol = opt.tol == null ? 0.2 : opt.tol, maxDur = opt.maxDur == null ? 1.0 : opt.maxDur, gap = opt.gap == null ? 0.18 : opt.gap;
+        const H = hits.map((h) => h - (opt.t0 || 0));
+        const calls = [];
+        const rec = {
+          to: (...a) => (calls.push(["to", a]), rec),
+          fromTo: (...a) => (calls.push(["fromTo", a]), rec),
+          set: (...a) => (calls.push(["set", a]), rec),
+          commit() {
+            const info = calls.map(([m, a]) => {
+              const pi = m === "fromTo" ? 3 : 2, vars = m === "fromTo" ? a[2] : a[1];
+              return { m, a, pi, pos: a[pi], dur: m === "set" ? 0 : vars && vars.duration != null ? vars.duration : 0.5, shift: 0 };
+            });
+            const ev = info.filter((c) => typeof c.pos === "number" && c.dur <= maxDur && c.pos > 0.05).sort((x, y) => x.pos - y.pos);
+            const cl = [];
+            ev.forEach((c) => {
+              const last = cl[cl.length - 1];
+              if (last && c.pos - last.end <= gap) { last.items.push(c); last.end = Math.max(last.end, c.pos); }
+              else cl.push({ start: c.pos, end: c.pos, items: [c] });
+            });
+            let prevNew = -1e9;
+            cl.forEach((k) => {
+              let d = null;
+              H.forEach((h) => { const x = h - k.start; if (Math.abs(x) <= tol && (d === null || Math.abs(x) < Math.abs(d))) d = x; });
+              d = d || 0;
+              if (k.start + d < prevNew + 0.05) d = 0; // never reorder clusters
+              k.items.forEach((c) => (c.shift = d));
+              prevNew = k.start + d;
+            });
+            info.forEach((c) => { const a = c.a.slice(); if (c.shift) a[c.pi] = c.pos + c.shift; TL[c.m](...a); });
+            rec.report = cl.map((k) => ({ at: +k.start.toFixed(2), shift: +(k.items[0].shift || 0).toFixed(3) }));
+            return TL;
+          },
+        };
+        return rec;
+      }
+
+      // CAMERA RIG v3 (MotionKit primitive 15) — keyframed camera on a 3D world, a pure function of timeline time.
+      // world: element with transform-style: preserve-3d inside a perspective lens.
+      // KF: [{ t, x, y, z (dolly toward scene), rx, ry, rz (deg), f (focus depth), e }]
+      //   e = GSAP ease name for the segment INTO this key (bell-shaped "power2.inOut"/"sine.inOut" for moves),
+      //   or e = "glide": consecutive glide keys form ONE continuous monotone spline (no stops at inner keys) —
+      //   use it to track a sentence word by word without stop-start hops; the run starts and ends at zero velocity.
+      // dof: [{ el, z, max }] — leaf layers blurred by distance from the focus depth.
+      // opt: { t0 (scene start on the film clock), drift (0–1), seed (int: per-film drift character), dofK, onRender(c, t) }
+      function cameraRig(tl, world, D, KF, dof, opt) {
+        opt = opt || {};
+        const drift = opt.drift == null ? 1 : opt.drift;
+        const keys = ["x", "y", "z", "rx", "ry", "rz", "f"];
+        let prev = { x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0, f: 0 };
+        const K = KF.slice().sort((a, b) => a.t - b.t).map((k) => (prev = Object.assign({}, prev, { e: "power2.inOut" }, k)));
+        const E = {}, ez = (n) => E[n] || (E[n] = gsap.parseEase(n));
+        // monotone cubic tangents (Fritsch–Butland) for glide runs; zero at run ends => smooth start/stop
+        const M = {};
+        keys.forEach((k) => {
+          const m = K.map(() => 0);
+          for (let i = 1; i < K.length - 1; i++) {
+            if (K[i].e !== "glide" || K[i + 1].e !== "glide") continue;
+            const h0 = K[i].t - K[i - 1].t, h1 = K[i + 1].t - K[i].t;
+            const d0 = (K[i][k] - K[i - 1][k]) / h0, d1 = (K[i + 1][k] - K[i][k]) / h1;
+            if (d0 * d1 > 0) m[i] = (3 * (h0 + h1)) / ((2 * h1 + h0) / d0 + (h1 + 2 * h0) / d1);
+          }
+          M[k] = m;
+        });
+        // seeded drift: each film gets its own frequencies, phases and amplitudes (no repeated, predictable sway)
+        let s = (opt.seed || 1) >>> 0;
+        const rnd = () => { s = (s + 0x6d2b79f5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+        const osc = () => ({ f: 0.035 + rnd() * 0.12, p: rnd() * 6.283, a: 0.6 + rnd() * 0.8 });
+        const DR = { x: [osc(), osc()], y: [osc(), osc()], rz: [osc()], rx: [osc()] };
+        const T0 = opt.t0 || 0;
+        const sway = (ch, t, amp) => DR[ch].reduce((v, o, j) => v + amp[j] * o.a * Math.sin(6.283 * o.f * (t + T0) + o.p), 0);
+        function render(t) {
+          let i = 0;
+          while (i < K.length - 1 && K[i + 1].t <= t) i++;
+          const j = Math.min(i + 1, K.length - 1), a = K[i], b = K[j];
+          const h = b.t - a.t, u = h > 0 ? Math.min(1, Math.max(0, (t - a.t) / h)) : 1;
+          const c = {};
+          keys.forEach((k) => {
+            if (b.e === "glide" && h > 0) {
+              const u2 = u * u, u3 = u2 * u;
+              c[k] = (2 * u3 - 3 * u2 + 1) * a[k] + (u3 - 2 * u2 + u) * h * M[k][i] + (-2 * u3 + 3 * u2) * b[k] + (u3 - u2) * h * M[k][j];
+            } else c[k] = a[k] + (b[k] - a[k]) * (h > 0 ? ez(b.e)(u) : 1);
+          });
+          c.x += drift * sway("x", t, [6, 2.5]);
+          c.y += drift * sway("y", t, [4.5, 2]);
+          c.rz += drift * sway("rz", t, [0.2]);
+          c.rx += drift * sway("rx", t, [0.22]);
+          world.style.transform = "translate3d(" + (-c.x).toFixed(2) + "px," + (-c.y).toFixed(2) + "px," + c.z.toFixed(2) + "px) rotateX(" +
+            c.rx.toFixed(3) + "deg) rotateY(" + c.ry.toFixed(3) + "deg) rotateZ(" + c.rz.toFixed(3) + "deg)";
+          (dof || []).forEach((d) => {
+            const bl = Math.min(d.max || 8, Math.abs(d.z - c.f) * (opt.dofK || 0.022));
+            d.el.style.filter = bl < 0.3 ? "none" : "blur(" + bl.toFixed(2) + "px)";
+          });
+          if (opt.onRender) opt.onRender(c, t);
+        }
+        const drv = { t: 0 };
+        tl.fromTo(drv, { t: 0 }, { t: D, duration: D, ease: "none", onUpdate: () => render(drv.t) }, 0);
+        render(0);
+      }
+      // seeded helper for motivated moves: varied direction/size so no two films (or beats) move the same way
+      function camSeed(seed) {
+        let s = seed >>> 0;
+        const r = () => { s = (s + 0x6d2b79f5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+        return { r, range: (a, b) => a + (b - a) * r(), sign: () => (r() < 0.5 ? -1 : 1), pick: (arr) => arr[Math.floor(r() * arr.length)] };
+      }
+
+      const CX = 540, CY = 800;
+      const B = [0, 1, 2, 3].map((i) => document.getElementById("fl-b" + i));
+      const G = [0, 1, 2, 3].map((i) => document.getElementById("fl-gb" + i));
+      const spec = document.getElementById("fl-spec");
+      const base = [78, 60, 50, 40], orbit = [150, 205, 175, 235], w = [0.9, -0.7, 1.15, -0.95], ph = [0, 1.7, 3.4, 5.0];
+      const sstep = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+      const drv = { t: 0 };
+      // every blob position is a pure function of the driver time: seek-safe metaballs
+      function drawBlobs() {
+        const t = drv.t;
+        const born = sstep(0, 0.5, t);
+        const spread = sstep(0.35, 1.6, t) * (1 - sstep(3.4, 4.5, t));
+        const toMark = sstep(4.5, 5.6, t);
+        const cy = CY + (760 - CY) * sstep(4.2, 5.4, t);
+        let sx = 0, sy = 0;
+        for (let i = 0; i < 4; i++) {
+          const a = ph[i] + w[i] * t;
+          const R = orbit[i] * (1 + 0.22 * Math.sin(1.6 * t + i * 1.3)) * spread;
+          const x = CX + R * Math.cos(a), y = cy + R * Math.sin(a) * 0.85;
+          // merged: blobs pile into one core; mark: core shrinks to 62
+          const merged = i === 0 ? 96 : base[i] * 0.9;
+          let r = base[i] * (1 + 0.12 * Math.sin(2.3 * t + i)) * born;
+          r = r + (merged - r) * sstep(3.6, 4.6, t);
+          r = r + ((i === 0 ? 62 : 0) - r) * toMark;
+          for (const el of [B[i], G[i]]) { el.setAttribute("cx", x.toFixed(1)); el.setAttribute("cy", y.toFixed(1)); el.setAttribute("r", Math.max(0, r).toFixed(1)); }
+          if (i === 0) { sx = x; sy = y; }
+        }
+        spec.setAttribute("cx", (sx - 22).toFixed(1)); spec.setAttribute("cy", (sy - 26).toFixed(1));
+        spec.setAttribute("opacity", (0.85 * born).toFixed(2));
+      }
+      tl.fromTo(drv, { t: 0 }, { t: 6.2, duration: 6.2, ease: "none", onUpdate: drawBlobs }, 0.05);
+
+      document.querySelectorAll("#fl-c1 span").forEach((w2, i) => {
+        tl.fromTo(w2, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.32, ease: "power2.out" }, 0.9 + i * 0.09);
+        tl.to(w2, { opacity: 0, filter: "blur(10px)", duration: 0.26, ease: "power2.in" }, 3.85 + i * 0.04);
+      });
+
+      // --- the mark: a ring draws around the molten core, a bead rises to the top like sunrise
+      tl.to("#fl-ring", { attr: { "stroke-dashoffset": 0 }, duration: 1.1, ease: "power2.inOut" }, 4.95);
+      tl.fromTo("#fl-bead", { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 5.9);
+      // the mark rises to make room for the wordmark
+      tl.to(["#fl-mark", "#fl-googrp", "#fl-bloomgrp", "#fl-spec"], { y: -90, duration: 1.0, ease: "power3.inOut" }, 6.0);
+      document.querySelectorAll("#fl-word span").forEach((s, i) => {
+        tl.fromTo(s, { opacity: 0, filter: "blur(12px)", x: (i - 2) * 26 }, { opacity: 1, filter: "blur(0px)", x: 0, duration: 0.7, ease: "expo.out" }, 6.35 + i * 0.06);
+      });
+      tl.fromTo("#fl-tag", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "power2.out" }, 7.25);
+      tl.fromTo("#fl-url", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.6)" }, 7.85);
+
+      cameraRig(tl, document.getElementById("fl-world"), 11.3, [
+        { t: 0, z: 40 },
+        { t: 3.6, z: 150, rz: -2.5, e: "sine.inOut" },              // lean into the metaballs as they play
+        { t: 4.7, z: 100, rz: 0, e: "power2.inOut" },
+        { t: 6.4, z: -30, e: "power2.inOut" },                      // the mark resolves: step back for the wordmark
+        { t: 11.3, z: 45, e: "sine.inOut" },
+      ], null, { t0: 20.2, drift: 0.35, seed: 3304 });
+      drawBlobs();
+      tl.commit();
+      window.__timelines["flow"] = TL;
+    })();
+  </script>
+</template>

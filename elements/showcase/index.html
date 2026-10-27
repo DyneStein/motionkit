@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" data-resolution="landscape">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=1920, height=1080" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<link rel="stylesheet" href="assets/elements.css" />
+<script src="assets/elements.js"></script>
+<style>
+/* MotionKit fonts — copy the .woff2 files you use into <project>/assets/fonts/ and paste the matching rules into the scene <style>. */
+@font-face { font-family: 'Chillax'; src: url('assets/fonts/chillax-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'Chillax'; src: url('assets/fonts/chillax-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: 'Chillax'; src: url('assets/fonts/chillax-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: block; }
+@font-face { font-family: 'Chillax'; src: url('assets/fonts/chillax-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: 'Satoshi'; src: url('assets/fonts/satoshi-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'Satoshi'; src: url('assets/fonts/satoshi-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: 'Satoshi'; src: url('assets/fonts/satoshi-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: 'Satoshi'; src: url('assets/fonts/satoshi-900.woff2') format('woff2'); font-weight: 900; font-style: normal; font-display: block; }
+@font-face { font-family: 'General Sans'; src: url('assets/fonts/general-sans-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'General Sans'; src: url('assets/fonts/general-sans-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: 'General Sans'; src: url('assets/fonts/general-sans-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: block; }
+@font-face { font-family: 'General Sans'; src: url('assets/fonts/general-sans-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: 'Clash Grotesk'; src: url('assets/fonts/clash-grotesk-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'Clash Grotesk'; src: url('assets/fonts/clash-grotesk-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: 'Clash Grotesk'; src: url('assets/fonts/clash-grotesk-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: block; }
+@font-face { font-family: 'Clash Grotesk'; src: url('assets/fonts/clash-grotesk-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: 'Cabinet Grotesk'; src: url('assets/fonts/cabinet-grotesk-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'Cabinet Grotesk'; src: url('assets/fonts/cabinet-grotesk-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: 'Cabinet Grotesk'; src: url('assets/fonts/cabinet-grotesk-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: 'Cabinet Grotesk'; src: url('assets/fonts/cabinet-grotesk-800.woff2') format('woff2'); font-weight: 800; font-style: normal; font-display: block; }
+@font-face { font-family: 'Switzer'; src: url('assets/fonts/switzer-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'Switzer'; src: url('assets/fonts/switzer-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: 'Switzer'; src: url('assets/fonts/switzer-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: block; }
+@font-face { font-family: 'Switzer'; src: url('assets/fonts/switzer-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: 'Urbanist'; src: url('assets/fonts/urbanist-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'Urbanist'; src: url('assets/fonts/urbanist-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: 'Urbanist'; src: url('assets/fonts/urbanist-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: block; }
+@font-face { font-family: 'Urbanist'; src: url('assets/fonts/urbanist-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: 'Sora'; src: url('assets/fonts/sora-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'Sora'; src: url('assets/fonts/sora-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: 'Sora'; src: url('assets/fonts/sora-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: block; }
+@font-face { font-family: 'Inter Tight'; src: url('assets/fonts/inter-tight-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'Inter Tight'; src: url('assets/fonts/inter-tight-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: 'Inter Tight'; src: url('assets/fonts/inter-tight-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: block; }
+@font-face { font-family: 'Inter Tight'; src: url('assets/fonts/inter-tight-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: block; }
+@font-face { font-family: 'Instrument Serif'; src: url('assets/fonts/instrument-serif-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'Instrument Serif'; src: url('assets/fonts/instrument-serif-400-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: block; }
+@font-face { font-family: 'Fraunces'; src: url('assets/fonts/fraunces-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'Fraunces'; src: url('assets/fonts/fraunces-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: block; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #f4f3f7; font-family: "Satoshi", sans-serif; }
+.board { position: absolute; inset: 0; }
+.lab { position: absolute; font: 500 18px/1 "Satoshi", sans-serif; color: #9a98a8; letter-spacing: 0.04em; text-transform: uppercase; }
+.p { position: absolute; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="4" data-width="1920" data-height="1080">
+
+<!-- board A · light UI -->
+<div id="bA" class="board clip" data-start="0" data-duration="1" data-track-index="1" style="background:#f4f3f7" data-layout-ignore>
+  <span class="lab" style="left:80px;top:40px">dock + app icons</span>
+  <div class="p" style="left:80px;top:80px"><div class="mk-dock">
+    <div class="mk-app mk-app--notes"></div>
+    <div class="mk-app mk-app--brand"><span>&gt;_</span></div>
+    <div class="mk-app mk-app--cal"><b>Tue</b><i>1</i></div>
+    <div class="mk-app mk-app--mail"><svg viewBox="0 0 70 50"><rect x="1" y="1" width="68" height="48" rx="7" fill="#fff"/><path d="M3 4 35 28 67 4" fill="none" stroke="#2f7fff" stroke-width="3" stroke-linejoin="round"/><path d="M3 47 27 23M67 47 43 23" stroke="#c5dcff" stroke-width="2"/></svg></div>
+  </div></div>
+  <span class="lab" style="left:1000px;top:40px">device toolbar + cursor</span>
+  <div class="p" style="left:1000px;top:90px;background:linear-gradient(120deg,#e9e7ff,#c9ccf8);padding:40px 60px;border-radius:20px">
+    <div class="mk-toolbar"><div><b>iPhone 17 Pro</b><small>iOS 26.5</small></div><div class="icons">
+      <svg viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z"/></svg><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"/><path d="m11 11 7 3-3 1-1 3z"/></svg><svg viewBox="0 0 24 24"><path d="M8 6h8a3 3 0 0 1 3 3v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M11 3 8 6l3 3"/></svg></div></div>
+    <div class="p" style="left:530px;top:92px"><svg class="mk-cursor" viewBox="0 0 46 58"><path d="M5 4 L5 46 L15.5 36.5 L23 54 L31 50.5 L23.5 33.5 L38 33.5 Z" fill="#0b0b0e" stroke="#fff" stroke-width="3" stroke-linejoin="round"/></svg></div>
+  </div>
+  <span class="lab" style="left:80px;top:300px">prompt box · tag · caret</span>
+  <div class="p" style="left:80px;top:340px"><div class="mk-prompt"><span class="mk-tag">Build iOS Apps</span>I want to build a fitness app that helps people discover classes<span class="mk-caret"></span>
+    <div class="foot"><span>+</span><span>Claude 5 ⌄</span><div class="send"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div></div></div></div>
+  <span class="lab" style="left:1060px;top:330px">reeded glass pill</span>
+  <div class="p" style="left:1060px;top:380px"><div class="mk-reed" id="reed"></div></div>
+  <span class="lab" style="left:80px;top:700px">convex glass buttons</span>
+  <div class="p" style="left:110px;top:760px;display:flex;gap:70px">
+    <div class="mk-gbtn"><svg viewBox="0 0 92 92"><circle cx="46" cy="46" r="17" fill="#ffc21a"/><path d="M22 30a28 28 0 0 0 0 32M70 30a28 28 0 0 1 0 32" stroke="#ffc21a" stroke-width="7" fill="none" stroke-linecap="round"/></svg></div>
+    <div class="mk-gbtn"><svg viewBox="0 0 92 92"><g fill="#3bd47c"><rect x="30" y="26" width="12" height="40" rx="3"/><rect x="50" y="20" width="12" height="44" rx="3"/></g><g stroke="#3bd47c" stroke-width="4" stroke-linecap="round"><path d="M36 18v8M36 66v8M56 12v8M56 64v8"/></g></svg></div>
+    <div class="mk-gbtn"><svg viewBox="0 0 92 92"><circle cx="46" cy="46" r="32" fill="#4a86f0"/><circle cx="46" cy="38" r="11" fill="#fff"/><path d="M26 66c4-10 12-14 20-14s16 4 20 14" fill="#fff"/></svg></div>
+    <div class="p" style="left:300px;top:110px"><svg class="mk-hand" viewBox="0 0 66 74"><path d="M23 6c0-3 5-3 5 0v26c0-3 5-3 5 0v2c0-3 5-3 5 0v3c0-3 5-3 5 0v14c0 9-6 17-16 17h-2c-6 0-10-3-13-8L4 46c-2-3 2-6 5-4l6 6V10c0-3 5-3 5 0z" fill="#fff" stroke="#111" stroke-width="2.6" stroke-linejoin="round"/><path d="M28 38v12M33 40v10M38 41v9" stroke="#111" stroke-width="2.2" stroke-linecap="round"/></svg></div>
+  </div>
+  <span class="lab" style="left:900px;top:700px">toggle (off / on)</span>
+  <div class="p" style="left:900px;top:760px;display:flex;gap:40px"><div class="mk-toggle" style="--on:0"><div class="on"></div><div class="knob"></div></div><div class="mk-toggle" style="--on:1"><div class="on"></div><div class="knob"></div></div></div>
+  <span class="lab" style="left:1300px;top:700px">notification</span>
+  <div class="p" style="left:1240px;top:760px"><div class="mk-notif"><div class="ic" style="background:linear-gradient(135deg,#43d9a3,#1fa37a)"></div><div><b>Rent paid</b><p>$1,850 · scheduled by Tally</p></div><time>now</time></div></div>
+  <div class="p" style="left:1240px;top:900px"><div class="mk-notif"><div class="ic" style="background:linear-gradient(135deg,#7d86f0,#2639c9)"></div><div><b>Invoice #204 received</b><p>$3,200 from Northwind</p></div><time>2m</time></div></div>
+</div>
+
+<!-- board B · 3D + data -->
+<div id="bB" class="board clip" data-start="1" data-duration="1" data-track-index="1" style="background:#f4f3f6" data-layout-ignore>
+  <span class="lab" style="left:80px;top:40px">3d candlesticks</span>
+  <div class="mk-candles p" id="candles" style="left:80px;top:80px;width:900px;height:560px"></div>
+  <span class="lab" style="left:1000px;top:200px">halftone reveal pill · connector</span>
+  <div class="p" style="left:1000px;top:250px;display:flex;align-items:center;gap:20px"><div class="mk-dash"><i></i><i></i><b></b></div><div class="mk-hpill" style="--p:1"><span>Stop Loss</span></div></div>
+  <div class="p" style="left:1000px;top:400px;display:flex;align-items:center;gap:20px"><div class="mk-dash"><i></i><i></i><b></b></div><div class="mk-hpill" style="--p:0.45"><div class="dots"></div><span>Stop Loss</span></div></div>
+  <span class="lab" style="left:80px;top:760px">funnel chips</span>
+  <div class="p" style="left:80px;top:810px;transform:scale(0.85);transform-origin:0 0"><div class="mk-funnel"><div class="pill">2.7K<em>Clicks</em></div><div class="step">→<span>6.5%</span></div><div class="pill">175<em>Leads</em></div><div class="step">→<span>11%</span></div><div class="pill">19<em>Customers</em></div></div></div>
+  <span class="lab" style="left:1420px;top:500px">marble sphere · tags</span>
+  <div class="p" style="left:1420px;top:540px;transform:scale(0.72);transform-origin:0 0"><div class="mk-marble"><div class="swirl"></div><div class="spec"></div></div>
+    <span class="mk-citytag" style="left:-60px;top:60px"><i></i>Lisbon</span><span class="mk-citytag" style="left:380px;top:20px;--flag:linear-gradient(#002395 33%,#fff 33% 66%,#ed2939 66%)"><i></i>Paris</span>
+    <span class="mk-citytag" style="left:150px;top:250px"><i style="--flag:linear-gradient(#000 33%,#d00 33% 66%,#ffce00 66%)"></i>Berlin</span><span class="mk-citytag" style="left:420px;top:420px"><i></i>Tokyo</span></div>
+</div>
+
+<!-- board C · light grey: cone + fan network -->
+<div id="bC" class="board clip" data-start="2" data-duration="1" data-track-index="1" style="background:#e7e7e9" data-layout-ignore>
+  <div class="p" style="left:-200px;top:90px"><div class="mk-cone" style="width:1100px;height:900px"><div class="wedge"></div><div class="beam"></div></div></div>
+  <div class="p" style="left:520px;top:110px;font:400 44px/1.15 'General Sans',sans-serif;color:#141418">From bottleneck<br>and cost factor</div>
+  <svg id="fan" class="p" style="left:860px;top:80px;width:1060px;height:920px"></svg>
+</div>
+
+<!-- board D · emerald: orb + slab -->
+<div id="bD" class="board clip" data-start="3" data-duration="1" data-track-index="1" style="background:radial-gradient(ellipse at 40% 50%,#0c2e22 0%,#041912 60%,#020d09 100%)" data-layout-ignore>
+  <div class="p" style="left:160px;top:390px"><div class="mk-orb"><div class="swirl"></div><div class="spec"></div></div></div>
+  <div class="p" style="left:520px;top:425px"><div class="mk-slab">Reasoning ..</div></div>
+</div>
+</div>
+<script>
+  mkReed(document.getElementById("reed"), "something", { flutes: 5 });
+  mkCandles(document.getElementById("candles"), [
+    { x: -380, y: 40, h: 150, up: 40, dn: 50, kind: "grey" }, { x: -300, y: 120, h: 180, up: 30, dn: 40, kind: "red" },
+    { x: -220, y: 60, h: 120, up: 30, dn: 40, kind: "grey" }, { x: -140, y: 130, h: 170, up: 40, dn: 30, kind: "red" },
+    { x: -60, y: 20, h: 110, up: 30, dn: 40, kind: "grey" }, { x: 20, y: -20, h: 170, up: 40, dn: 30, kind: "red" },
+    { x: 100, y: 30, h: 190, up: 60, dn: 40, kind: "grey" }, { x: 180, y: 140, h: 160, up: 30, dn: 40, kind: "red" },
+    { x: 260, y: 60, h: 110, up: 40, dn: 40, kind: "grey" }, { x: 340, y: 170, h: 170, up: 40, dn: 40, kind: "red" },
+  ]);
+  const fan = mkFan(document.getElementById("fan"), { w: 1060, h: 920, ox: 0, oy: 460, ex: 760, n: 18 });
+  fan.strands.forEach((p) => p.setAttribute("stroke-dashoffset", "0"));
+  fan.beads.forEach((b) => { const L = b.path.getTotalLength(), pt = b.path.getPointAtLength(L * b.u); b.el.setAttribute("cx", pt.x); b.el.setAttribute("cy", pt.y); b.el.setAttribute("opacity", "1"); });
+  window.__timelines["main"] = gsap.timeline({ paused: true });
+</script>
+</body>
+</html>

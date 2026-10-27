@@ -1,0 +1,39 @@
+<!doctype html>
+<html
+  lang="en"
+  data-resolution="landscape"
+  data-composition-variables='[
+    {"id":"color-ground","type":"color","label":"Ground","default":"#F7F7FC"},
+    {"id":"color-ink","type":"color","label":"Ink","default":"#0E1030"},
+    {"id":"color-royal","type":"color","label":"Royal","default":"#2639C9"},
+    {"id":"color-peri","type":"color","label":"Periwinkle","default":"#7D86F0"},
+    {"id":"color-mist","type":"color","label":"Mist","default":"#C9CCF8"}
+  ]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root { --color-ground: #f7f7fc; --color-ink: #0e1030; --color-royal: #2639c9; --color-peri: #7d86f0; --color-mist: #c9ccf8; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--color-ground); }
+      body { font-family: "Outfit", sans-serif; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="27.3" data-motion-blur="on" data-motion-blur-events="on" data-width="1920" data-height="1080">
+      <div id="bg" class="clip" data-composition-id="bg" data-composition-src="compositions/bg.html"
+        data-start="0" data-duration="27.3" data-track-index="0" data-track-kind="graphics"
+        data-width="1920" data-height="1080" style="z-index:1"></div>
+      <div id="saas" class="clip" data-composition-id="saas" data-composition-src="compositions/saas.html"
+        data-start="0" data-duration="27.3" data-track-index="1" data-track-kind="graphics"
+        data-width="1920" data-height="1080" style="z-index:2"></div>
+      <audio id="music" class="clip" src="assets/music.mp3" data-start="0" data-duration="27.3"
+        data-track-index="2" data-volume="0.9" data-fade-in="0.05" data-fade-out="1.4"></audio>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

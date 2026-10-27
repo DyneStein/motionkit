@@ -1,0 +1,286 @@
+v27.mp4 122.7s
+    0.0-  0.7s (0.7s)  truck R 20%W/s + pedestal down 3%W/s  peak 36  decelerating
+    1.4-  2.5s (1.1s)  truck L 2%W/s + pedestal down 3%W/s + pull-out 7%/s  peak 46  ease-in-out
+    2.5-  4.3s (1.8s)  truck R 5%W/s + push-in 2%/s  peak 63  decelerating
+    5.6-  7.4s (1.8s)  truck R 29%W/s + pull-out 4%/s  peak 138  decelerating
+    7.3-  9.3s (2.0s)  truck R 10%W/s + pedestal up 2%W/s + pull-out 2%/s  peak 155  decelerating
+    9.4- 11.0s (1.6s)  truck R 25%W/s + pedestal up 7%W/s + pull-out 4%/s  peak 94  ease-in-out
+   11.0- 11.7s (0.7s)  truck R 17%W/s + pedestal up 4%W/s  peak 30  decelerating
+   11.8- 13.7s (1.9s)  truck R 11%W/s + pedestal up 3%W/s + pull-out 6%/s  peak 82  ease-in-out
+   13.8- 14.6s (0.8s)  truck R 2%W/s + pedestal up 8%W/s + pull-out 6%/s  peak 49  decelerating
+   14.9- 18.1s (3.2s)  truck L 4%W/s  peak 52  constant
+   18.2- 19.0s (0.8s)  pull-out 13%/s  peak 13  constant
+   19.2- 19.9s (0.7s)  truck L 31%W/s + pedestal down 2%W/s + pull-out 7%/s  peak 82  decelerating
+   20.9- 23.1s (2.2s)  truck R 50%W/s  peak 151  decelerating
+   23.2- 24.0s (0.8s)  truck R 5%W/s + pedestal up 15%W/s + pull-out 4%/s  peak 111  decelerating
+   24.3- 26.8s (2.5s)  truck R 5%W/s + pedestal down 5%W/s + pull-out 3%/s  peak 86  decelerating
+   27.0- 30.4s (3.4s)  truck R 7%W/s + pedestal up 2%W/s + pull-out 4%/s  peak 66  decelerating
+   33.9- 35.1s (1.2s)  truck L 5%W/s + pull-out 12%/s  peak 29  decelerating
+   37.6- 39.0s (1.4s)  pedestal up 3%W/s  peak 16  ease-in-out
+   40.5- 42.0s (1.5s)  pedestal up 2%W/s  peak 88  accelerating
+   41.9- 43.9s (2.0s)  truck L 3%W/s + pedestal down 7%W/s + pull-out 2%/s  peak 53  decelerating
+   44.9- 46.1s (1.2s)  pull-out 5%/s  peak 13  accelerating
+   46.3- 47.2s (0.9s)  truck L 11%W/s + pull-out 6%/s  peak 54  decelerating
+   47.1- 48.7s (1.6s)  truck R 12%W/s + push-in 8%/s  peak 40  constant
+   48.7- 51.5s (2.8s)  truck L 16%W/s + pedestal down 6%W/s + push-in 3%/s  peak 81  accelerating
+   51.4- 54.5s (3.1s)  truck R 9%W/s + pedestal down 6%W/s + pull-out 4%/s  peak 104  decelerating
+   54.4- 56.5s (2.1s)  truck R 12%W/s + pedestal up 3%W/s  peak 40  ease-in-out
+   58.0- 59.3s (1.3s)  pull-out 5%/s  peak 14  accelerating
+   59.4- 60.1s (0.7s)  pedestal down 19%W/s + pull-out 9%/s  peak 31  constant
+   60.5- 61.6s (1.1s)  pedestal down 10%W/s + pull-out 5%/s  peak 32  accelerating
+   62.1- 63.3s (1.2s)  truck R 2%W/s + pedestal up 13%W/s  peak 31  ease-in-out
+   63.6- 64.5s (0.9s)  truck L 5%W/s + pedestal down 12%W/s + pull-out 2%/s  peak 28  decelerating
+   64.4- 67.4s (3.0s)  truck R 9%W/s + pedestal up 4%W/s  peak 131  accelerating
+   68.5- 71.3s (2.8s)  truck L 10%W/s + pedestal up 8%W/s + pull-out 2%/s  peak 84  accelerating
+   71.8- 72.7s (0.9s)  truck R 8%W/s  peak 25  accelerating
+   72.8- 73.5s (0.7s)  truck R 25%W/s  peak 98  decelerating
+   73.4- 74.5s (1.1s)  pull-out 7%/s  peak 14  accelerating
+   74.7- 75.8s (1.1s)  truck L 21%W/s + pedestal down 2%W/s + pull-out 8%/s  peak 88  decelerating
+   76.0- 77.2s (1.2s)  truck R 3%W/s + pedestal down 3%W/s + pull-out 5%/s  peak 66  decelerating
+   77.3- 78.6s (1.3s)  truck L 23%W/s + push-in 10%/s  peak 62  ease-in-out
+   78.5- 80.2s (1.7s)  truck R 7%W/s + pedestal up 11%W/s + pull-out 5%/s  peak 93  decelerating
+   80.6- 81.3s (0.7s)  truck L 17%W/s + pedestal up 7%W/s + push-in 8%/s  peak 42  ease-in-out
+   82.7- 84.1s (1.4s)  truck R 7%W/s + pedestal down 3%W/s  peak 36  accelerating
+   84.2- 85.1s (0.9s)  truck R 14%W/s  peak 43  decelerating
+   85.1- 86.1s (1.0s)  pedestal down 5%W/s  peak 14  accelerating
+   86.0- 86.8s (0.8s)  truck R 46%W/s + pedestal up 7%W/s + pull-out 4%/s  peak 127  decelerating
+   86.8- 87.6s (0.8s)  pull-out 3%/s  peak 3  constant
+   91.5- 92.2s (0.7s)  pull-out 12%/s  peak 13  accelerating
+   99.3-101.4s (2.1s)  truck L 5%W/s + pedestal up 5%W/s + push-in 6%/s  peak 37  ease-in-out
+  101.4-102.4s (1.0s)  truck R 13%W/s + pedestal down 7%W/s  peak 39  accelerating
+  102.5-105.2s (2.7s)  truck R 24%W/s + pedestal down 6%W/s + push-in 2%/s  peak 127  decelerating
+  105.8-106.7s (0.9s)  truck R 22%W/s + pull-out 2%/s  peak 97  decelerating
+  108.1-108.9s (0.8s)  truck L 9%W/s + push-in 8%/s  peak 59  decelerating
+  110.4-111.2s (0.8s)  truck R 14%W/s  peak 47  decelerating
+  112.1-113.3s (1.2s)  truck R 11%W/s + pull-out 8%/s  peak 86  ease-in-out
+  113.2-115.4s (2.2s)  truck L 2%W/s + pull-out 9%/s  peak 32  ease-in-out
+  116.9-117.8s (0.9s)  truck R 23%W/s  peak 62  ease-in-out
+  118.8-120.4s (1.6s)  pull-out 7%/s  peak 63  decelerating
+v02.mp4 37.4s
+    2.3-  3.5s (1.2s)  truck R 19%W/s + pedestal down 2%W/s + pull-out 4%/s  peak 64  ease-in-out
+    4.7-  6.7s (2.0s)  truck R 14%W/s + pedestal down 9%W/s + pull-out 2%/s  peak 97  decelerating
+   15.5- 16.8s (1.3s)  pedestal down 19%W/s + push-in 4%/s  peak 57  decelerating
+   16.9- 17.7s (0.8s)  truck R 25%W/s + pedestal up 5%W/s + push-in 5%/s  peak 82  decelerating
+   19.0- 19.9s (0.9s)  truck L 6%W/s + pedestal down 24%W/s + push-in 3%/s  peak 76  accelerating
+   30.4- 31.9s (1.5s)  truck R 27%W/s + push-in 5%/s  peak 139  accelerating
+   34.8- 36.5s (1.7s)  pedestal down 2%W/s + pull-out 9%/s  peak 14  decelerating
+v23.mp4 33.8s
+    3.2-  4.4s (1.2s)  truck R 60%W/s + pull-out 2%/s  peak 97  decelerating
+    8.9- 10.0s (1.1s)  truck R 31%W/s + push-in 3%/s  peak 56  decelerating
+   11.5- 12.6s (1.1s)  truck R 28%W/s + push-in 9%/s  peak 59  decelerating
+   14.6- 15.3s (0.7s)  truck R 12%W/s + pedestal down 4%W/s + push-in 4%/s  peak 29  decelerating
+   19.9- 20.8s (0.9s)  truck L 4%W/s + pedestal down 5%W/s + pull-out 8%/s  peak 34  accelerating
+   20.7- 21.4s (0.7s)  truck R 3%W/s + pedestal down 22%W/s + pull-out 9%/s  peak 62  decelerating
+   22.7- 23.4s (0.7s)  truck R 28%W/s + pedestal up 6%W/s + pull-out 8%/s  peak 61  decelerating
+   26.0- 27.0s (1.0s)  truck R 44%W/s + pedestal down 8%W/s  peak 69  constant
+   31.4- 34.0s (2.6s)  truck L 10%W/s + pedestal up 2%W/s + pull-out 6%/s  peak 54  decelerating
+v62.mp4 9.0s
+    0.0-  1.8s (1.8s)  truck L 12%W/s + pedestal up 4%W/s + push-in 3%/s  peak 50  constant
+    2.1-  2.9s (0.8s)  truck L 4%W/s + pedestal up 7%W/s + pull-out 2%/s  peak 118  constant
+    2.8-  3.5s (0.7s)  truck R 18%W/s + pedestal up 4%W/s + push-in 4%/s  peak 45  ease-in-out
+    4.2-  6.5s (2.3s)  truck L 15%W/s  peak 77  decelerating
+    6.4-  7.7s (1.3s)  truck R 8%W/s + pedestal up 4%W/s + push-in 2%/s  peak 38  decelerating
+v53.mp4 10.8s
+    0.4-  1.2s (0.8s)  push-in 14%/s  peak 14  constant
+    2.3-  3.3s (1.0s)  truck R 5%W/s + pedestal down 7%W/s + push-in 5%/s  peak 61  ease-in-out
+    3.7-  4.5s (0.8s)  truck R 5%W/s + pedestal up 7%W/s  peak 53  decelerating
+    4.7-  6.6s (1.9s)  truck R 13%W/s + pedestal down 4%W/s  peak 54  constant
+    6.6-  9.4s (2.8s)  pedestal down 6%W/s  peak 126  accelerating
+v11.mp4 32.6s
+    0.1-  1.1s (1.0s)  pedestal down 59%W/s  peak 135  decelerating
+    1.8-  2.7s (0.9s)  truck R 14%W/s + pedestal up 72%W/s + push-in 2%/s  peak 219  ease-in-out
+    2.6-  3.5s (0.9s)  truck L 3%W/s + pull-out 10%/s  peak 27  constant
+    3.9-  6.6s (2.7s)  truck R 10%W/s + pedestal down 8%W/s  peak 99  ease-in-out
+    6.5- 10.3s (3.8s)  push-in 2%/s  peak 214  accelerating
+   12.4- 14.4s (2.0s)  truck R 4%W/s + pedestal up 36%W/s + push-in 4%/s  peak 278  ease-in-out
+   14.6- 15.5s (0.9s)  truck R 10%W/s + push-in 8%/s  peak 30  decelerating
+   16.7- 17.4s (0.7s)  truck R 20%W/s + pedestal up 19%W/s + push-in 8%/s  peak 59  accelerating
+   17.8- 19.8s (2.0s)  truck R 35%W/s + pedestal up 12%W/s + push-in 3%/s  peak 101  constant
+   20.3- 22.1s (1.8s)  truck R 31%W/s + pedestal up 3%W/s  peak 104  accelerating
+   23.9- 25.0s (1.1s)  truck R 16%W/s + pedestal up 2%W/s + push-in 8%/s  peak 67  accelerating
+v57.mp4 20.1s
+    3.0-  3.8s (0.8s)  pedestal down 3%W/s + push-in 8%/s  peak 97  ease-in-out
+    6.3-  7.1s (0.8s)  truck R 37%W/s + pedestal down 6%W/s  peak 146  decelerating
+   15.6- 16.6s (1.0s)  truck L 28%W/s + pedestal up 3%W/s + pull-out 2%/s  peak 151  decelerating
+   17.4- 18.6s (1.2s)  truck L 3%W/s  peak 22  decelerating
+v43.mp4 40.8s
+    0.0-  0.9s (0.9s)  truck R 4%W/s + pull-out 9%/s  peak 14  decelerating
+    1.6-  2.5s (0.9s)  truck R 12%W/s + pull-out 7%/s  peak 137  accelerating
+    3.0-  7.2s (4.2s)  truck L 22%W/s  peak 167  decelerating
+    7.7-  9.1s (1.4s)  truck L 22%W/s  peak 125  decelerating
+   10.8- 11.7s (0.9s)  truck R 13%W/s  peak 33  decelerating
+   11.9- 13.7s (1.8s)  truck L 4%W/s + pedestal down 9%W/s + pull-out 3%/s  peak 88  ease-in-out
+   15.0- 16.8s (1.8s)  truck R 5%W/s + pedestal down 8%W/s + push-in 2%/s  peak 95  decelerating
+   16.8- 20.0s (3.2s)  pedestal down 2%W/s  peak 68  decelerating
+   20.4- 22.5s (2.1s)  truck R 60%W/s + pull-out 3%/s  peak 158  ease-in-out
+   22.6- 24.7s (2.1s)  pedestal down 4%W/s + push-in 4%/s  peak 100  ease-in-out
+   26.1- 27.0s (0.9s)  truck R 20%W/s + push-in 5%/s  peak 51  decelerating
+   28.3- 31.3s (3.0s)  truck R 13%W/s + pedestal down 3%W/s  peak 164  decelerating
+   31.2- 32.1s (0.9s)  truck R 26%W/s + pedestal up 15%W/s  peak 106  accelerating
+   32.3- 36.3s (4.0s)  truck R 9%W/s + pedestal up 4%W/s + push-in 5%/s  peak 153  decelerating
+   38.8- 39.5s (0.7s)  truck R 4%W/s + pull-out 9%/s  peak 16  decelerating
+v10.mp4 102.7s
+    0.0-  0.7s (0.7s)  pedestal down 12%W/s + pull-out 2%/s  peak 22  constant
+    0.7-  1.7s (1.0s)  truck R 4%W/s + pedestal up 5%W/s  peak 24  decelerating
+    7.4-  8.2s (0.8s)  truck R 8%W/s + pedestal down 7%W/s + push-in 2%/s  peak 73  decelerating
+    8.6-  9.6s (1.0s)  truck R 14%W/s + pull-out 6%/s  peak 51  decelerating
+    9.8- 10.8s (1.0s)  pedestal up 14%W/s  peak 49  accelerating
+   14.1- 15.6s (1.5s)  truck L 9%W/s + pedestal up 19%W/s + pull-out 8%/s  peak 110  decelerating
+   17.3- 19.0s (1.7s)  truck L 6%W/s + pedestal up 6%W/s + push-in 2%/s  peak 99  decelerating
+   19.3- 21.1s (1.8s)  truck L 28%W/s  peak 116  accelerating
+   21.0- 22.4s (1.4s)  truck R 7%W/s + push-in 2%/s  peak 30  accelerating
+   22.3- 23.9s (1.6s)  truck L 11%W/s + pedestal down 8%W/s  peak 77  ease-in-out
+   25.5- 26.4s (0.9s)  pedestal up 28%W/s + pull-out 2%/s  peak 64  decelerating
+   27.1- 29.0s (1.9s)  truck R 11%W/s  peak 58  decelerating
+   28.9- 30.3s (1.4s)  truck L 2%W/s  peak 31  decelerating
+   37.7- 38.6s (0.9s)  push-in 11%/s  peak 14  decelerating
+   43.5- 44.2s (0.7s)  truck R 27%W/s + pedestal down 22%W/s  peak 64  decelerating
+   44.5- 45.2s (0.7s)  truck L 13%W/s + push-in 3%/s  peak 27  decelerating
+   47.6- 48.6s (1.0s)  truck L 19%W/s + pedestal up 8%W/s + push-in 2%/s  peak 78  ease-in-out
+   48.8- 50.7s (1.9s)  pedestal down 17%W/s  peak 49  accelerating
+   60.3- 61.0s (0.7s)  pull-out 13%/s  peak 13  constant
+   61.1- 61.8s (0.7s)  truck R 12%W/s  peak 20  decelerating
+   65.0- 68.2s (3.2s)  pedestal down 22%W/s  peak 88  constant
+   73.9- 74.6s (0.7s)  pull-out 8%/s  peak 13  accelerating
+   77.1- 78.7s (1.6s)  pedestal down 4%W/s  peak 16  accelerating
+   78.9- 79.8s (0.9s)  pedestal down 3%W/s + push-in 2%/s  peak 5  constant
+   84.0- 84.9s (0.9s)  truck L 13%W/s + pedestal down 4%W/s + push-in 3%/s  peak 36  decelerating
+   85.6- 86.3s (0.7s)  pedestal down 4%W/s  peak 7  ease-in-out
+   86.4- 87.7s (1.3s)  push-in 3%/s  peak 64  ease-in-out
+   90.3- 91.7s (1.4s)  truck R 18%W/s + push-in 2%/s  peak 54  accelerating
+   92.1- 93.8s (1.7s)  truck R 8%W/s + pull-out 2%/s  peak 56  constant
+   94.4- 95.3s (0.9s)  truck R 7%W/s + pull-out 2%/s  peak 42  ease-in-out
+   98.7- 99.9s (1.2s)  truck R 9%W/s  peak 21  ease-in-out
+v46.mp4 105.4s
+    0.0-  0.7s (0.7s)  truck L 22%W/s + pull-out 6%/s  peak 51  decelerating
+    1.1-  2.4s (1.3s)  truck L 21%W/s  peak 43  decelerating
+    2.9-  4.1s (1.2s)  pedestal down 9%W/s + pull-out 3%/s  peak 25  accelerating
+    6.8-  7.5s (0.7s)  pedestal down 10%W/s  peak 28  accelerating
+    7.6-  9.0s (1.4s)  truck L 2%W/s + pedestal down 2%W/s  peak 21  decelerating
+    8.9- 10.3s (1.4s)  pedestal down 13%W/s + pull-out 6%/s  peak 36  ease-in-out
+   10.2- 11.4s (1.2s)  pedestal down 2%W/s + pull-out 2%/s  peak 14  accelerating
+   11.5- 12.3s (0.8s)  truck R 12%W/s + pedestal up 10%W/s + pull-out 5%/s  peak 78  decelerating
+   12.2- 13.0s (0.8s)  pedestal down 5%W/s + pull-out 3%/s  peak 13  ease-in-out
+   12.9- 14.7s (1.8s)  truck R 9%W/s + pedestal down 7%W/s  peak 134  ease-in-out
+   16.7- 17.6s (0.9s)  truck R 2%W/s + push-in 8%/s  peak 14  accelerating
+   20.7- 24.7s (4.0s)  truck R 26%W/s  peak 148  constant
+   25.9- 27.4s (1.5s)  pedestal up 15%W/s + pull-out 3%/s  peak 87  decelerating
+   28.3- 32.2s (3.9s)  truck R 4%W/s + pedestal down 5%W/s + pull-out 2%/s  peak 71  decelerating
+   33.3- 35.0s (1.7s)  pull-out 10%/s  peak 17  accelerating
+   34.9- 38.1s (3.2s)  truck R 28%W/s  peak 139  accelerating
+   38.7- 41.2s (2.5s)  truck R 11%W/s + pedestal up 2%W/s + push-in 3%/s  peak 106  ease-in-out
+   41.1- 42.0s (0.9s)  pedestal up 8%W/s + push-in 5%/s  peak 165  decelerating
+   44.7- 45.6s (0.9s)  truck R 33%W/s + pedestal down 3%W/s  peak 77  decelerating
+   46.7- 48.3s (1.6s)  truck R 4%W/s + pedestal down 3%W/s  peak 19  decelerating
+   51.4- 52.6s (1.2s)  truck L 2%W/s + pedestal down 8%W/s  peak 22  decelerating
+   53.8- 54.6s (0.8s)  truck L 4%W/s  peak 9  accelerating
+   54.8- 57.7s (2.9s)  truck L 6%W/s + pedestal up 2%W/s + push-in 7%/s  peak 146  decelerating
+   58.5- 59.6s (1.1s)  pull-out 3%/s  peak 3  constant
+   61.0- 63.4s (2.4s)  truck L 12%W/s + pedestal down 2%W/s + push-in 2%/s  peak 103  ease-in-out
+   63.3- 64.3s (1.0s)  truck R 8%W/s  peak 17  ease-in-out
+   65.5- 66.2s (0.7s)  truck L 19%W/s + pedestal down 7%W/s  peak 79  decelerating
+   66.1- 67.1s (1.0s)  push-in 8%/s  peak 14  accelerating
+   67.1- 70.7s (3.6s)  truck R 16%W/s + pedestal down 3%W/s + push-in 2%/s  peak 53  constant
+   72.5- 73.8s (1.3s)  pedestal down 5%W/s + pull-out 2%/s  peak 10  ease-in-out
+   74.7- 76.2s (1.5s)  pedestal up 8%W/s  peak 26  ease-in-out
+   80.4- 81.3s (0.9s)  truck R 8%W/s + pedestal down 4%W/s + pull-out 3%/s  peak 32  decelerating
+   81.2- 82.1s (0.9s)  truck L 7%W/s  peak 22  accelerating
+   82.2- 84.1s (1.9s)  truck L 3%W/s + push-in 2%/s  peak 29  decelerating
+   84.0- 84.8s (0.8s)  push-in 2%/s  peak 14  ease-in-out
+   85.2- 86.7s (1.5s)  push-in 13%/s  peak 14  constant
+   87.4- 91.9s (4.5s)  pull-out 12%/s  peak 13  constant
+   92.3- 93.0s (0.7s)  truck R 21%W/s + pedestal up 4%W/s + push-in 3%/s  peak 78  accelerating
+   92.9- 94.8s (1.9s)  truck R 11%W/s + push-in 2%/s  peak 42  decelerating
+   94.7- 95.5s (0.8s)  truck R 3%W/s + pull-out 2%/s  peak 14  ease-in-out
+   95.4- 96.1s (0.7s)  drift/mixed  peak 5  decelerating
+   96.2- 98.9s (2.7s)  push-in 5%/s  peak 135  decelerating
+   99.7-100.9s (1.2s)  truck L 4%W/s + pull-out 7%/s  peak 59  accelerating
+  100.8-102.5s (1.7s)  truck R 17%W/s + pull-out 3%/s  peak 105  ease-in-out
+  102.5-103.8s (1.3s)  truck R 17%W/s + pull-out 8%/s  peak 97  decelerating
+v07.mp4 26.0s
+    0.5-  1.2s (0.7s)  pull-out 8%/s  peak 14  decelerating
+    4.3-  5.1s (0.8s)  pedestal down 2%W/s + push-in 4%/s  peak 9  constant
+   11.7- 12.5s (0.8s)  truck L 2%W/s + pull-out 11%/s  peak 16  decelerating
+   16.8- 17.9s (1.1s)  truck R 2%W/s + pedestal down 7%W/s + pull-out 2%/s  peak 21  ease-in-out
+   18.3- 20.3s (2.0s)  truck L 4%W/s + pedestal down 6%W/s + push-in 3%/s  peak 57  constant
+   20.3- 21.4s (1.1s)  truck R 3%W/s + pull-out 5%/s  peak 37  decelerating
+   21.8- 22.5s (0.7s)  truck L 28%W/s + pedestal down 3%W/s + push-in 2%/s  peak 98  accelerating
+   23.1- 24.4s (1.3s)  truck L 3%W/s + pedestal down 4%W/s + push-in 4%/s  peak 31  constant
+v31.mp4 35.2s
+    0.5-  1.2s (0.7s)  truck R 11%W/s  peak 17  ease-in-out
+    2.0-  2.7s (0.7s)  truck R 4%W/s  peak 24  decelerating
+    2.9-  4.6s (1.7s)  truck R 6%W/s  peak 23  constant
+    5.0-  5.9s (0.9s)  truck L 15%W/s + pedestal down 13%W/s + pull-out 4%/s  peak 48  ease-in-out
+    6.6-  8.2s (1.6s)  pedestal up 2%W/s + pull-out 10%/s  peak 14  accelerating
+   11.1- 12.0s (0.9s)  truck R 6%W/s + pedestal down 3%W/s  peak 16  accelerating
+   12.1- 13.3s (1.2s)  pedestal down 4%W/s + pull-out 4%/s  peak 33  decelerating
+   13.9- 14.8s (0.9s)  pull-out 4%/s  peak 9  decelerating
+   15.3- 16.0s (0.7s)  pedestal up 2%W/s + push-in 5%/s  peak 15  decelerating
+   16.5- 17.8s (1.3s)  push-in 4%/s  peak 14  ease-in-out
+   18.4- 19.7s (1.3s)  pedestal up 10%W/s  peak 35  decelerating
+   19.8- 21.4s (1.6s)  truck R 2%W/s + pedestal up 2%W/s  peak 17  accelerating
+   21.9- 22.6s (0.7s)  truck R 3%W/s + pedestal down 3%W/s + push-in 2%/s  peak 15  ease-in-out
+   26.6- 28.0s (1.4s)  push-in 6%/s  peak 14  ease-in-out
+   29.4- 32.8s (3.4s)  truck R 2%W/s + push-in 2%/s  peak 41  decelerating
+   33.4- 35.0s (1.6s)  truck L 3%W/s + push-in 8%/s  peak 20  constant
+v38.mp4 44.3s
+    0.0-  0.7s (0.7s)  truck R 8%W/s + pedestal down 18%W/s  peak 74  decelerating
+    1.2-  2.6s (1.4s)  truck R 8%W/s + pull-out 6%/s  peak 63  constant
+    3.1-  4.7s (1.6s)  pedestal up 5%W/s + pull-out 5%/s  peak 16  constant
+    7.2-  8.0s (0.8s)  truck L 6%W/s + pedestal up 3%W/s + pull-out 11%/s  peak 34  decelerating
+    8.4- 10.3s (1.9s)  truck R 6%W/s + pedestal down 2%W/s + push-in 6%/s  peak 57  accelerating
+   10.4- 11.2s (0.8s)  truck R 7%W/s + pedestal down 2%W/s  peak 40  ease-in-out
+   13.6- 15.0s (1.4s)  truck L 5%W/s + pedestal down 12%W/s + push-in 4%/s  peak 65  decelerating
+   15.3- 16.6s (1.3s)  pedestal down 16%W/s  peak 61  decelerating
+   19.5- 20.3s (0.8s)  truck R 9%W/s  peak 20  ease-in-out
+   21.4- 22.2s (0.8s)  truck L 15%W/s + pedestal up 2%W/s + pull-out 9%/s  peak 66  accelerating
+   24.0- 24.7s (0.7s)  pull-out 13%/s  peak 13  constant
+   26.2- 27.0s (0.8s)  truck R 6%W/s + pedestal down 15%W/s + push-in 5%/s  peak 30  ease-in-out
+   26.9- 28.5s (1.6s)  truck R 3%W/s + pedestal down 9%W/s + push-in 6%/s  peak 42  decelerating
+   38.0- 38.7s (0.7s)  push-in 12%/s  peak 14  accelerating
+v16.mp4 8.6s
+    0.0-  2.6s (2.6s)  truck R 7%W/s + pedestal up 8%W/s  peak 63  decelerating
+    2.6-  3.7s (1.1s)  pedestal down 10%W/s  peak 58  accelerating
+    3.6-  7.7s (4.1s)  truck R 10%W/s + pedestal down 6%W/s + pull-out 2%/s  peak 92  decelerating
+v24.mp4 15.2s
+    2.8-  4.1s (1.3s)  pedestal down 6%W/s + push-in 7%/s  peak 39  decelerating
+    4.9-  5.8s (0.9s)  truck R 2%W/s + pedestal down 6%W/s + push-in 4%/s  peak 16  ease-in-out
+    9.3- 11.0s (1.7s)  truck R 13%W/s + pedestal down 9%W/s  peak 66  accelerating
+   11.8- 12.7s (0.9s)  truck R 5%W/s + pedestal up 10%W/s  peak 88  decelerating
+v41.mp4 15.0s
+    0.0-  1.4s (1.4s)  truck R 4%W/s + pedestal up 5%W/s + pull-out 2%/s  peak 188  accelerating
+    1.3-  2.6s (1.3s)  truck R 22%W/s + pedestal up 9%W/s  peak 154  decelerating
+    2.7-  3.5s (0.8s)  pull-out 13%/s  peak 13  constant
+    4.0-  5.5s (1.5s)  truck R 8%W/s + pull-out 2%/s  peak 55  ease-in-out
+    5.7-  6.7s (1.0s)  truck R 34%W/s  peak 66  decelerating
+    6.8-  7.5s (0.7s)  truck R 10%W/s  peak 18  decelerating
+    8.4-  9.1s (0.7s)  pedestal down 8%W/s  peak 16  accelerating
+    9.3- 10.0s (0.7s)  truck R 2%W/s + pedestal down 15%W/s + push-in 5%/s  peak 26  decelerating
+   10.0- 10.8s (0.8s)  truck R 15%W/s + pedestal down 6%W/s  peak 35  accelerating
+   12.5- 13.9s (1.4s)  push-in 10%/s  peak 42  ease-in-out
+v40.mp4 17.5s
+    0.0-  1.3s (1.3s)  truck R 26%W/s  peak 98  decelerating
+    1.2-  4.6s (3.4s)  truck R 10%W/s  peak 160  accelerating
+    4.7-  5.5s (0.8s)  truck R 15%W/s + push-in 5%/s  peak 37  ease-in-out
+    5.4-  7.7s (2.3s)  pull-out 3%/s  peak 39  constant
+   11.0- 12.6s (1.6s)  truck L 24%W/s + pedestal up 13%W/s + push-in 5%/s  peak 127  ease-in-out
+   15.3- 16.1s (0.8s)  truck R 19%W/s + pedestal down 17%W/s + pull-out 5%/s  peak 48  decelerating
+v44.mp4 10.5s
+    1.8-  2.9s (1.1s)  pedestal down 25%W/s + push-in 8%/s  peak 49  ease-in-out
+    4.0-  5.3s (1.3s)  pedestal down 3%W/s + pull-out 4%/s  peak 32  decelerating
+    6.1-  7.0s (0.9s)  pedestal up 7%W/s + pull-out 8%/s  peak 51  ease-in-out
+    7.7-  9.1s (1.4s)  truck R 10%W/s + pedestal up 3%W/s + push-in 3%/s  peak 33  decelerating
+    9.0- 10.3s (1.3s)  truck L 5%W/s + pull-out 7%/s  peak 22  decelerating
+v61.mp4 11.2s
+    0.0-  1.4s (1.4s)  truck R 9%W/s + pedestal down 2%W/s + pull-out 2%/s  peak 31  constant
+    1.3-  2.7s (1.4s)  truck R 3%W/s + push-in 2%/s  peak 53  decelerating
+    2.6-  5.6s (3.0s)  truck R 15%W/s + pedestal down 5%W/s + push-in 2%/s  peak 160  ease-in-out
+    5.5-  6.4s (0.9s)  truck L 2%W/s + pedestal down 14%W/s + pull-out 4%/s  peak 53  decelerating
+    6.6-  7.9s (1.3s)  truck R 14%W/s + pedestal down 3%W/s + pull-out 5%/s  peak 112  decelerating
+    8.1-  9.0s (0.9s)  pedestal down 6%W/s + pull-out 11%/s  peak 20  decelerating
+    9.2- 10.8s (1.6s)  truck R 8%W/s + pedestal up 7%W/s + pull-out 2%/s  peak 158  decelerating
+v12.mp4 9.8s
+    0.3-  1.0s (0.7s)  truck R 20%W/s + pedestal down 7%W/s + push-in 5%/s  peak 46  accelerating
+    0.9-  1.6s (0.7s)  truck L 5%W/s + pedestal down 5%W/s + pull-out 4%/s  peak 26  accelerating
+    1.7-  5.5s (3.8s)  truck R 15%W/s + pedestal down 2%W/s + push-in 5%/s  peak 117  ease-in-out
+    8.3-  9.4s (1.1s)  truck R 16%W/s + pull-out 8%/s  peak 31  decelerating
