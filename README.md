@@ -4,15 +4,20 @@
 
 MotionKit is the knowledge a motion designer carries in their head, written down so an AI agent can use it. That covers how great product films move, how their cameras travel, what their elements are made of, which fonts and colours they use, and how they sit on the music. It is packaged as a Claude Code skill plus code primitives, a premium element library, four sample films and the measurement tools used to check every render.
 
+<p align="center">
+<a href="media/d-saas-tally.mp4"><img src="media/tally-preview.webp" alt="Tally — landscape SaaS film (full 27 s)" width="100%"/></a><br/>
+<sub><b>Tally</b> · 16:9 · 27 s · breathing-gradient SaaS: a travelling follow-cam over kinetic type, alternating with element beats</sub>
+</p>
+
 <table>
 <tr>
-<td width="62%"><a href="media/d-saas-tally.mp4"><img src="media/tally-preview.gif" alt="Tally — landscape SaaS film"/></a><br/><sub><b>Tally</b> · 16:9 · breathing-gradient SaaS: a travelling follow-cam over kinetic type, alternating with element beats (<a href="media/d-saas-tally.mp4">full film</a>)</sub></td>
-<td width="19%"><a href="media/c-neon-aura.mp4"><img src="media/aura-preview.gif" alt="Aura — neon rim film"/></a><br/><sub><b>Aura</b> · 9:16 · neon rim glow (<a href="media/c-neon-aura.mp4">film</a>)</sub></td>
-<td width="19%"><a href="media/b-morph-nook.mp4"><img src="media/nook-preview.gif" alt="Nook — morph continuum"/></a><br/><sub><b>Nook</b> · 9:16 · morph continuum (<a href="media/b-morph-nook.mp4">film</a>)</sub></td>
+<td width="33%" align="center"><a href="media/c-neon-aura.mp4"><img src="media/aura-preview.webp" alt="Aura — neon rim film (full 27 s)"/></a><br/><sub><b>Aura</b> · 9:16 · 27 s · neon rim glow</sub></td>
+<td width="33%" align="center"><a href="media/b-morph-nook.mp4"><img src="media/nook-preview.webp" alt="Nook — morph continuum (full 26 s)"/></a><br/><sub><b>Nook</b> · 9:16 · 26 s · morph continuum</sub></td>
+<td width="33%" align="center"><a href="media/a-ember-lumen.mp4"><img src="media/lumen-preview.webp" alt="Lumen — ember flow (full 31 s)"/></a><br/><sub><b>Lumen</b> · 9:16 · 31 s · ember flow</sub></td>
 </tr>
 </table>
 
-<sub>Also included: <a href="media/a-ember-lumen.mp4"><b>Lumen</b></a> (9:16 · ember flow, <a href="media/lumen-preview.gif">preview</a>). Every frame of these films is HTML/CSS/SVG + GSAP rendered by HyperFrames, with no After Effects and no stock footage. The demo files are <b>muted</b>, because the films were cut to third-party reference tracks that can't be redistributed. Bring your own music (see <a href="#music">Music</a>).</sub>
+<sub>The previews play each film in full, start to finish. Click a preview for the MP4. Every frame of these films is HTML/CSS/SVG + GSAP rendered by HyperFrames, with no After Effects and no stock footage. The demo files are <b>muted</b>, because the films were cut to third-party reference tracks that can't be redistributed. Bring your own music (see <a href="#music">Music</a>).</sub>
 
 ---
 
