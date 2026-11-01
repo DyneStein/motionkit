@@ -1,0 +1,1 @@
+{ "name": "motionkit-fast-type", "private": true, "type": "module", "description": "Quality gate for fast-type reels", "dependencies": { "puppeteer-core": "^24" } }
