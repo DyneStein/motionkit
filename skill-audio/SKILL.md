@@ -33,6 +33,8 @@ Needs ffmpeg, numpy, scipy and Pillow.
 python3 $KIT/audio-map/sync_report.py <render.mp4> <project>/assets/audio.json
 python3 $KIT/research/sync_check.py <render.mp4>
 ```
+Slow original-style films use this too: `originals/new_original.py` aligns the brand reveal to a peak and snaps events to hits. They answer only the strongest accents, and do not lock tightly to dense tracks such as phonk: expect a low `sync_check` score there.
+
 `sync_report` asks whether the picture answers the song's biggest hits. `sync_check` asks whether visual events fall on any audio event.
 
 ## Limits
