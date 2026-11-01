@@ -44,7 +44,7 @@ Real 3D type and scanned objects through a physically correct lens, with true mo
 
 ## The originals
 
-The films that started the kit: slower and calmer, with the same camera thinking.
+The films that started the kit: slower and calmer, with the same camera thinking. The skill can still make new films in these styles.
 
 <p align="center">
 <a href="media/d-saas-tally.mp4"><img src="media/tally-preview.webp" alt="Tally — landscape SaaS film (full 27 s)" width="100%"/></a><br/>
@@ -90,11 +90,12 @@ The full critique history and the reasoning behind every rule live in `grammar/`
 ## What's inside
 
 ```
-skill/SKILL.md              Main skill (motionkit): brand reels, intake questions, quality gates
+skill/SKILL.md              Main skill (motionkit): brand reels, original styles, intake questions, quality gates
 skill-audio/SKILL.md        Audio analyser skill (motionkit-audio)
 skill-3d/SKILL.md           3D text film skill (motionkit-3d)
 fast-type/                  Brand-reel engine: new_reel.py, Director (director.mjs), visibility check, 8 presets
 audio-map/                  audio_map.py (hits, drops, sections, song graph), sync_report.py
+originals/                  new_original.py: slow films in the original styles, timed to your song
 lens-3d/                    3D lens engine: new_3d.py, 8 presets, fetch_assets.py, preview.mjs
 grammar/                    The motion grammar (read in order)
   01-continuity.md            14 "carriers" that replace hard cuts
@@ -119,7 +120,7 @@ research/
   video-notes/                per-reference breakdowns
   camera-notes.md, element-notes.md, level-up-notes.md
   build-log-round6.md         every bug, dead end and open problem from rounds 6-8
-  camera_motion.py, camera_moves.py, camera_velocity.py, sync_check.py, audio_hits.py
+  camera_motion.py, camera_moves.py, camera_velocity.py, sync_check.py, audio_hits.py, readable_check.py
 samples/                    four HyperFrames projects (Lumen, Nook, Aura, Tally), fully editable
 media/                      muted demo renders + previews
 ```
@@ -152,6 +153,8 @@ In Claude Code:
 > *"Make a 25-second vertical launch reel for my app **Orbit** (a calm calendar), MotionKit style, using `~/music/track.mp3`."*
 
 For a brand reel the skill asks a few questions first: your brand, fast or slow pace, a look, your music, and how the Director should shoot it. Agents with no way to ask use the defaults. Ask for a "3D text film" to get `motionkit-3d`, or "where are the drops in this song?" for `motionkit-audio`.
+
+Ask for a **slow, cinematic film** to get one of the original styles (Tally, Nook, Aura, Lumen) re-timed to your song. These suit calm or steady music: they keep their polish on any track, but do not lock tightly to dense music such as phonk, and the skill says so. For hard-hitting tracks, use a brand reel.
 
 For films built from the older samples, the skill picks a style from `styles/STYLES.md` and analyses your track. It decides the camera from the content: travelling glides for text-heavy films, a near-locked camera with motivated moves for element films. It then plans a varied route that alternates camera and element beats, builds with HyperFrames from the closest sample, syncs events to your music, and checks the render.
 

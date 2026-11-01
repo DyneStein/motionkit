@@ -10,13 +10,32 @@ Kit root: the folder this skill lives in, one level up (call it `$KIT`; if the s
 ## Start here: ask, then build
 **Default product: a brand reel.** Think of a company announcing something, not a short film. Before building, ask one round, skipping anything already answered. Use whatever question tool the host has (AskUserQuestion in Claude Code); in an agent with no way to ask, use the defaults and state them.
 
-0. **Kind of film:** a brand reel (this skill), or a cinematic 3D text film (use the `motionkit-3d` skill).
+0. **Kind of film:** a fast brand reel (the default), a **slow, cinematic film in an original style** (see *Original styles*), or a cinematic 3D text film (use the `motionkit-3d` skill).
 1. **Brand:** name, what it does, who it is for, and the one line they want remembered. Ask for a real logo and real facts if they have them. Never invent claims or numbers for a real company: use a placeholder and flag it.
 2. **Pace:** **Fast** (recommended: a new beat every 2 s, built for reels), **Medium**, or **Slow** (calm, premium, about 2× longer).
 3. **Look:** pick from the presets below, or describe one.
 4. **Music:** the path to their track. Never generate or synthesise music. If they have none, ask for one.
 
 Also confirm the format if it is unclear. The fast engine builds vertical 1080×1920 today. For landscape, adapt a sample in `$KIT/samples`, such as `d-saas-tally`, and say so.
+
+### Original styles: slow, cinematic, polished
+The calmer films the kit began with. Choose this when the user wants premium and unhurried rather than fast. It is a different look from `--pace slow` in the fast engine, which is a slower brand reel.
+
+| Style | Look | Format |
+|---|---|---|
+| `tally` | Breathing gradient, travelling camera over kinetic type, real UI | Landscape, 27 s |
+| `nook` | One object morphing into the next, near-still camera | Vertical, 26 s |
+| `aura` | Neon rim light, dark and glassy | Vertical, 27 s |
+| `lumen` | Warm ember glow, editorial act structure | Vertical, 31.5 s |
+
+```
+python3 $KIT/originals/new_original.py <outdir> --style tally --song <file> --rename Tally=<Brand> --title "<Brand>"
+```
+This maps the song, picks the window that lands the brand reveal on one of its biggest moments, and snaps the film's events to real hits. Then rewrite the copy, palette and mark in `compositions/*.html` for the actual brand: `--rename` only changes the name, and the story still belongs to the sample until you do. Build further from `styles/STYLES.md` and `grammar/` using the workflow below.
+
+Check it with `npx hyperframes check --json`, `sync_report.py`, `research/sync_check.py`, and `research/readable_check.py <render>` (add `--allow-graphics` for object-led films like `nook`).
+
+**Music matters here. Say this to the user before building.** These styles suit calm or steady music, and match the polish of the originals on any track, but they have few visual events, so they do not lock to dense music. Measured on phonk, with the target at ×1.35: Lumen ×1.17, Nook ×0.87, Harbor (`tally`) ×0.76, Aura ×0.59. For comparison, the original Tally on its own steady track scores ×1.65. Widening the snapping did not fix it and made Aura worse. For hard-hitting music with tight sync, recommend the fast engine at `--pace slow` or `medium`.
 
 ### Fast engine: `$KIT/fast-type`
 Everything is type and code-drawn UI. It needs no downloaded models.
@@ -58,6 +77,7 @@ Answers are saved in the project and reused on re-runs.
 ### Quality gates (run all before delivery)
 First time only: `cd $KIT/fast-type && npm i`.
 - `node $KIT/fast-type/visibility.mjs <project>`: **nothing useless on screen.** Target: readable at least 80% of the film, gaps about 0.5 s or less, overflow 0, **pre-shown 0** (nothing may show its finished state before its animation), **short holds 0** (finished content stays on screen before the camera leaves; giant words show their first and last letters). If it fails, fix the film rather than the check.
+- `python3 $KIT/research/readable_check.py <render.mp4>`: OCR on the rendered frames (macOS Vision or tesseract), for any film. It reads pixels, so blurred text fails just as it does for a viewer. Add `--allow-graphics` for object-led films.
 - **Motion rule:** action starts after the camera arrives, and the camera leaves after the content finishes. A cursor or finger only exists once it enters.
 - Sync: `python3 $KIT/audio-map/sync_report.py <render> <project>/assets/audio.json` and `python3 $KIT/research/sync_check.py <render>` (lift at least ×1.35). Numbers do not settle it: **ask the user to listen**.
 - Pace (`grammar/10-fast-3d.md`): mean motion about 3–8 for fast, about 1–3 for slow. Over 15 reads as chaos.

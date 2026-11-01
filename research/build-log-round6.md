@@ -145,3 +145,20 @@ User verdict: "the sync aren't that good"; asked for an analyser that reads the 
 - Film grain is expensive to compress. Denoise (`hqdn3d`) before making previews: 3D previews fell from 8 MB to between 2 and 7.5 MB.
 - Fontshare fonts may not be redistributed, so `fast-type/fonts` in the public copy holds only OFL faces and `new_reel.py` falls back to `fonts/` with a clear message.
 - Before offering a push, run a fresh-copy install: fonts, assets, one brand render, one 3D preview. It caught a wrong download size.
+
+## Round 9: the slow original styles as a route of their own
+The Director-era skill only offered brand reels or 3D, so the original styles could be reached only by naming them. Added `originals/new_original.py`, the third intake choice, and `research/readable_check.py` (OCR on rendered pixels, any film).
+
+**Measured on phonk (target ×1.35):**
+| Film | Sync | Big hits answered (chance) | Readable |
+|---|---|---|---|
+| Harbor (new, Tally style) | ×0.76 | 25 % (12 %) | 97 % text |
+| Nook | ×0.87 | 12 % (8 %) | 75 % content |
+| Aura | ×0.59 | 8 % (13 %) | 75 % text; the original also scores about 78 % |
+| Lumen | ×1.17 | 12 % (15 %) | 97 % text |
+
+**What was tried:** feeding every moderately strong hit (events snapped to minor hits); only the strongest accents; warping Tally's beat grid; aligning the song to the grid; widening `beatSync` tolerance to 0.3 s. None reached the target, and wider tolerance made Aura worse. Each film's look was unaffected.
+
+**Lesson:** calm films have few visual events, and phonk has a hit everywhere, which also raises the chance baseline. Do not promise tight sync here; pair the styles with calm music, or use the fast engine. The original Tally on its steady 100 BPM track scores ×1.65.
+
+**Pitfall:** identical metric values after a change mean the change did nothing. Harbor's score did not move at all until I found the hits sat half a beat off the grid, beyond the snap range.
