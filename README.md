@@ -1,8 +1,50 @@
 # MotionKit
 
-**A motion-graphics skill and kit for Claude Code that makes premium, liquid, cut-free product films in code with [HyperFrames](https://github.com/heygen-com/hyperframes). It was distilled from 60 reference films and refined over five rounds of human review.**
+**A motion-graphics skill and kit for Claude Code. It makes fast brand reels and product launches, cinematic 3D text films, and cuts them to your music by reading the song's real peaks. All rendered from code with [HyperFrames](https://github.com/heygen-com/hyperframes). It was distilled from 60 reference films and refined over eight rounds of human review.**
 
 MotionKit is the knowledge a motion designer carries in their head, written down so an AI agent can use it. That covers how great product films move, how their cameras travel, what their elements are made of, which fonts and colours they use, and how they sit on the music. It is packaged as a Claude Code skill plus code primitives, a premium element library, four sample films and the measurement tools used to check every render.
+
+## Brand reels
+
+Fast, code-drawn launch films: kinetic type, a travelling camera, and real interface elements such as charts, gauges, toggles and music players. Each has its own camera style, rhythm and elements, chosen by the Director engine, with no downloaded models. All eight brands are invented.
+
+<table>
+<tr>
+<td width="25%" align="center"><a href="media/brand-noctra.mp4"><img src="media/brand-noctra-preview.webp" alt="Noctra brand reel"/></a><br/><sub><b>Noctra</b><br/>AI research search</sub></td>
+<td width="25%" align="center"><a href="media/brand-vantyx.mp4"><img src="media/brand-vantyx-preview.webp" alt="Vantyx brand reel"/></a><br/><sub><b>Vantyx</b><br/>Bug detection</sub></td>
+<td width="25%" align="center"><a href="media/brand-ravik.mp4"><img src="media/brand-ravik-preview.webp" alt="Ravik brand reel"/></a><br/><sub><b>Ravik</b><br/>Cybersecurity</sub></td>
+<td width="25%" align="center"><a href="media/brand-forja.mp4"><img src="media/brand-forja-preview.webp" alt="Forja brand reel"/></a><br/><sub><b>Forja</b><br/>Strength training</sub></td>
+</tr>
+<tr>
+<td width="25%" align="center"><a href="media/brand-ampora.mp4"><img src="media/brand-ampora-preview.webp" alt="Ampora brand reel"/></a><br/><sub><b>Ampora</b><br/>Portable speaker</sub></td>
+<td width="25%" align="center"><a href="media/brand-zapto.mp4"><img src="media/brand-zapto-preview.webp" alt="Zapto brand reel"/></a><br/><sub><b>Zapto</b><br/>EV charging</sub></td>
+<td width="25%" align="center"><a href="media/brand-aurelle.mp4"><img src="media/brand-aurelle-preview.webp" alt="Aurelle brand reel"/></a><br/><sub><b>Aurelle</b><br/>Sleep wearable</sub></td>
+<td width="25%" align="center"><a href="media/brand-kuryr.mp4"><img src="media/brand-kuryr-preview.webp" alt="Kuryr brand reel"/></a><br/><sub><b>Kuryr</b><br/>Same-hour delivery</sub></td>
+</tr>
+</table>
+
+## 3D text films
+
+Real 3D type and scanned objects through a physically correct lens, with true motion blur and depth of field.
+
+<table>
+<tr>
+<td width="25%" align="center"><a href="media/3d-andromeda.mp4"><img src="media/3d-andromeda-preview.webp" alt="Andromeda 3D film"/></a><br/><sub><b>Andromeda</b><br/>Galaxy and lensed black hole</sub></td>
+<td width="25%" align="center"><a href="media/3d-abnormal.mp4"><img src="media/3d-abnormal-preview.webp" alt="Abnormal 3D film"/></a><br/><sub><b>Abnormal</b><br/>Living ferrofluid</sub></td>
+<td width="25%" align="center"><a href="media/3d-letal.mp4"><img src="media/3d-letal-preview.webp" alt="Letal 3D film"/></a><br/><sub><b>Letal</b><br/>Chrome skull, blade tunnel</sub></td>
+<td width="25%" align="center"><a href="media/3d-guerreiro.mp4"><img src="media/3d-guerreiro-preview.webp" alt="Guerreiro 3D film"/></a><br/><sub><b>Guerreiro</b><br/>Forged gold</sub></td>
+</tr>
+<tr>
+<td width="25%" align="center"><a href="media/3d-pegadora.mp4"><img src="media/3d-pegadora-preview.webp" alt="Pegadora 3D film"/></a><br/><sub><b>Pegadora</b><br/>Concert stage</sub></td>
+<td width="25%" align="center"><a href="media/3d-tomada.mp4"><img src="media/3d-tomada-preview.webp" alt="Tomada 3D film"/></a><br/><sub><b>Tomada</b><br/>High voltage</sub></td>
+<td width="25%" align="center"><a href="media/3d-zora.mp4"><img src="media/3d-zora-preview.webp" alt="Zora 3D film"/></a><br/><sub><b>Zora</b><br/>Dawn above the clouds</sub></td>
+<td width="25%" align="center"><a href="media/3d-sem-demora.mp4"><img src="media/3d-sem-demora-preview.webp" alt="Sem Demora 3D film"/></a><br/><sub><b>Sem Demora</b><br/>Night highway</sub></td>
+</tr>
+</table>
+
+## The originals
+
+The films that started the kit: slower and calmer, with the same camera thinking.
 
 <p align="center">
 <a href="media/d-saas-tally.mp4"><img src="media/tally-preview.webp" alt="Tally — landscape SaaS film (full 27 s)" width="100%"/></a><br/>
@@ -28,7 +70,7 @@ MotionKit is not a prompt template. It came out of a loop of study, build, measu
 1. **Study.** 60 premium motion films (Apple-style morph films, AI-lab launch spots, SaaS explainers, kinetic-type reels, lyric films) were watched frame by frame. Each got timestamped contact sheets, 10 fps strips across every transition, and written notes on its elements, palette, type, camera and every transition (`research/video-notes/`).
 2. **Measure.** Purpose-built tools turned taste into numbers: hard cuts per 10 s, how much and how smoothly the camera moves (`camera_motion.py`, `camera_moves.py`, `camera_velocity.py`), and how tightly visual events land on the music (`sync_check.py`). For example, 19 of the 59 motion references contain zero hard cuts. In text-driven films the camera is moving 65–87 % of the time. And visual events land on audio hits 1.15–1.4× more often than chance.
 3. **Distil.** The findings became a grammar (continuity carriers, easing, kinetic type, materials, camera, sync), 12 style cards, code primitives and an element library.
-4. **Build and review: five rounds.** Four sample films were built, then reviewed by a human with a high bar. Each round's critique was turned into a rule, a primitive and a regression check:
+4. **Build and review: eight rounds.** Sample films were built, then reviewed by a human with a high bar. Each round's critique was turned into a rule, a primitive and a regression check:
 
 | Round | Reviewer's note | What changed in the kit |
 |---|---|---|
@@ -37,6 +79,9 @@ MotionKit is not a prompt template. It came out of a loop of study, build, measu
 | 3 | "The camera is incremental, 5 px stop 5 px stop", "camera movement only where there's text; morph films become chaos", "the pattern is predictable" | Spline **glide** keys (one continuous move per phrase). Rule: *decide the camera from the content*. Element films get a near-locked camera with motivated, **seeded** moves. |
 | 4 | "Constantly left to right", "balance camera with element interaction", "sync with the beats" | Varied routes (never the same direction twice in a row), camera beats alternating with element beats, `beat-sync.js` + `sync_check.py`. |
 | 5 | Final pass, measured | Beat-sync lift: Tally ×1.65, Nook ×1.62, Aura ×1.41, Lumen ×1.22 (the references score ×1.15–1.41). Zero hard cuts in all four films. |
+| 6 | "Good, but not fast and not professional elements", then "brand videos, not short 3D movies", and "nothing useless on screen" | A code-drawn brand-reel engine with a real pace setting, a separate 3D skill, and a checker for readable time and text overflow. |
+| 7 | "The mouse is already there", "the line is already drawn", "every video has the same camera and the same graphs" | Nothing shows before the camera arrives, and a check enforces it. A **Director engine** with camera personalities, element variants and a ledger, so films stop repeating. |
+| 8 | "The sync isn't that good. Find the high peaks and show important stuff there" | An **audio analyser** that maps every hit, drop and section. Scenes now land on real hits, with the logo reaching for the strongest. Better, not finished: some films still miss the ×1.35 target, so listen as well as measure. |
 
 The full critique history and the reasoning behind every rule live in `grammar/` and `research/`.
 
@@ -45,7 +90,12 @@ The full critique history and the reasoning behind every rule live in `grammar/`
 ## What's inside
 
 ```
-skill/SKILL.md              The Claude Code skill: non-negotiables, workflow, quick references
+skill/SKILL.md              Main skill (motionkit): brand reels, intake questions, quality gates
+skill-audio/SKILL.md        Audio analyser skill (motionkit-audio)
+skill-3d/SKILL.md           3D text film skill (motionkit-3d)
+fast-type/                  Brand-reel engine: new_reel.py, Director (director.mjs), visibility check, 8 presets
+audio-map/                  audio_map.py (hits, drops, sections, song graph), sync_report.py
+lens-3d/                    3D lens engine: new_3d.py, 8 presets, fetch_assets.py, preview.mjs
 grammar/                    The motion grammar (read in order)
   01-continuity.md            14 "carriers" that replace hard cuts
   02-motion-easing.md         liquid laws, ease palette, timings, beat math
@@ -56,6 +106,7 @@ grammar/                    The motion grammar (read in order)
   07-engineering-pitfalls.md  22 seek-safety and polish bugs (and fixes)
   08-camera.md                the camera doctrine: content decides camera, glide, seeds, routes, sync
   09-polish-bar.md            everything the reviewer rejected, as hard rules
+  10-fast-3d.md               the fast-reel playbook: pace numbers, lighting, camera, readability
 styles/STYLES.md            12 style cards (tokens, signature moves, references, camera, music pairing)
 primitives/
   PRIMITIVES.md               22 copy-paste blocks proven in the samples
@@ -66,7 +117,8 @@ fonts/                      OFL fonts + fonts.css + FONTS.md pairing guide + fet
 research/
   INDEX.md                    all 60 references: style, format, cuts, motion, camera %, rating
   video-notes/                per-reference breakdowns
-  camera-notes.md, element-notes.md
+  camera-notes.md, element-notes.md, level-up-notes.md
+  build-log-round6.md         every bug, dead end and open problem from rounds 6-8
   camera_motion.py, camera_moves.py, camera_velocity.py, sync_check.py, audio_hits.py
 samples/                    four HyperFrames projects (Lumen, Nook, Aura, Tally), fully editable
 media/                      muted demo renders + previews
@@ -79,15 +131,19 @@ media/                      muted demo renders + previews
 ### 1 · Requirements
 - [Claude Code](https://claude.com/claude-code)
 - Node 18+ and `npx` (HyperFrames runs via `npx hyperframes …`)
-- `ffmpeg` / `ffprobe`, plus Python 3 with `numpy` and `Pillow` for the research tools
+- `ffmpeg` / `ffprobe`, plus Python 3 with `numpy`, `scipy` and `Pillow` for the analyser and research tools
 - The HyperFrames skills: `npx hyperframes skills update`
 
 ### 2 · Install the skill
 ```bash
 git clone https://github.com/DyneStein/motionkit.git
 cd motionkit
-ln -s "$PWD/skill" ~/.claude/skills/motionkit      # Claude Code picks it up as the "motionkit" skill
-fonts/fetch-fontshare.sh                            # optional: Chillax, Satoshi, General Sans, Clash Grotesk…
+ln -s "$PWD/skill" ~/.claude/skills/motionkit              # brand reels
+ln -s "$PWD/skill-audio" ~/.claude/skills/motionkit-audio  # audio analyser
+ln -s "$PWD/skill-3d" ~/.claude/skills/motionkit-3d        # 3D text films
+fonts/fetch-fontshare.sh                            # needed by most brand-reel presets: Chillax, Satoshi, General Sans, Clash Grotesk…
+(cd fast-type && npm i)                             # first time only: the visibility check
+python3 lens-3d/fetch_assets.py                     # 3D films only: downloads about 90 MB of free models
 ```
 
 ### 3 · Ask for a film
@@ -95,7 +151,9 @@ In Claude Code:
 
 > *"Make a 25-second vertical launch reel for my app **Orbit** (a calm calendar), MotionKit style, using `~/music/track.mp3`."*
 
-The skill picks a style from `styles/STYLES.md` and analyses your track. It decides the camera from the content: travelling glides for text-heavy films, a near-locked camera with motivated moves for element films. It then plans a varied route that alternates camera and element beats, builds with HyperFrames from the closest sample, syncs events to your music, and checks the render.
+For a brand reel the skill asks a few questions first: your brand, fast or slow pace, a look, your music, and how the Director should shoot it. Agents with no way to ask use the defaults. Ask for a "3D text film" to get `motionkit-3d`, or "where are the drops in this song?" for `motionkit-audio`.
+
+For films built from the older samples, the skill picks a style from `styles/STYLES.md` and analyses your track. It decides the camera from the content: travelling glides for text-heavy films, a near-locked camera with motivated moves for element films. It then plans a varied route that alternates camera and element beats, builds with HyperFrames from the closest sample, syncs events to your music, and checks the render.
 
 ### 4 · Or start from a sample yourself
 ```bash
@@ -132,7 +190,9 @@ MotionKit **never generates music**: synthetic beds sound robotic next to real t
 
 - Code, docs and grammar: **MIT** (see `LICENSE`).
 - Fonts: OFL faces are bundled under the SIL Open Font License (`fonts/OFL-NOTICE.md`). Fontshare faces are fetched, not bundled.
-- Reference films were studied for analysis only. No reference footage, frames or audio are included, and all brands in the samples (Lumen, Nook, Aura, Tally) are fictional.
+- Reference films were studied for analysis only. No reference footage, frames or audio are included, and all brands in the samples and brand reels are fictional. They were not trademark-checked.
+- 3D films use scans from [Poly Haven](https://polyhaven.com) (CC0) and models from Khronos glTF-Sample-Assets, downloaded by `fetch_assets.py` rather than bundled. Scattering Skull is CC0. **Credit required:** Car Concept by Eric Chadwick / Darmstadt Graphics Group (CC BY 4.0), and Primary Ion Drive by Mike Murdock (CC Attribution). See `lens-3d/CREDITS.md`.
+- Brand-reel fonts are OFL or fetched from Fontshare. `gsap.min.js` is GSAP under its own standard no-charge license, not MIT.
 - Rendering by [HyperFrames](https://github.com/heygen-com/hyperframes), animation by [GSAP](https://gsap.com).
 
 Contributions are welcome: new style cards, primitives, element pieces, or a new review round's findings.

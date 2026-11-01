@@ -1,0 +1,1 @@
+{ "name": "motionkit-lens-3d", "private": true, "type": "module", "description": "3D lens engine", "dependencies": { "three": "0.186.1", "opentype.js": "^2", "esbuild": "^0.25", "puppeteer-core": "^24" } }

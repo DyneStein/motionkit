@@ -28,3 +28,11 @@ HyperFrames renders by **seeking** the timeline to each frame, often cold (a fre
 | 20 | Camera move hides a word under the HUD heading | world content travels into the HUD band | fade that region as the camera passes, or keep HUD text where the world is empty; snapshot every sweep |
 
 Workflow that worked: write one scene → `npx hyperframes check --json 2>/dev/null` (stderr is very noisy) → `snapshot --at` every state change → read the contact sheet → fix → render.
+
+## Fast reels (round 6)
+Full list with causes: `research/build-log-round6.md`. The ones that recur:
+- Rotate the camera **after** translating, or stations far from the origin swing by hundreds of pixels.
+- Fit content to about 88 % of the frame: push-ins scale it past the edge.
+- Land camera arrivals on real kicks, not on a calculated grid. Whip starts count as visual events too.
+- Prepend GLSL with a newline. Use `charToGlyph`, not `stringToGlyphs`, for fonts with complex substitution.
+- Check triangle counts × accumulation samples before instancing a scanned model.

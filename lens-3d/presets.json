@@ -1,0 +1,10 @@
+{
+ "01-andromeda": {"look": "Deep space: galaxy, lensed black hole, chrome type", "assets": ["models/PrimaryIonDrive","models/moon_rock_01","models/moon_rock_03","models/moon_rock_05","fonts/michroma.ttf","fonts/unbounded.ttf","fonts/jetbrains-mono.ttf"]},
+ "02-abnormal": {"look": "Clinical white, living ferrofluid, giant letters", "assets": ["models/industrial_microscope","fonts/syne.ttf","fonts/jetbrains-mono.ttf"]},
+ "03-letal": {"look": "Blood red, chrome skull, tunnel of blades", "assets": ["models/ScatteringSkull","models/old_gas_mask","fonts/unifrakturcook.ttf","fonts/grenze-gotisch.ttf","fonts/pirata-one.ttf","fonts/jetbrains-mono.ttf"]},
+ "04-guerreiro": {"look": "Forged gold, katana, lion, sparks, roman type", "assets": ["models/antique_katana_01","models/kite_shield","models/ornate_war_hammer","models/ornate_medieval_mace","models/lion_head","fonts/bodoni-moda.ttf","fonts/jetbrains-mono.ttf"]},
+ "05-pegadora": {"look": "Concert stage, speaker wall, light beams, LED type", "assets": ["models/boombox","fonts/anton.ttf","fonts/jetbrains-mono.ttf"]},
+ "06-tomada": {"look": "High voltage: socket, cable flight, lightning, hazard yellow", "assets": ["models/power_box_01","models/retro_multimeter","models/pull_chain_light_socket","fonts/big-shoulders-display.ttf","fonts/jetbrains-mono.ttf"]},
+ "07-zora": {"look": "Dawn: cloud sea, marble arches, bronze whale, statue", "assets": ["models/gothic_statue","models/bronze_whale_statue","hdri/kiara_1_dawn.hdr","fonts/dm-serif-display.ttf","fonts/jetbrains-mono.ttf"]},
+ "08-sem-demora": {"look": "Night highway, red concept car, tunnel, gantry title", "assets": ["models/CarConcept","models/concrete_road_barrier_02","models/street_lamp_01","tex/asphalt_02","fonts/saira-extra-condensed.ttf","fonts/jetbrains-mono.ttf"]}
+}
